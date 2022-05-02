@@ -2,23 +2,18 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferStrategy;
 
-public class MainFrame extends JFrame implements MyCanvas.VisualizerProvider
-        , ButtonPanel.SortButtonListener, Visualizer.SortedListener {
+public class MainFrame extends JFrame {
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new MainFrame().setVisible(true);
-            }
+        EventQueue.invokeLater(() -> {
+            MainFrame frame = new MainFrame();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setVisible(true);
         });
     }
 
     public static final int WIDTH = 1280, HEIGHT = 720;
-    private JPanel mainPanel, buttonPanel;
-    private MyCanvas canvas;
-    private Visualizer visualizer;
+    private JPanel mainPanel;
 
     public MainFrame() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,55 +33,6 @@ public class MainFrame extends JFrame implements MyCanvas.VisualizerProvider
         mainPanel.setLayout(null);
         mainPanel.setBackground(ColorManager.BACKGROUND);
         add(mainPanel);
-
-        buttonPanel = new ButtonPanel(this);
-        buttonPanel.setBounds(0, 150, 250, HEIGHT);
-        buttonPanel.setBackground(ColorManager.BACKGROUND);
-        ;
-        mainPanel.add(buttonPanel);
-
-        canvas = new MyCanvas(this);
-        int cWidth = WIDTH - 250 - 10;
-        int cHeight = HEIGHT - 80;
-        canvas.setFocusable(false);
-        canvas.setMaximumSize(new Dimension(cWidth, cHeight));
-        canvas.setMinimumSize(new Dimension(cWidth, cHeight));
-        canvas.setPreferredSize(new Dimension(cWidth, cHeight));
-        canvas.setBounds(250, 60, cWidth, cHeight);
-        mainPanel.add(canvas);
-
         pack();
-
-        visualizer = new Visualizer(50, 20, this);
-    }
-
-    @Override
-    public void onDrawArray() {
-        if(visualizer != null) {
-            visualizer.drawArray();
-        }
-    }
-
-    @Override
-    public void sortButtonClicked(int id) {
-        switch (id) {
-            case 0:
-                visualizer.createRandomArray(canvas.getWidth(), canvas.getHeight());
-                break;
-            case 1:
-                visualizer.bubbleSort();
-                break;
-        }
-    }
-
-    @Override
-    public BufferStrategy getBufferStrategy() {
-        BufferStrategy bs = canvas.getBufferStrategy();
-        if(bs == null) {
-            canvas.createBufferStrategy(2);
-            bs = canvas.getBufferStrategy();
-        }
-
-        return bs;
     }
 }
