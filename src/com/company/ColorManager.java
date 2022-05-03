@@ -2,8 +2,7 @@ package com.company;
 
 import java.awt.Color;
 
-public class ColorManager
-{
+public class ColorManager {
     public static Color BACKGROUND = new Color(62, 62, 62);
     public static Color CANVAS_BACKGROUND = new Color(48, 48, 48);
     public static Color BAR_WHITE = new Color(211, 222, 228);
