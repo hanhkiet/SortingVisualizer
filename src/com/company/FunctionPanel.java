@@ -47,7 +47,7 @@ public class FunctionPanel extends JPanel {
                     _amount = Integer.parseInt(textField.getText());
                     if (_amount <= 15 && _amount > 0) {
                         arr = new int[_amount];
-                        initWithDuplicated(arr);
+                        initWithoutDuplicated(arr);
                         parent.setArr(arr);
                     } else {
                         JOptionPane.showMessageDialog(null,
