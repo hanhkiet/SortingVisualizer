@@ -6,7 +6,6 @@ import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
@@ -22,6 +21,7 @@ public class VisualizerPanel extends JPanel {
 
     private MainFrame parent;
     private int[] arr;
+    private JButton[] buttons;
 
     private void getIcon() {
         playIcon = new ImageIcon(
@@ -61,12 +61,15 @@ public class VisualizerPanel extends JPanel {
 
     private void initArray() {
         if (arr != null && arr.length > 0) {
+            buttons = new JButton[arr.length];
             for (int i = 0; i < arr.length; i++) {
-                JButton button = new JButton(Integer.toString(arr[i]));
-                button.setFocusable(false);
-                button.setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2, 60, 60);
-                add(button);
+                buttons[i] = new JButton(Integer.toString(arr[i]));
+                buttons[i].setFocusable(false);
+                buttons[i].setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2, 60, 60);
+                add(buttons[i]);
             }
+        } else {
+            buttons = null;
         }
     }
 
