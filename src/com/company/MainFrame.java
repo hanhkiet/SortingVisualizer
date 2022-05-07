@@ -25,7 +25,7 @@ public class MainFrame extends JFrame {
         setMinimumSize(new Dimension(WIDTH, HEIGHT + 20));
         setPreferredSize(new Dimension(WIDTH, HEIGHT + 20));
         setLocationRelativeTo(null);
-        setResizable(false);
+        setResizable(true);
         setBackground(ColorManager.BACKGROUND);
         setTitle("Sorting Visualizer");
 
@@ -55,7 +55,7 @@ public class MainFrame extends JFrame {
         mainPanel.add(algorithmsPanel);
 
         codePanel.setBounds(WIDTH * 5 / 9, HEIGHT / 2, WIDTH * 4 / 9 - 13, HEIGHT / 2 - 18);
-        // codePanel.setBackground(ColorManager.BAR_RED);
+        codePanel.setBackground(ColorManager.BAR_RED);
         mainPanel.add(codePanel);
 
         add(mainPanel);
