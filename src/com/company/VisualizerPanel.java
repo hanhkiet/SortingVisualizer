@@ -48,4 +48,5 @@ public class VisualizerPanel extends JPanel {
 
         setBorder(border);
     }
+
 }
