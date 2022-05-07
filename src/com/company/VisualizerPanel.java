@@ -20,7 +20,8 @@ public class VisualizerPanel extends JPanel {
     private Icon playIcon;
     private Icon stopIcon;
 
-    private Integer[] array;
+    private MainFrame parent;
+    private int[] arr;
 
     private void getIcon() {
         playIcon = new ImageIcon(
@@ -49,18 +50,30 @@ public class VisualizerPanel extends JPanel {
         add(stopButton);
     }
 
+    public void setArr(int[] arr) {
+        this.arr = arr;
+        // initArray();
+        // JButton button = new JButton("button");
+        removeAll();
+        initialize();
+        repaint();
+    }
+
     private void initArray() {
-        array = new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-        for (int i = 0; i < array.length; i++) {
-            JButton button = new JButton(array[i].toString());
-            button.setFocusable(false);
-            button.setBounds(WIDTH / 2 - array.length * 80 / 2 + i * 80, HEIGHT / 2, 60, 60);
-            add(button);
+        if (arr != null && arr.length > 0) {
+            for (int i = 0; i < arr.length; i++) {
+                JButton button = new JButton(Integer.toString(arr[i]));
+                button.setFocusable(false);
+                button.setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2, 60, 60);
+                add(button);
+            }
         }
     }
 
-    public VisualizerPanel(JFrame frame) {
+    public VisualizerPanel(MainFrame frame) {
         super();
+
+        parent = frame;
 
         initialize();
 
@@ -71,5 +84,4 @@ public class VisualizerPanel extends JPanel {
 
         setBorder(border);
     }
-
 }

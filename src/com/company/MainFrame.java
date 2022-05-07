@@ -14,10 +14,21 @@ public class MainFrame extends JFrame {
 
     private static final int WIDTH = 1280, HEIGHT = 720;
     private JPanel mainPanel;
-    private JPanel visualizerPanel;
-    private JPanel functionPanel;
-    private JPanel algorithmsPanel;
-    private JPanel codePanel;
+    private VisualizerPanel visualizerPanel;
+    private FunctionPanel functionPanel;
+    private AlgorithmsPanel algorithmsPanel;
+    private CodePanel codePanel;
+
+    private int[] arr;
+
+    public void setArr(int[] newArr) {
+        arr = newArr;
+        visualizerPanel.setArr(arr);
+    }
+
+    public int[] getArr() {
+        return arr;
+    }
 
     public MainFrame() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

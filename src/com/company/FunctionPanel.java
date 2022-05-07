@@ -18,6 +18,8 @@ public class FunctionPanel extends JPanel {
     private JButton deleteButton;
     private int _amount;
     private int[] arr;
+    private MainFrame parent;
+
     private void initialize() {
         label = new JLabel("Số phần tử mảng");
         textField = new JTextField();
@@ -34,17 +36,19 @@ public class FunctionPanel extends JPanel {
         generateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (textField.getText().length() == 0){
-                    JOptionPane.showMessageDialog(null,"Số lượng phần tử rỗng!!!","Cảnh báo",JOptionPane.WARNING_MESSAGE);
-                }
-                else{
+                if (textField.getText().length() == 0) {
+                    JOptionPane.showMessageDialog(null, "Số lượng phần tử rỗng!!!", "Cảnh báo",
+                            JOptionPane.WARNING_MESSAGE);
+                } else {
                     _amount = Integer.parseInt(textField.getText());
-                    if (_amount < 10 && _amount > 0){
+                    if (_amount <= 15 && _amount > 0) {
                         arr = new int[_amount];
                         initWithDuplicated(arr);
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null,"Số lượng phần tử không hợp lệ (số phần tử phải lớn hơn 0 và nhỏ hơn 10)!!!","Cảnh báo",JOptionPane.WARNING_MESSAGE);
+                        parent.setArr(arr);
+                    } else {
+                        JOptionPane.showMessageDialog(null,
+                                "Số lượng phần tử không hợp lệ (số phần tử phải lớn hơn 0 và tối đa là 10)!!!",
+                                "Cảnh báo", JOptionPane.WARNING_MESSAGE);
                     }
 
                 }
@@ -55,6 +59,7 @@ public class FunctionPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 arr = null;
+                parent.setArr(arr);
             }
         });
 
@@ -62,16 +67,17 @@ public class FunctionPanel extends JPanel {
             @Override
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
-                if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+                if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
                     e.consume();
                 }
             }
         });
     }
 
-    public FunctionPanel(JFrame frame) {
+    public FunctionPanel(MainFrame frame) {
         super();
 
+        parent = frame;
         initialize();
 
         TitledBorder border = BorderFactory.createTitledBorder("Tùy chỉnh");
@@ -80,16 +86,16 @@ public class FunctionPanel extends JPanel {
         setBorder(border);
     }
 
-    public void initWithoutDuplicated(int[] arr){
+    public void initWithoutDuplicated(int[] arr) {
         String test = "";
         Random rand = new Random();
 
-        for(int i = 0; i < _amount; i++) {
+        for (int i = 0; i < _amount; i++) {
             int temp = rand.nextInt(100);
             boolean flat = true;
-            while(flat){
-                for (int j =0; j < i;j++){
-                    if (arr[j] == temp){
+            while (flat) {
+                for (int j = 0; j < i; j++) {
+                    if (arr[j] == temp) {
                         temp = rand.nextInt(100);
                         break;
                     }
@@ -103,12 +109,11 @@ public class FunctionPanel extends JPanel {
 
     }
 
-    public void initWithDuplicated(int[] arr){
+    public void initWithDuplicated(int[] arr) {
         String test = "";
         Random rand = new Random();
-        for(int i = 0; i < _amount; i++) {
-            arr[i] = rand.nextInt(1000);
+        for (int i = 0; i < _amount; i++) {
+            arr[i] = rand.nextInt(100);
         }
-
     }
 }
