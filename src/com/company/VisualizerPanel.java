@@ -37,8 +37,11 @@ public class VisualizerPanel extends JPanel {
         getIcon();
         playButton = new JButton(playIcon);
         playButton.setFocusable(false);
+        playButton.setBounds(WIDTH / 2 - 30, 30, 40, 40);
         stopButton = new JButton(stopIcon);
         stopButton.setFocusable(false);
+        stopButton.setBounds(WIDTH / 2 + 30, 30, 40, 40);
+        stopButton.setEnabled(false);
 
         initArray();
 
