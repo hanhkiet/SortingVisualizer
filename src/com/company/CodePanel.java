@@ -48,7 +48,7 @@ public class CodePanel extends JPanel {
                 break;
             case "Quick sort":
                 // this.removeAllCpn();
-                codeSort = new QuickSort(new int[] { 5, 4, 62, 1, 78, 4 });
+                codeSort = new QuickSort(new int[] { 10, 80, 30, 90, 40, 50, 70 });
                 this.add(codeSort, BorderLayout.CENTER);
                 break;
             default:
