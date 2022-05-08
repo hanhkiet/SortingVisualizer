@@ -65,7 +65,6 @@ public class SelectSort extends Sort {
             if (this.index == 1) {
                 if (j == -1) {
                     this.setI(i + 1);
-                    j = i;
                     min = i;
                     if (this.i == arr.length - 1) {
                         this.isSuccess = true;
@@ -77,7 +76,9 @@ public class SelectSort extends Sort {
                 }
             }
             if (this.index == 2) {
-                
+                if (j == -1) {
+                    min = i;
+                }
             }
             if (this.index == 3) {
                 if (j == -1) {
