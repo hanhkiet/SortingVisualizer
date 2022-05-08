@@ -8,6 +8,7 @@ import java.awt.event.*;
 
 import com.company.codeCpn.BBSort;
 import com.company.codeCpn.QuickSort;
+import com.company.codeCpn.SelectSort;
 import com.company.codeCpn.Sort;
 
 public class CodePanel extends JPanel {
@@ -40,7 +41,7 @@ public class CodePanel extends JPanel {
         });
         TitledBorder border = BorderFactory.createTitledBorder("Code");
         border.setTitleFont(FontManager.titleFont);
-        switch ("Quick sort") {
+        switch ("Selection sort") {
             case "Bubble sort":
                 // this.removeAllCpn();
                 codeSort = new BBSort(new int[] { 5, 4, 62, 1, 78, 4 });
@@ -49,6 +50,11 @@ public class CodePanel extends JPanel {
             case "Quick sort":
                 // this.removeAllCpn();
                 codeSort = new QuickSort(new int[] { 5, 4, 62, 1, 78, 4 });
+                this.add(codeSort, BorderLayout.CENTER);
+                break;
+            case "Selection sort":
+                // this.removeAllCpn();
+                codeSort = new SelectSort(new int[] { 5, 4, 62, 1, 78, 4 });
                 this.add(codeSort, BorderLayout.CENTER);
                 break;
             default:
