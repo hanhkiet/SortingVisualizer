@@ -7,12 +7,13 @@ import com.company.components.MyJList;
 public abstract class Sort extends JPanel {
   public abstract void next();
 
+  protected MyJList jList;
+
   protected int[] arr;
   protected int index;
-  protected MyJList jList;
-  protected boolean isSwap;
+  protected boolean isSwap = false;
   protected boolean isSuccess = false;
-  protected int[] lsElement;
+  protected int[] lsValues; // Danh sách i,j, mid
 
   public Sort() {
     this.isSuccess = false;
@@ -21,14 +22,15 @@ public abstract class Sort extends JPanel {
   public Sort(int[] arr) {
     this.arr = arr;
     this.isSuccess = false;
+    this.isSwap = false;
   }
 
-  public int[] getLsElement() {
-    return this.lsElement;
+  public int[] getLsValues() {
+    return this.lsValues;
   }
 
-  public void setlsElement(int[] arr) {
-    this.lsElement = arr;
+  public void setLsValues(int[] arr) {
+    this.lsValues = arr;
   }
 
   public int getIndex() {

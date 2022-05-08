@@ -6,15 +6,15 @@ import java.awt.*;
 
 public class BBSort extends Sort {
   private String[] lsCode = {
-      "for (i=0; i<N-1; i++)",
-      "  for (j=n-1; j>i; j--)",
-      "   if (a[i] > a[j])",
-      "     Swap(a[j], a[j-1])",
+      "for (i = 0; i < n - 1; i++)",
+      "   for (j = 0; j < n - i - 1; j++)",
+      "       if (arr[j] > arr[j + 1])",
+      "           swap(arr[j], arr[j + 1]);",
       " " };
   private int indexKeySwap = 3;
   private JLabel label;
   private int i = -1;
-  private int j = 0;
+  private int j = -1;
 
   public BBSort() {
     super();
@@ -29,7 +29,6 @@ public class BBSort extends Sort {
   public BBSort(int[] arr) {
     super(arr);
     init();
-    this.j = arr.length;
     this.label = new JLabel(arr[0] + " - " + arr[1] +
         " - " + arr[2] + " - " + arr[3] +
         " - " + arr[4] + " - " + arr[5]);
@@ -38,6 +37,13 @@ public class BBSort extends Sort {
     this.jList = new MyJList(lsCode);
     this.add(label, BorderLayout.NORTH);
     this.add(jList, BorderLayout.CENTER);
+  }
+
+  public void init() {
+    this.setLayout(new BorderLayout());
+    this.setBackground(Color.BLACK);
+    this.setSize(new Dimension(100, 100));
+    this.setVisible(true);
   }
 
   @Override
@@ -51,7 +57,7 @@ public class BBSort extends Sort {
 
       }
       if (this.index == 1) {
-        if (j == arr.length) {
+        if (j == -1) {
           this.setI(i + 1);
           if (this.i == arr.length - 1) {
             this.isSuccess = true;
@@ -63,18 +69,19 @@ public class BBSort extends Sort {
         }
       }
       if (this.index == 2) {
-        this.setJ(j - 1);
-        if (this.j == this.i) {
+        this.setJ(j + 1);
+        if (this.j == arr.length - this.i - 1) {
           this.setIndex(0);
-          this.setJ(arr.length);
+          this.setJ(-1);
         }
+
       }
       if (this.index == this.indexKeySwap) {
-        if (arr[i] > arr[j]) {
+        if (arr[j] > arr[j + 1]) {
           this.setIsSwap(true);
-          int temp = arr[i];
-          arr[i] = arr[j];
-          arr[j] = temp;
+          int temp = arr[j];
+          arr[j] = arr[j + 1];
+          arr[j + 1] = temp;
           this.label.setText(arr[0] + " - " + arr[1] +
               " - " + arr[2] + " - " + arr[3] +
               " - " + arr[4] + " - " + arr[5] + " isS: " + isSuccess);
@@ -82,21 +89,13 @@ public class BBSort extends Sort {
 
         else {
           this.setIsSwap(false);
-          this.setIndex(index + 1);
-
+          this.setIndex(1);
         }
 
       } else
         this.setIsSwap(false);
       this.jList.setSelectedIndex(index);
     }
-  }
-
-  public void init() {
-    this.setLayout(new BorderLayout());
-    this.setBackground(Color.BLACK);
-    this.setSize(new Dimension(100, 100));
-    this.setVisible(true);
   }
 
   public int getIndex() {
