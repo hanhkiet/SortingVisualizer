@@ -150,8 +150,6 @@ public class SelectSort extends Sort {
       public void setJ(int j) {
         this.j = j;
       }
-     
-    
       public void setMin(int j) {
         this.min = min;
       }

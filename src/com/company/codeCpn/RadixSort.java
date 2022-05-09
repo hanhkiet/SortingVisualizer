@@ -86,9 +86,9 @@ public class RadixSort extends Sort {
       if (this.index > 24) {
         this.setIndex(3);
       }
-      if (this.index == 0 || this.index == 1|| this.index == 2) {
+      // if (this.index == 0 || this.index == 1|| this.index == 2) {
 
-      }
+      // }
       if (this.index == 3) {
         max = arr[0];
         for (int i = 1; i < arr.length; i++)
@@ -115,9 +115,9 @@ public class RadixSort extends Sort {
           return;
         }
       }
-      if (this.index == 6 && this.index == 7 && this.index == 8) {
+      // if (this.index == 6 && this.index == 7 && this.index == 8) {
        
-      }
+      // }
       if (this.index == 9){
         output = new int[n];
       }
@@ -141,9 +141,9 @@ public class RadixSort extends Sort {
         count[(arr[i] / exp) % 10]++;
         this.setIndex(11);
       }
-      if (this.index == 14){
+      // if (this.index == 14){
         
-      }
+      // }
       if (this.index == 15){
         if(i == -1){
           this.setI(1);
@@ -160,9 +160,9 @@ public class RadixSort extends Sort {
         count[i] = count[i-1]+ count[i];
         this.setIndex(14);
       }
-      if (this.index == 17){
+      // if (this.index == 17){
         
-      }
+      // }
       if (this.index == 18){
         if(i == -1){
           this.setI(n-1);
@@ -184,9 +184,9 @@ public class RadixSort extends Sort {
         this.setIndex(17);
       }
       
-      if (this.index == 21){
+      // if (this.index == 21){
         
-      }
+      // }
       
       if (this.index == this.indexKeySwap) {
         this.setI(i+ 1);
