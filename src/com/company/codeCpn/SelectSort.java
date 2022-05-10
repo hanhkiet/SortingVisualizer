@@ -25,7 +25,7 @@ public class SelectSort extends Sort {
     private int i = -1;
     private int j = -1;
     private int min = -1;
-    SelectSortValue currentValue;
+    private SelectSortValue currentValue;
     private String type;
 
     public SelectSort(){
@@ -34,7 +34,7 @@ public class SelectSort extends Sort {
         this.label = new JLabel("null");
         this.setBackground(Color.WHITE);
         this.jList = new MyJList(lsCode);
-        this.add(label, BorderLayout.NORTH);
+        // this.add(label, BorderLayout.NORTH);
         this.add(jList, BorderLayout.CENTER);
     }
     public SelectSort(int[] arr) {
@@ -47,7 +47,7 @@ public class SelectSort extends Sort {
 
         this.setBackground(Color.WHITE);
         this.jList = new MyJList(lsCode);
-        this.add(label, BorderLayout.NORTH);
+        // this.add(label, BorderLayout.NORTH);
         this.add(jList, BorderLayout.CENTER);
     }
 
@@ -73,7 +73,7 @@ public class SelectSort extends Sort {
             if (this.index == 1) {
                 if (j == -1) {
                     this.setI(i + 1);
-                    currentValue.setI(i);
+                    
                     this.type = "LOAD_DATA";
                     if (this.i == arr.length - 1) {
                         this.isSuccess = true;
@@ -81,19 +81,17 @@ public class SelectSort extends Sort {
                         return;
                     }
                 }
-
             }
             if (this.index == 2) {
                 if (j == -1) {
                     min = i;
                     this.type = "LOAD_DATA";
-                    currentValue.setMin(min);
                 }
             }
             if (this.index == 3) {
                 if (j == -1) {
                     this.setJ(i + 1);
-                   
+
                 }
                 else{
                     this.setJ(j+1);
@@ -104,21 +102,22 @@ public class SelectSort extends Sort {
 
                 }
                 this.type = "LOAD_DATA";
-                currentValue.setJ(j);
             }
             
             if (this.index == 4) {
                 if (arr[j] < arr[min]) {
-                    min = j;
-                    this.type = "LOAD_DATA";
-                    currentValue.setMin(min);
+                    
                 }
                 else{
                     this.setIndex(5);
-                }  
+                }
             }
             if (this.index == 5) {
-                
+                if (arr[j] < arr[min]) {
+                    min = j;
+                    this.type = "LOAD_DATA";
+                    
+                }
             }
             if (this.index == 6) {
                 this.setIndex(2);
@@ -133,11 +132,11 @@ public class SelectSort extends Sort {
                 int temp = arr[i];
                 arr[i] = arr[min];
                 arr[min] = temp;
-             
             } 
             else
               this.setIsSwap(false);
             this.jList.setSelectedIndex(index);
+            this.setValueCallBack();
             this.label.setText(arr[0] + " - " + arr[1] +
             " - " + arr[2] + " - " + arr[3] +
             " - " + arr[4] + " - " + arr[5] + " // i: "+currentValue.getI()+" - j: "+ currentValue.getJ()+" - min: "+ currentValue.getMin());
@@ -174,6 +173,9 @@ public class SelectSort extends Sort {
     
       private void setValueCallBack() {
         this.values = new SortValue();
+        currentValue.setI(this.i);
+        currentValue.setJ(this.j);
+        currentValue.setMin(this.min);
         this.values = currentValue;
         this.values.setNameSort("Selection sort");
         this.values.setTypeAction(this.type);

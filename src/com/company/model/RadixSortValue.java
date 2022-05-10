@@ -6,29 +6,66 @@ public class RadixSortValue extends SortValue{
     private int exp;
     private int mainI;
     private int countI;
-    private int i;
+    private int outputI;
     private int max;
-    private int newArrValue;
+   
 
     public RadixSortValue(){
         super();
     }
 
-    public RadixSortValue(int[] output, int[] count, int exp, int i) {
+
+    public RadixSortValue(int exp, int mainI, int countI, int outputI, int max) {
         super();
-        this.output = output;
-        this.count = count;
         this.exp = exp;
-        this.i = i;
+        this.mainI = mainI;
+        this.countI = countI;
+        this.outputI = outputI;
+        this.max = max;
+        
+    }
+    @Override
+    public String toString() {
+        return "{" +
+            " typeAction='" + getTypeAction() + "'" +
+            ", nameSort='" + getNameSort() + "'" +
+            "}" + "{\n" +
+            " max='" + getMax() + "'" +
+            " exp='" + getExp() + "'" +
+            " outputI='" + getOutputI() + "'" +
+            ", countI='" + getCountI() + "'" +
+            ", mainI='" + getMainI() + "'" +
+            "}" + "{\n" +
+            " output='" + getOutput() + "'\n" +
+            " count='" + getCount() + "'" +
+            
+            "}";
     }
 
-    public int getI() {
-        return this.i;
+    public int getMainI() {
+        return this.mainI;
     }
 
-    public void setI(int i) {
-        this.i = i;
+    public void setMainI(int mainI) {
+        this.mainI = mainI;
     }
+
+    public int getCountI() {
+        return this.countI;
+    }
+
+    public void setCountI(int countI) {
+        this.countI = countI;
+    }
+
+    public int getOutputI() {
+        return this.outputI;
+    }
+
+    public void setOutputI(int outputI) {
+        this.outputI = outputI;
+    }
+
 
     public int[] getOutput() {
         return this.output;
@@ -53,14 +90,6 @@ public class RadixSortValue extends SortValue{
     public void setExp(int exp) {
         this.exp = exp;
     }
-    public int getNewArrValue() {
-        return this.newArrValue;
-    }
-
-    public void setNewArrValue(int newArrValue) {
-        this.newArrValue = newArrValue;
-    }
-
 
     public int getMax() {
         return this.max;
