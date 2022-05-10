@@ -10,12 +10,14 @@ public class MergeSortValue {
   private int j;
   private int k;
   private int previousIndex;
+  private int parentIndex;
 
   public MergeSortValue() {
     this.i = -999;
     this.j = -999;
     this.k = -999;
     this.previousIndex = -999;
+    this.parentIndex = 0;
   }
 
   public MergeSortValue(int left, int right) {
@@ -29,6 +31,14 @@ public class MergeSortValue {
     this.left = left;
     this.mid = mid;
     this.right = right;
+  }
+
+  public int getParentIndex() {
+    return this.parentIndex;
+  }
+
+  public void setParentIndex(int parentIndex) {
+    this.parentIndex = parentIndex;
   }
 
   public int getPreviousIndex() {

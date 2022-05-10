@@ -64,6 +64,7 @@ public class MergedSort extends Sort {
   private int[] LArr, MArr;
   private int left, right, mid;
   private int indexOfStack;
+  private String currentType;
 
   public MergedSort(int[] arr) {
     super(arr);
@@ -100,13 +101,16 @@ public class MergedSort extends Sort {
         case 3:
           mid = left + (right - left) / 2;
           currentValue.setMid(mid);
-          list.set(indexOfStack, currentValue);
+
           break;
         case 4: {
           MergeSortValue temp1 = new MergeSortValue(mid + 1, right);
           MergeSortValue temp2 = new MergeSortValue(left, mid);
           temp1.setPreviousIndex(1);
+          temp1.setParentIndex(currentValue.getPreviousIndex());
           temp2.setPreviousIndex(0);
+          temp2.setParentIndex(currentValue.getPreviousIndex());
+
           list.add(temp1);
           list.add(temp2);
           currentValue = list.get(list.size() - 1);
@@ -119,10 +123,15 @@ public class MergedSort extends Sort {
           break;
         case 7: {
           MergeSortValue temp1 = list.get(list.size() - 1);
-          MergeSortValue temp2 = list.get(list.size() - 2);
-          currentValue.setLeft(temp1.getLeft());
-          currentValue.setMid(temp1.getRight());
-          currentValue.setRight(temp2.getRight());
+          // MergeSortValue temp2 = list.get(list.size() - 2);
+          if (temp1.getParentIndex() == 0)
+            currentValue = list.get(list.size() - 3);
+          else
+            currentValue = list.get(list.size() - 4);
+          // currentValue.setLeft(temp1.getLeft());
+          // currentValue.setMid(temp1.getRight());
+          // currentValue.setRight(temp2.getRight());
+          // currentValue.setParentIndex(temp1.getParentIndex());
           this.setIndex(10);
           break;
         }
@@ -165,7 +174,97 @@ public class MergedSort extends Sort {
           break;
         }
         case 22: {
-
+          if (i >= n1 || j >= n1) {
+            setIndex(32);
+          }
+          break;
+        }
+        case 23: {
+          if (LArr[i] > MArr[j]) {
+            setIndex(25);
+          }
+          break;
+        }
+        case 24: {
+          // Thay đổi mảng A
+          arr[k] = LArr[i];
+          break;
+        }
+        case 25: {
+          i++;
+          currentValue.setI(i);
+          this.setIndex(28);
+          break;
+        }
+        case 27: {
+          // Thay đổi mảng A
+          arr[k] = MArr[j];
+          break;
+        }
+        case 28: {
+          j++;
+          currentValue.setJ(j);
+          break;
+        }
+        case 30: {
+          k++;
+          currentValue.setK(k);
+          this.setIndex(21);
+          break;
+        }
+        case 33: {
+          if (i >= n1)
+            this.setIndex(37);
+          break;
+        }
+        case 34: {
+          // Thay đổi mảng A
+          arr[k] = LArr[i];
+          break;
+        }
+        case 35: {
+          i++;
+          currentValue.setI(i);
+          break;
+        }
+        case 36: {
+          k++;
+          currentValue.setK(k);
+          this.setIndex(32);
+          break;
+        }
+        case 38: {
+          if (j >= n2)
+            this.setIndex(41);
+          break;
+        }
+        case 39: {
+          // Thay đổi A
+          arr[k] = MArr[j];
+          break;
+        }
+        case 40: {
+          j++;
+          currentValue.setJ(j);
+          break;
+        }
+        case 41: {
+          k++;
+          currentValue.setK(k);
+          this.setIndex(37);
+          break;
+        }
+        case 42: {
+          if (currentValue.getPreviousIndex() == 0) {
+            this.setIndex(4);
+          } else
+            this.setIndex(5);
+          list.remove(list.size() - 1);
+          list.remove(list.size() - 1);
+          if (list.size() == 1) {
+            this.setIndex(0);
+            this.isSuccess = true;
+          }
           break;
         }
         default:
@@ -200,6 +299,9 @@ public class MergedSort extends Sort {
   public void print() {
     int Ltext = -99;
     int Mtext = -99;
+    String ListPrev = "";
+    String ListParent = "";
+    String ListIndex = "";
     if (LArr != null && MArr != null) {
       Ltext = this.LArr[0];
       Mtext = this.MArr[0];
@@ -211,7 +313,12 @@ public class MergedSort extends Sort {
       // Mtext += String.valueOf(MArr[i]);
       // }
     }
-
+    for (int i = 0; i < list.size(); i++) {
+      ListPrev += " (" + String.valueOf(list.get(i).getPreviousIndex()) + ")";
+      ListParent += " (" + String.valueOf(list.get(i).getParentIndex()) + ")";
+      ListIndex += " (" + String.valueOf(list.get(i).getLeft()) + "-" +
+          String.valueOf(list.get(i).getRight()) + ")";
+    }
     this.label.setText(arr[0] + "  " + arr[1] +
         "  " + arr[2] + "  " + arr[3] +
         "  " + arr[4] + "  " + arr[5] + "  " + arr[6] +
@@ -229,10 +336,8 @@ public class MergedSort extends Sort {
         + this.n1
         + " - n2 = "
         + this.n2
-        + "\n LArr = "
-        + Ltext
-        + "\n MArr = "
-        + Mtext);
-
+        + "\n ListPrev: " + ListPrev
+        + "\n ListParent: " + ListParent
+        + "\n ListIndex: " + ListIndex);
   }
 }
