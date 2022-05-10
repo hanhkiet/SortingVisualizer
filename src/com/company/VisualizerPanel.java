@@ -119,7 +119,7 @@ public class VisualizerPanel extends JPanel {
 
     private void initArray() {
         if (arr != null && arr.length > 0) {
-            arr = new int[] { 5, 4, 62, 1, 78, 4 };
+            arr = new int[] { 10, 80, 30, 90, 40, 50, 70 };
             buttons = new JButton[arr.length];
             for (int i = 0; i < arr.length; i++) {
                 buttons[i] = new JButton(Integer.toString(arr[i]));

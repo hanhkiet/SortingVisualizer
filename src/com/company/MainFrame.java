@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.model.BubbleSortValue;
+import com.company.model.QuickSortValue;
 import com.company.model.SelectSortValue;
 
 import javax.swing.*;
@@ -111,21 +112,23 @@ public class MainFrame extends JFrame {
 
                         try{
                             playButton.setEnabled(false);
-                            SelectSortValue data = (SelectSortValue)codePanel.next();
+                            QuickSortValue data = (QuickSortValue)codePanel.next();
                             int count = 100;
                             //
                             while(data.getTypeAction() != "SORT_SUCCESS") {
-                                if (data.getTypeAction() == "SWAP_I_MIN"){
-                                    int i = data.getI();
-                                    int j = data.getMin();
-                                    int time = 0;
-                                    if ( i < j) {
-                                        time = visualizerPanel.changePos(i, j);
+                                int i = data.getI();
+                                int j = data.getJ();
+                                switch (data.getTypeAction()){
+                                    case "SWAP":{
+                                        int time = 0;
+                                        time = visualizerPanel.changePos(i,j);
+                                        Thread.sleep(time);
+                                        break;
                                     }
 
-                                    Thread.sleep(time);
+
                                 }
-                                data = (SelectSortValue)codePanel.next();
+                                data = (QuickSortValue)codePanel.next();
 
                             }
 
