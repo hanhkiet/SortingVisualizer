@@ -1,14 +1,23 @@
 package com.company.model;
 
-public class RadixSortValue {
+public class RadixSortValue extends SortValue{
     private int[] output;
     private int[] count;
     private int exp;
     private int i;
+    private int max;
     private int newArrValue;
 
     public RadixSortValue(){
+        super();
+    }
 
+    public RadixSortValue(int[] output, int[] count, int exp, int i) {
+        super();
+        this.output = output;
+        this.count = count;
+        this.exp = exp;
+        this.i = i;
     }
 
     public int getI() {
@@ -49,5 +58,15 @@ public class RadixSortValue {
     public void setNewArrValue(int newArrValue) {
         this.newArrValue = newArrValue;
     }
+
+
+    public int getMax() {
+        return this.max;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
+    }
+
 
 }

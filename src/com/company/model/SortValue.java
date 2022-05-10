@@ -1,6 +1,6 @@
 package com.company.model;
 
-public abstract class SortValue {
+public class SortValue {
 
     protected String typeAction;
     protected String nameSort;

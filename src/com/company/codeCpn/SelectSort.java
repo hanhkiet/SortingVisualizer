@@ -70,6 +70,7 @@ public class SelectSort extends Sort {
                 if (j == -1) {
                     this.setI(i + 1);
                     currentValue.setI(i);
+                    currentValue.setTypeAction("Search");
                     if (this.i == arr.length - 1) {
                         this.isSuccess = true;
                         return;

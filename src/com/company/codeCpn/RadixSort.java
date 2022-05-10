@@ -2,6 +2,8 @@ package com.company.codeCpn;
 
 import javax.swing.*;
 import com.company.components.MyJList;
+import com.company.model.RadixSortValue;
+
 import java.awt.*;
 import java.util.Arrays;
 
@@ -41,7 +43,8 @@ public class RadixSort extends Sort {
   private int n = -1;
   private int[] count = new int[10];
   private int[] output;
-
+  RadixSortValue currentValue;
+  
   public RadixSort() {
     super();
     init();
@@ -70,6 +73,7 @@ public class RadixSort extends Sort {
     this.add(scrollPane, BorderLayout.CENTER);
 
     n = arr.length;
+    currentValue = new RadixSortValue(output, count, -1, -1);
   }
 
   public void init() {
@@ -85,16 +89,18 @@ public class RadixSort extends Sort {
       this.setIndex(index + 1);
       if (this.index > 24) {
         this.setIndex(3);
+        currentValue.setTypeAction("none");
       }
-      // if (this.index == 0 || this.index == 1|| this.index == 2) {
-
-      // }
+      if (this.index == 0 || this.index == 1|| this.index == 2) {
+        currentValue.setTypeAction("none");
+      }
       if (this.index == 3) {
         max = arr[0];
         for (int i = 1; i < arr.length; i++)
             if (arr[i] > max)
                 max = arr[i];
-        
+        currentValue.setTypeAction("CHANCE");
+        currentValue.setMax(max);
       }
       if (this.index == 4) {
         if(exp == -1){
@@ -103,9 +109,12 @@ public class RadixSort extends Sort {
         else{
           exp = exp * 10;
         }
+        currentValue.setTypeAction("CHANCE");
+        currentValue.setMax(exp);
         
       }
       if (this.index == 5) {
+        currentValue.setTypeAction("NONE");
         if(max/exp > 0){
           this.setIndex(6);
         }
@@ -115,27 +124,34 @@ public class RadixSort extends Sort {
           return;
         }
       }
-      // if (this.index == 6 && this.index == 7 && this.index == 8) {
-       
-      // }
+      if (this.index == 6 && this.index == 7 && this.index == 8) {
+        currentValue.setTypeAction("NONE");
+      }
       if (this.index == 9){
         output = new int[n];
+        currentValue.setTypeAction("CHANCE");
+        currentValue.setCount(count);
       }
       if (this.index == 10){
         count = new int[10];
+        currentValue.setTypeAction("CHANCE");
+        currentValue.setOutput(output);
       }
       if (this.index == 11){
         Arrays.fill(count, 0);
+        currentValue.setTypeAction("CHANCE");
+        currentValue.setCount(count);
       }
       if (this.index == 12){
         this.setI(i+1);
         if(i < n){
-         
         }
         else{
           this.setIndex(14);
           this.setI(-1);
         }
+        currentValue.setTypeAction("CHANCE");
+        currentValue.setI(i);
       }
       if (this.index == 13){
         count[(arr[i] / exp) % 10]++;
