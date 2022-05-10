@@ -1,6 +1,6 @@
 package com.company.model;
 
-public class MergeSortValue {
+public class MergeSortValue extends SortValue {
   private int left;
   private int mid;
   private int right;
@@ -10,12 +10,14 @@ public class MergeSortValue {
   private int j;
   private int k;
   private int previousIndex;
+  private int parentIndex;
 
   public MergeSortValue() {
     this.i = -999;
     this.j = -999;
     this.k = -999;
     this.previousIndex = -999;
+    this.parentIndex = 0;
   }
 
   public MergeSortValue(int left, int right) {
@@ -29,6 +31,14 @@ public class MergeSortValue {
     this.left = left;
     this.mid = mid;
     this.right = right;
+  }
+
+  public int getParentIndex() {
+    return this.parentIndex;
+  }
+
+  public void setParentIndex(int parentIndex) {
+    this.parentIndex = parentIndex;
   }
 
   public int getPreviousIndex() {
@@ -106,9 +116,19 @@ public class MergeSortValue {
   @Override
   public String toString() {
     return "{" +
+        " typeAction='" + getTypeAction() + "'" +
+        ", nameSort='" + getNameSort() + "'" +
+        "}" + "{\n" +
         " left='" + getLeft() + "'" +
         ", mid='" + getMid() + "'" +
         ", right='" + getRight() + "'" +
+        ", LArr='" + getLArr() + "'" +
+        ", MArr='" + getMArr() + "'" +
+        ", i='" + getI() + "'" +
+        ", j='" + getJ() + "'" +
+        ", k='" + getK() + "'" +
+        ", previousIndex='" + getPreviousIndex() + "'" +
+        ", parentIndex='" + getParentIndex() + "'" +
         "}";
   }
 

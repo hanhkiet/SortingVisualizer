@@ -8,6 +8,7 @@ import javax.swing.*;
 
 import com.company.components.MyJList;
 import com.company.model.MergeSortValue;
+import com.company.model.SortValue;
 
 public class MergedSort extends Sort {
   private String[] lsCode = {
@@ -64,6 +65,7 @@ public class MergedSort extends Sort {
   private int[] LArr, MArr;
   private int left, right, mid;
   private int indexOfStack;
+  private String type;
 
   public MergedSort(int[] arr) {
     super(arr);
@@ -73,7 +75,7 @@ public class MergedSort extends Sort {
     this.j = -999;
     this.k = -999;
     this.indexOfStack = 0;
-
+    this.type = "none";
     this.list = new ArrayList<MergeSortValue>();
     this.list.add(new MergeSortValue(0, arr.length - 1));
     this.currentValue = list.get(0);
@@ -81,13 +83,19 @@ public class MergedSort extends Sort {
 
   @Override
   public void next() {
+    this.type = "NONE";
     if (arr.length > 0 && this.isSuccess == false) {
       if (index == 1) {
         this.left = currentValue.getLeft();
         this.right = currentValue.getRight();
+        this.type = "TARGET_PART";
+
         this.mid = -999;
       }
+
       this.setIndex(index + 1);
+      System.out.println(index);
+
       switch (index) {
         case 2:
           if (currentValue.getLeft() >= currentValue.getRight()) {
@@ -100,13 +108,16 @@ public class MergedSort extends Sort {
         case 3:
           mid = left + (right - left) / 2;
           currentValue.setMid(mid);
-          list.set(indexOfStack, currentValue);
+          this.type = "TARGET_PART";
           break;
         case 4: {
           MergeSortValue temp1 = new MergeSortValue(mid + 1, right);
           MergeSortValue temp2 = new MergeSortValue(left, mid);
           temp1.setPreviousIndex(1);
+          temp1.setParentIndex(currentValue.getPreviousIndex());
           temp2.setPreviousIndex(0);
+          temp2.setParentIndex(currentValue.getPreviousIndex());
+
           list.add(temp1);
           list.add(temp2);
           currentValue = list.get(list.size() - 1);
@@ -119,11 +130,18 @@ public class MergedSort extends Sort {
           break;
         case 7: {
           MergeSortValue temp1 = list.get(list.size() - 1);
-          MergeSortValue temp2 = list.get(list.size() - 2);
-          currentValue.setLeft(temp1.getLeft());
-          currentValue.setMid(temp1.getRight());
-          currentValue.setRight(temp2.getRight());
+          // MergeSortValue temp2 = list.get(list.size() - 2);
+          if (temp1.getParentIndex() == 0)
+            currentValue = list.get(list.size() - 3);
+          else
+            currentValue = list.get(list.size() - 4);
+          // currentValue.setLeft(temp1.getLeft());
+          // currentValue.setMid(temp1.getRight());
+          // currentValue.setRight(temp2.getRight());
+          // currentValue.setParentIndex(temp1.getParentIndex());
           this.setIndex(10);
+          this.type = "TARGET_PART";
+
           break;
         }
         case 11: {
@@ -132,6 +150,7 @@ public class MergedSort extends Sort {
           this.mid = currentValue.getMid();
           this.n1 = mid - left + 1;
 
+          this.type = "TARGET_PART";
           break;
         }
         case 12: {
@@ -145,6 +164,7 @@ public class MergedSort extends Sort {
             this.LArr[i] = arr[left + i];
           this.currentValue.setLArr(LArr);
           this.setIndex(16);
+          this.type = "LOAD_TEMP_ARRAY";
           break;
         }
         case 17: {
@@ -153,6 +173,7 @@ public class MergedSort extends Sort {
             this.MArr[j] = arr[mid + 1 + j];
           this.currentValue.setMArr(MArr);
           this.setIndex(20);
+          this.type = "LOAD_TEMP_ARRAY";
           break;
         }
         case 21: {
@@ -162,9 +183,121 @@ public class MergedSort extends Sort {
           currentValue.setI(0);
           currentValue.setJ(0);
           currentValue.setK(left);
+          this.type = "LOAD_DATA";
           break;
         }
         case 22: {
+          if (i >= n1 || j >= n2) {
+            setIndex(32);
+          }
+          break;
+        }
+        case 23: {
+          if (LArr[i] > MArr[j]) {
+            setIndex(25);
+          }
+          break;
+        }
+        case 24: {
+          // Thay đổi mảng A
+          arr[k] = LArr[i];
+          this.type = "MODIFIDE_MAIN_ARRAY";
+          break;
+        }
+        case 25: {
+          i++;
+          currentValue.setI(i);
+          this.type = "LOAD_DATA";
+          this.setIndex(28);
+          break;
+        }
+        case 27: {
+          // Thay đổi mảng A
+          arr[k] = MArr[j];
+          this.type = "MODIFIDE_MAIN_ARRAY";
+          break;
+        }
+        case 28: {
+          j++;
+          currentValue.setJ(j);
+          this.type = "LOAD_DATA";
+          this.setIndex(29);
+          break;
+        }
+        case 30: {
+          k++;
+          currentValue.setK(k);
+          this.type = "LOAD_DATA";
+          this.setIndex(21);
+          break;
+        }
+        case 33: {
+          if (i >= n1)
+            this.setIndex(37);
+          break;
+        }
+        case 34: {
+          // Thay đổi mảng A
+          arr[k] = LArr[i];
+          this.type = "MODIFIDE_MAIN_ARRAY";
+
+          break;
+        }
+        case 35: {
+          i++;
+          currentValue.setI(i);
+          this.type = "LOAD_DATA";
+
+          break;
+        }
+        case 36: {
+          k++;
+          currentValue.setK(k);
+          this.type = "LOAD_DATA";
+
+          this.setIndex(32);
+          break;
+        }
+        case 38: {
+          if (j >= n2)
+            this.setIndex(41);
+          break;
+        }
+        case 39: {
+          // Thay đổi A
+          arr[k] = MArr[j];
+          this.type = "MODIFIDE_MAIN_ARRAY";
+
+          break;
+        }
+        case 40: {
+          j++;
+          currentValue.setJ(j);
+          this.type = "LOAD_DATA";
+
+          break;
+        }
+        case 41: {
+          k++;
+          currentValue.setK(k);
+          this.type = "LOAD_DATA";
+
+          this.setIndex(37);
+          break;
+        }
+        case 42: {
+          if (currentValue.getPreviousIndex() == 0) {
+            this.setIndex(4);
+          } else
+            this.setIndex(5);
+          list.remove(list.size() - 1);
+          list.remove(list.size() - 1);
+          this.type = "MERGE_SUCCESS";
+          if (list.size() == 1) {
+            this.setIndex(0);
+            this.isSuccess = true;
+            this.type = "SORT_SUCCESS";
+          }
 
           break;
         }
@@ -172,8 +305,20 @@ public class MergedSort extends Sort {
           break;
       }
       this.print();
+      setValueCallBack();
       this.jList.setSelectedIndex(index);
     }
+  }
+
+  public SortValue getValue() {
+    return this.values;
+  }
+
+  private void setValueCallBack() {
+    this.values = new SortValue();
+    this.values = currentValue;
+    this.values.setNameSort("Merged sort");
+    this.values.setTypeAction(this.type);
   }
 
   private void init() {
@@ -200,6 +345,9 @@ public class MergedSort extends Sort {
   public void print() {
     int Ltext = -99;
     int Mtext = -99;
+    String ListPrev = "";
+    String ListParent = "";
+    String ListIndex = "";
     if (LArr != null && MArr != null) {
       Ltext = this.LArr[0];
       Mtext = this.MArr[0];
@@ -211,7 +359,12 @@ public class MergedSort extends Sort {
       // Mtext += String.valueOf(MArr[i]);
       // }
     }
-
+    for (int i = 0; i < list.size(); i++) {
+      ListPrev += " (" + String.valueOf(list.get(i).getPreviousIndex()) + ")";
+      ListParent += " (" + String.valueOf(list.get(i).getParentIndex()) + ")";
+      ListIndex += " (" + String.valueOf(list.get(i).getLeft()) + "-" +
+          String.valueOf(list.get(i).getRight()) + ")";
+    }
     this.label.setText(arr[0] + "  " + arr[1] +
         "  " + arr[2] + "  " + arr[3] +
         "  " + arr[4] + "  " + arr[5] + "  " + arr[6] +
@@ -229,10 +382,8 @@ public class MergedSort extends Sort {
         + this.n1
         + " - n2 = "
         + this.n2
-        + "\n LArr = "
-        + Ltext
-        + "\n MArr = "
-        + Mtext);
-
+        + "\n ListPrev: " + ListPrev
+        + "\n ListParent: " + ListParent
+        + "\n ListIndex: " + ListIndex);
   }
 }
