@@ -7,6 +7,8 @@ import javax.swing.*;
 
 import com.company.components.MyJList;
 import com.company.model.QuickSortValue;
+import com.company.model.SelectSortValue;
+import com.company.model.SortValue;
 
 public class QuickSort extends Sort {
   private String[] lsCode = {
@@ -40,6 +42,7 @@ public class QuickSort extends Sort {
   private int low = 0;
   private int high = 0;
   private int pi = -999;
+  private String type;
   QuickSortValue currentValue;
   private Stack<QuickSortValue> stack;
 
@@ -68,7 +71,7 @@ public class QuickSort extends Sort {
     scrollPane.setViewportView(jList);
     jList.setLayoutOrientation(JList.VERTICAL);
     this.label.setSize(new Dimension(100, 100));
-    this.add(label, BorderLayout.NORTH);
+    // this.add(label, BorderLayout.NORTH);
     this.add(scrollPane, BorderLayout.CENTER);
   }
 
@@ -85,6 +88,7 @@ public class QuickSort extends Sort {
 
   @Override
   public void next() {
+    this.type = "NONE";
     if (arr.length > 0 && this.isSuccess == false) {
       if (index == 0) {
         currentValue = stack.pop();
@@ -92,6 +96,8 @@ public class QuickSort extends Sort {
         this.high = currentValue.getHigh();
         this.i = -999;
         this.j = -999;
+        this.pivot = -999;
+        this.type = "TARGER_PART";
       }
       this.setIndex(index + 1);
       switch (index) {
@@ -100,6 +106,7 @@ public class QuickSort extends Sort {
             if (stack.empty()) {
               this.isSuccess = true;
               this.setIndex(0);
+              this.type = "SORT_SUCCESS";
             } else {
               this.setIndex(currentValue.getPreviousIndex());
             }
@@ -123,12 +130,15 @@ public class QuickSort extends Sort {
         }
         case 10: {
           this.pivot = arr[high];
+          this.currentValue.setPivot(pivot);
+          this.type = "LOAD_DATA";
           break;
         }
         case 11: {
           if (this.i == -999 && this.j == -999) {
             this.i = this.low - 1;
             this.j = this.low - 1;
+            this.type = "LOAD_DATA";
           } else {
 
           }
@@ -136,6 +146,7 @@ public class QuickSort extends Sort {
         }
         case 12: {
           this.j = this.j + 1;
+          this.type = "LOAD_DATA";
           if (this.j > this.high - 1) {
             this.setIndex(19);
           }
@@ -149,7 +160,7 @@ public class QuickSort extends Sort {
         }
         case 16: {
           this.i = this.i + 1;
-
+          this.type = "LOAD_DATA";
           break;
         }
         case 17: {
@@ -158,6 +169,8 @@ public class QuickSort extends Sort {
           arr[i] = arr[j];
           arr[j] = temp;
           this.setIndex(11);
+          this.type = "SWAP";
+
           break;
         }
         case 20: {
@@ -165,20 +178,39 @@ public class QuickSort extends Sort {
           int temp = arr[i + 1];
           arr[i + 1] = arr[high];
           arr[high] = temp;
-          this.i = this.i + 1;
+          this.type = "SWAP";
           break;
         }
         case 21: {
           this.setIndex(4);
+          this.i = this.i + 1;
           this.pi = this.i;
+          this.type = "PARTITION_SUCCESS";
           break;
         }
         default:
           break;
       }
       print();
+      setValueCallBack();
       this.jList.setSelectedIndex(index);
     }
   }
 
+  public SortValue getValue() {
+    return this.values;
+  }
+
+  private void setValueCallBack() {
+    this.values = new SortValue();
+
+    this.currentValue.setI(i);
+    this.currentValue.setJ(j);
+    this.currentValue.setPivot(pivot);
+    this.currentValue.setPi(pi);
+
+    this.values = currentValue;
+    this.values.setNameSort("Quick sort");
+    this.values.setTypeAction(this.type);
+  }
 }

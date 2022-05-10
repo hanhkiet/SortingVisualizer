@@ -338,7 +338,7 @@ public class MergedSort extends Sort {
     this.jList = new MyJList(lsCode);
     scrollPane.setViewportView(jList);
     this.jList.setLayoutOrientation(JList.VERTICAL);
-    this.add(label, BorderLayout.NORTH);
+    // this.add(label, BorderLayout.NORTH);
     this.add(scrollPane, BorderLayout.CENTER);
   }
 
