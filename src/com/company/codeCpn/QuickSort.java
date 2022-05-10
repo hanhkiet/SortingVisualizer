@@ -71,7 +71,7 @@ public class QuickSort extends Sort {
     scrollPane.setViewportView(jList);
     jList.setLayoutOrientation(JList.VERTICAL);
     this.label.setSize(new Dimension(100, 100));
-    // this.add(label, BorderLayout.NORTH);
+    this.add(label, BorderLayout.NORTH);
     this.add(scrollPane, BorderLayout.CENTER);
   }
 
