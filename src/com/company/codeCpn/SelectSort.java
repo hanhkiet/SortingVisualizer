@@ -1,6 +1,8 @@
 package com.company.codeCpn;
 
 import com.company.components.MyJList;
+import com.company.model.SelectSortValue;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -22,6 +24,7 @@ public class SelectSort extends Sort {
     private int i = -1;
     private int j = -1;
     private int min = -1;
+    SelectSortValue currentValue;
 
     public SelectSort(){
         super();
@@ -35,9 +38,10 @@ public class SelectSort extends Sort {
     public SelectSort(int[] arr) {
         super(arr);
         init();
+        currentValue = new SelectSortValue(-1, -1, -1);
         this.label = new JLabel(arr[0] + " - " + arr[1] +
             " - " + arr[2] + " - " + arr[3] +
-            " - " + arr[4] + " - " + arr[5]);
+            " - " + arr[4] + " - " + arr[5] + "// i: "+currentValue.getI()+" - j: "+ currentValue.getJ()+" - min: "+ currentValue.getMin());
 
         this.setBackground(Color.WHITE);
         this.jList = new MyJList(lsCode);
@@ -65,39 +69,40 @@ public class SelectSort extends Sort {
             if (this.index == 1) {
                 if (j == -1) {
                     this.setI(i + 1);
-                    min = i;
+                    currentValue.setI(i);
                     if (this.i == arr.length - 1) {
                         this.isSuccess = true;
-                        this.label.setText(arr[0] + " - " + arr[1] +
-                            " - " + arr[2] + " - " + arr[3] +
-                            " - " + arr[4] + " - " + arr[5] + " isS: " + isSuccess);
                         return;
                     }
                 }
+
             }
             if (this.index == 2) {
                 if (j == -1) {
                     min = i;
+                    currentValue.setMin(min);
                 }
             }
             if (this.index == 3) {
                 if (j == -1) {
                     this.setJ(i + 1);
+                   
                 }
                 else{
                     this.setJ(j+1);
                 }
-                
                 if (this.j == arr.length) {
                     this.setIndex(7);
                     this.setJ(-1);
+
                 }
-      
+                currentValue.setJ(j);
             }
             
             if (this.index == 4) {
                 if (arr[j] < arr[min]) {
                     min = j;
+                    currentValue.setMin(min);
                 }
                 else{
                     this.setIndex(5);
@@ -119,14 +124,14 @@ public class SelectSort extends Sort {
                 int temp = arr[i];
                 arr[i] = arr[min];
                 arr[min] = temp;
-                this.label.setText(arr[0] + " - " + arr[1] +
-                    " - " + arr[2] + " - " + arr[3] +
-                    " - " + arr[4] + " - " + arr[5] + " isS: " + isSuccess);
              
             } 
             else
               this.setIsSwap(false);
             this.jList.setSelectedIndex(index);
+            this.label.setText(arr[0] + " - " + arr[1] +
+            " - " + arr[2] + " - " + arr[3] +
+            " - " + arr[4] + " - " + arr[5] + " // i: "+currentValue.getI()+" - j: "+ currentValue.getJ()+" - min: "+ currentValue.getMin());
         }
         
     }

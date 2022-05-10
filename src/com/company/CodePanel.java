@@ -43,7 +43,7 @@ public class CodePanel extends JPanel {
         });
         TitledBorder border = BorderFactory.createTitledBorder("Code");
         border.setTitleFont(FontManager.titleFont);
-        switch ("Merged sort") {
+        switch ("Selection sort") {
             case "Bubble sort":
                 // this.removeAllCpn();
                 codeSort = new BBSort(new int[] { 5, 4, 62, 1, 78, 4 });
