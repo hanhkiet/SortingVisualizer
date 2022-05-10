@@ -42,6 +42,10 @@ public class MainFrame extends JFrame {
         mainPanel.setLayout(null);
         mainPanel.setBackground(ColorManager.BACKGROUND);
 
+        mainPanel.add(codePanel);
+        codePanel.setBounds(0, 0, WIDTH, HEIGHT);
+        codePanel.setBackground(ColorManager.BAR_RED);
+
         visualizerPanel.setBounds(0, 0, WIDTH - 13, HEIGHT / 2);
         // visualizePanel.setBackground(ColorManager.BAR_CYAN);
         mainPanel.add(visualizerPanel);
@@ -54,9 +58,10 @@ public class MainFrame extends JFrame {
         // algorithmsPanel.setBackground(ColorManager.BAR_WHITE);
         mainPanel.add(algorithmsPanel);
 
-        codePanel.setBounds(WIDTH * 5 / 9, HEIGHT / 2, WIDTH * 4 / 9 - 13, HEIGHT / 2 - 18);
-        codePanel.setBackground(ColorManager.BAR_RED);
-        mainPanel.add(codePanel);
+        // codePanel.setBounds(WIDTH * 5 / 9, HEIGHT / 2, WIDTH * 4 / 9 - 13, HEIGHT / 2
+        // - 18);
+        // codePanel.setBackground(ColorManager.BAR_RED);
+        // mainPanel.add(codePanel);
 
         add(mainPanel);
         pack();

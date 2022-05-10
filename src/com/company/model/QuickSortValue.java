@@ -3,6 +3,7 @@ package com.company.model;
 public class QuickSortValue {
   private int low;
   private int high;
+  private int previousIndex;
 
   public QuickSortValue() {
     super();
@@ -38,4 +39,11 @@ public class QuickSortValue {
     this.high = high;
   }
 
+  public int getPreviousIndex() {
+    return this.previousIndex;
+  }
+
+  public void setPreviousIndex(int previousIndex) {
+    this.previousIndex = previousIndex;
+  }
 }
