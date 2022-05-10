@@ -35,15 +35,16 @@ public class RadixSort extends Sort {
 /*23*/    "    }",
 /*24*/    "}",
     };
-  private int indexKeySwap = 22;
+  private int indexKeySwap = 23;
   private JLabel label;
   private int exp = -1;
-  private int max = -1;
+  private int max = -999;
   private int i =-1;
   private int n = -1;
   private int[] count = new int[10];
   private int[] output;
   RadixSortValue currentValue;
+  private String type;
   
   public RadixSort() {
     super();
@@ -73,7 +74,7 @@ public class RadixSort extends Sort {
     this.add(scrollPane, BorderLayout.CENTER);
 
     n = arr.length;
-    currentValue = new RadixSortValue(output, count, -1, -1);
+    currentValue = new RadixSortValue(output, count, -1, -1, -1, -1, -999);
   }
 
   public void init() {
@@ -81,25 +82,26 @@ public class RadixSort extends Sort {
     this.setBackground(Color.BLACK);
     this.setSize(new Dimension(100, 100));
     this.setVisible(true);
+    this.type= "NONE";
   }
 
   @Override
   public void next() {
+    this.type= "NONE";
     if (arr.length > 0 && this.isSuccess == false) {
       this.setIndex(index + 1);
       if (this.index > 24) {
         this.setIndex(3);
-        currentValue.setTypeAction("none");
+
       }
-      if (this.index == 0 || this.index == 1|| this.index == 2) {
-        currentValue.setTypeAction("none");
-      }
+      // if (this.index == 0 || this.index == 1|| this.index == 2) {
+      // }
       if (this.index == 3) {
         max = arr[0];
         for (int i = 1; i < arr.length; i++)
             if (arr[i] > max)
                 max = arr[i];
-        currentValue.setTypeAction("CHANCE");
+        this.type= "LOAD_DATA";
         currentValue.setMax(max);
       }
       if (this.index == 4) {
@@ -109,37 +111,36 @@ public class RadixSort extends Sort {
         else{
           exp = exp * 10;
         }
-        currentValue.setTypeAction("CHANCE");
+        this.type= "LOAD_DATA";
         currentValue.setMax(exp);
         
       }
       if (this.index == 5) {
-        currentValue.setTypeAction("NONE");
-        if(max/exp > 0){
+          if(max/exp > 0){
           this.setIndex(6);
         }
         else{
           this.jList.setSelectedIndex(index);
           this.isSuccess = true;
+          this.type= "SORT_SUCCESS";
           return;
         }
       }
-      if (this.index == 6 && this.index == 7 && this.index == 8) {
-        currentValue.setTypeAction("NONE");
-      }
+      // if (this.index == 6 && this.index == 7 && this.index == 8) {
+      // }
       if (this.index == 9){
         output = new int[n];
-        currentValue.setTypeAction("CHANCE");
+        this.type= "LOAD_COUNT_ARRAY";
         currentValue.setCount(count);
       }
       if (this.index == 10){
         count = new int[10];
-        currentValue.setTypeAction("CHANCE");
+        this.type= "LOAD_OUTPUT_ARRAY";
         currentValue.setOutput(output);
       }
       if (this.index == 11){
         Arrays.fill(count, 0);
-        currentValue.setTypeAction("CHANCE");
+        this.type= "LOAD_COUNT_ARRAY";
         currentValue.setCount(count);
       }
       if (this.index == 12){
@@ -150,10 +151,11 @@ public class RadixSort extends Sort {
           this.setIndex(14);
           this.setI(-1);
         }
-        currentValue.setTypeAction("CHANCE");
-        currentValue.setI(i);
+        this.type= "LOAD_DATA";
+        currentValue.setCountI(i);
       }
       if (this.index == 13){
+        this.type= "LOAD_COUNT_ARRAY";
         count[(arr[i] / exp) % 10]++;
         this.setIndex(11);
       }
@@ -171,10 +173,14 @@ public class RadixSort extends Sort {
           this.setIndex(17);
           this.setI(-1);
         }
+        this.type= "LOAD_DATA";
+        currentValue.setCountI(i);
       }
       if (this.index == 16){
         count[i] = count[i-1]+ count[i];
         this.setIndex(14);
+        this.type= "LOAD_COUNT_ARRAY";
+        currentValue.setCount(count);
       }
       // if (this.index == 17){
         
@@ -190,25 +196,35 @@ public class RadixSort extends Sort {
           this.setIndex(21);
           this.setI(-1);
         }
+        this.type= "LOAD_DATA";
+        currentValue.setOutputI(i);;
       }
       if (this.index == 19){
         output[count[(arr[i] / exp) % 10] - 1] = arr[i];
-        
+        this.type= "LOAD_OUTPUT_ARRAY";
+        currentValue.setOutput(output);;
       }
       if (this.index == 20){
         count[(arr[i] / exp) % 10]--;
         this.setIndex(17);
+        this.type= "LOAD_COUNT_ARRAY";
+        currentValue.setCount(count);
       }
       
-      // if (this.index == 21){
-        
-      // }
-      
-      if (this.index == this.indexKeySwap) {
+      if (this.index == 22){
         this.setI(i+ 1);
         if(i >= n){
           this.setIndex(24);
           this.setI(-1);
+        }
+        this.type= "LOAD_DATA";
+        currentValue.setMainI(i);;
+      }
+      
+      if (this.index == this.indexKeySwap) {
+        
+        if(i >= n){
+         
         }
         else{
           this.isSwap = true;
@@ -217,11 +233,10 @@ public class RadixSort extends Sort {
           " - " + arr[2] + " - " + arr[3] +
           " - " + arr[4] + " - " + arr[5] + " isS: " + isSuccess);
         }
+        this.setIndex(21);
       } else
         this.setIsSwap(false);
-      if (this.index == 23) {
-        this.setIndex(21);
-      }
+     
       this.jList.setSelectedIndex(index);
     }
   }

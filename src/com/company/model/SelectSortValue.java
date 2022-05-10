@@ -9,7 +9,7 @@ public class SelectSortValue extends SortValue {
 
     public SelectSortValue(){
         super();
-        this.setNameSort("Selection Sort");
+        this.setNameSort("Selection sort");
     }
 
     public SelectSortValue(int i, int j, int min){
@@ -17,7 +17,7 @@ public class SelectSortValue extends SortValue {
         this.i = i;
         this.j = j;
         this.min = min;
-        this.setNameSort("Selection Sort");
+        this.setNameSort("Selection sort");
     }
 
     public int getMin() {
