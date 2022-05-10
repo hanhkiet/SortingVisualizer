@@ -79,11 +79,12 @@ public class CodePanel extends JPanel {
 
     }
 
-    public void next() {
+    public SortValue next() {
         codeSort.next();
         SortValue temp = new SortValue();
         temp = codeSort.getValues();
         System.out.println(temp);
+        return temp;
     }
 
     public boolean getIsSwap() {
