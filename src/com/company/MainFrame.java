@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.model.BubbleSortValue;
+import com.company.model.SelectSortValue;
 
 import javax.swing.*;
 import java.awt.*;
@@ -92,7 +93,7 @@ public class MainFrame extends JFrame {
         mainPanel.add(algorithmsPanel);
 
         codePanel.setBounds(WIDTH * 5 / 9, HEIGHT / 2, WIDTH * 4 / 9 - 13, HEIGHT / 2 - 18);
-        codePanel.setBackground(ColorManager.BAR_RED);
+        //codePanel.setBackground(ColorManager.BAR_RED);
         mainPanel.add(codePanel);
 
         add(mainPanel);
@@ -110,23 +111,21 @@ public class MainFrame extends JFrame {
 
                         try{
                             playButton.setEnabled(false);
-                            int count = 10;
-                            while(count-- > 0) {
-                                BubbleSortValue data = (BubbleSortValue)codePanel.next();
-                                if (data.getTypeAction() == "SWAP"){
+                            SelectSortValue data = (SelectSortValue)codePanel.next();
+                            int count = 100;
+                            //
+                            while(data.getTypeAction() != "SORT_SUCCESS") {
+                                if (data.getTypeAction() == "SWAP_I_MIN"){
                                     int i = data.getI();
-                                    int j = data.getJ();
-                                    synchronized ("MyUniqueString"){
-                                        if ( j >= 0){
-                                            setTitle(i + ":" + j);
-                                            int time = visualizerPanel.changePos(j,j+1);
-                                            Thread.sleep(time);
-                                        }
-
+                                    int j = data.getMin();
+                                    int time = 0;
+                                    if ( i < j) {
+                                        time = visualizerPanel.changePos(i, j);
                                     }
 
+                                    Thread.sleep(time);
                                 }
-
+                                data = (SelectSortValue)codePanel.next();
 
                             }
 

@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.codeCpn.BBSort;
 import com.company.model.BubbleSortValue;
 
 import java.awt.*;
@@ -118,6 +119,7 @@ public class VisualizerPanel extends JPanel {
 
     private void initArray() {
         if (arr != null && arr.length > 0) {
+            arr = new int[] { 5, 4, 62, 1, 78, 4 };
             buttons = new JButton[arr.length];
             for (int i = 0; i < arr.length; i++) {
                 buttons[i] = new JButton(Integer.toString(arr[i]));
@@ -165,43 +167,39 @@ public class VisualizerPanel extends JPanel {
         int y1 = buttons[i].getY();
         int x2 = buttons[j].getX();
         int y2 = buttons[j].getY();
-        synchronized ("MyUniqueString"){
-            java.util.Timer timer = new java.util.Timer();
-            java.util.Timer timer1 = new java.util.Timer();
-            TimerTask task1 = new TimerTask() {
-                @Override
-                public void run() {
-                    buttons[i].setBounds(buttons[i].getX(),buttons[i].getY()-1, buttons[i].getWidth(),buttons[i].getHeight());
-                    buttons[j].setBounds(buttons[j].getX(),buttons[j].getY()+1, buttons[j].getWidth(),buttons[j].getHeight());
-                    if (buttons[i].getY() == y2){
-                        timer1.cancel();
-                    }
-
-
+        java.util.Timer timer = new java.util.Timer();
+        java.util.Timer timer1 = new java.util.Timer();
+        TimerTask task1 = new TimerTask() {
+            @Override
+            public void run() {
+                buttons[i].setBounds(buttons[i].getX(),buttons[i].getY()-1, buttons[i].getWidth(),buttons[i].getHeight());
+                buttons[j].setBounds(buttons[j].getX(),buttons[j].getY()+1, buttons[j].getWidth(),buttons[j].getHeight());
+                if (buttons[i].getY() == y2){
+                    timer1.cancel();
+                    swap(i,j);
                 }
-            };
-            TimerTask task = new TimerTask() {
-                @Override
-                public void run() {
-                    if (buttons[i].getY() - y1 < buttons[i].getHeight() + 5){
-                        buttons[i].setBounds(buttons[i].getX(),buttons[i].getY()+1, buttons[i].getWidth(),buttons[i].getHeight());
-                        buttons[j].setBounds(buttons[j].getX(),buttons[j].getY()-1, buttons[j].getWidth(),buttons[j].getHeight());
-                    }else{
-                        buttons[i].setBounds(buttons[i].getX()+1,buttons[i].getY(), buttons[i].getWidth(),buttons[i].getHeight());
-                        buttons[j].setBounds(buttons[j].getX()-1,buttons[j].getY(), buttons[j].getWidth(),buttons[j].getHeight());
-                    }
-                    if (buttons[i].getX() == x2){
-                        timer1.schedule(task1,0,speed);
-                        timer.cancel();
-                    }
 
+
+            }
+        };
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                if (buttons[i].getY() - y1 < buttons[i].getHeight() + 5){
+                    buttons[i].setBounds(buttons[i].getX(),buttons[i].getY()+1, buttons[i].getWidth(),buttons[i].getHeight());
+                    buttons[j].setBounds(buttons[j].getX(),buttons[j].getY()-1, buttons[j].getWidth(),buttons[j].getHeight());
+                }else{
+                    buttons[i].setBounds(buttons[i].getX()+1,buttons[i].getY(), buttons[i].getWidth(),buttons[i].getHeight());
+                    buttons[j].setBounds(buttons[j].getX()-1,buttons[j].getY(), buttons[j].getWidth(),buttons[j].getHeight());
                 }
-            };
-            timer.schedule(task,0,speed);
-        }
+                if (buttons[i].getX() == x2){
+                    timer1.schedule(task1,0,speed);
+                    timer.cancel();
+                }
 
-
-
+            }
+        };
+        timer.schedule(task,0,speed);
         return Math.abs(x2 - x1) *speed * 2 + Math.abs(x2 - x1) * speed;
     }
 

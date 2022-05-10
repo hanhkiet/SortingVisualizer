@@ -33,6 +33,7 @@ public class CodePanel extends JPanel {
 
     public CodePanel(JFrame frame) {
         super();
+        System.out.println("x");
         this.setLayout(new BorderLayout());
         button = new JButton("CLick me");
         this.add(button, BorderLayout.EAST);
@@ -45,7 +46,7 @@ public class CodePanel extends JPanel {
         });
         TitledBorder border = BorderFactory.createTitledBorder("Code");
         border.setTitleFont(FontManager.titleFont);
-        switch ("Bubble sort") {
+        switch ("Selection sort") {
             case "Bubble sort":
                 // this.removeAllCpn();
                 codeSort = new BBSort(new int[] { 5, 4, 62, 1, 78, 4 });
