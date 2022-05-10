@@ -1,6 +1,6 @@
 package com.company.model;
 
-public class MergeSortValue {
+public class MergeSortValue extends SortValue {
   private int left;
   private int mid;
   private int right;
@@ -116,9 +116,19 @@ public class MergeSortValue {
   @Override
   public String toString() {
     return "{" +
+        " typeAction='" + getTypeAction() + "'" +
+        ", nameSort='" + getNameSort() + "'" +
+        "}" + "{\n" +
         " left='" + getLeft() + "'" +
         ", mid='" + getMid() + "'" +
         ", right='" + getRight() + "'" +
+        ", LArr='" + getLArr() + "'" +
+        ", MArr='" + getMArr() + "'" +
+        ", i='" + getI() + "'" +
+        ", j='" + getJ() + "'" +
+        ", k='" + getK() + "'" +
+        ", previousIndex='" + getPreviousIndex() + "'" +
+        ", parentIndex='" + getParentIndex() + "'" +
         "}";
   }
 

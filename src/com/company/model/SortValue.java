@@ -1,9 +1,13 @@
 package com.company.model;
 
-public abstract class SortValue {
+public class SortValue {
 
     protected String typeAction;
     protected String nameSort;
+
+    public SortValue() {
+        super();
+    }
 
     public String getTypeAction() {
         return this.typeAction;
@@ -13,7 +17,6 @@ public abstract class SortValue {
         this.typeAction = typeAction;
     }
 
-
     public String getNameSort() {
         return this.nameSort;
     }
@@ -22,5 +25,12 @@ public abstract class SortValue {
         this.nameSort = nameSort;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                " typeAction='" + getTypeAction() + "'" +
+                ", nameSort='" + getNameSort() + "'" +
+                "}";
+    }
 
 }

@@ -1,6 +1,6 @@
 package com.company.model;
 
-public class QuickSortValue {
+public class QuickSortValue extends SortValue {
   private int low;
   private int high;
   private int previousIndex;
