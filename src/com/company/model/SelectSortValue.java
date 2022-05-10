@@ -9,6 +9,7 @@ public class SelectSortValue extends SortValue {
 
     public SelectSortValue(){
         super();
+        
     }
 
     public SelectSortValue(int i, int j, int min){
@@ -16,6 +17,19 @@ public class SelectSortValue extends SortValue {
         this.i = i;
         this.j = j;
         this.min = min;
+        
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " typeAction='" + getTypeAction() + "'" +
+            ", nameSort='" + getNameSort() + "'" +
+            "}" + "{\n" +
+            " i='" + getI() + "'" +
+            ", j='" + getJ() + "'" +
+            ", min='" + getMin() + "'" +
+            "}";
     }
 
     public int getMin() {
@@ -36,5 +50,4 @@ public class SelectSortValue extends SortValue {
     public void setJ(int j){
         this.j = j;
     }
-
 }
