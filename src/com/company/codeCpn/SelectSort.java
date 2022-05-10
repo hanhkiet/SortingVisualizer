@@ -78,7 +78,6 @@ public class SelectSort extends Sort {
                     if (this.i == arr.length - 1) {
                         this.isSuccess = true;
                         this.type= "SORT_SUCCESS";
-                        return;
                     }
                 }
             }
