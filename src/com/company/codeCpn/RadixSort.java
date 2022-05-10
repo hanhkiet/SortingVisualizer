@@ -53,7 +53,7 @@ public class RadixSort extends Sort {
     this.label = new JLabel("null");
     this.setBackground(Color.WHITE);
     this.jList = new MyJList(lsCode);
-    this.add(label, BorderLayout.NORTH);
+    // this.add(label, BorderLayout.NORTH);
     this.add(jList, BorderLayout.CENTER);
   }
 
@@ -71,7 +71,7 @@ public class RadixSort extends Sort {
     scrollPane.setViewportView(jList);
     jList.setLayoutOrientation(JList.VERTICAL);
 
-    this.add(label, BorderLayout.NORTH);
+    // this.add(label, BorderLayout.NORTH);
     this.add(scrollPane, BorderLayout.CENTER);
 
     n = arr.length;
