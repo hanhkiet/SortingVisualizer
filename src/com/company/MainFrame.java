@@ -119,9 +119,25 @@ public class MainFrame extends JFrame {
                                 int i = data.getI();
                                 int j = data.getJ();
                                 switch (data.getTypeAction()){
-                                    case "SWAP":{
+                                    case "SWAP_I_J":{
                                         int time = 0;
-                                        time = visualizerPanel.changePos(i,j);
+                                        if (i < j){
+                                            time = visualizerPanel.changePos(i,j);
+                                        }
+                                        else if (i > j){
+                                            time = visualizerPanel.changePos(j,i);
+                                        }
+
+                                        Thread.sleep(time);
+                                        break;
+                                    }
+                                    case "SWAP_IH":{
+                                        int time = 0;
+                                        int High = data.getHigh();
+
+                                        time = visualizerPanel.changePos(i+1,High);
+
+
                                         Thread.sleep(time);
                                         break;
                                     }
