@@ -67,10 +67,9 @@ public class BBSort extends Sort {
         if (j == -1) {
           this.setI(i + 1);
           this.type = "LOAD_DATA";
-          if (this.i == arr.length - 1) {
+          if (this.i == arr.length) {
             this.isSuccess = true;
             this.type = "SORT_SUCCESS";
-            return;
           }
         }
       }
@@ -91,9 +90,8 @@ public class BBSort extends Sort {
           this.type = "SWAP";
         } else {
           this.setIsSwap(false);
-          this.setIndex(1);
         }
-
+        this.setIndex(1);
       } else
         this.setIsSwap(false);
       this.setValueCallBack();
