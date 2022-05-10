@@ -169,7 +169,7 @@ public class QuickSort extends Sort {
           arr[i] = arr[j];
           arr[j] = temp;
           this.setIndex(11);
-          this.type = "SWAP";
+          this.type = "SWAP_IJ";
 
           break;
         }
@@ -178,7 +178,7 @@ public class QuickSort extends Sort {
           int temp = arr[i + 1];
           arr[i + 1] = arr[high];
           arr[high] = temp;
-          this.type = "SWAP";
+          this.type = "SWAP_IH";
           break;
         }
         case 21: {
