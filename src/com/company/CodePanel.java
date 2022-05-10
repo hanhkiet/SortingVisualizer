@@ -9,6 +9,8 @@ import java.awt.event.*;
 import com.company.codeCpn.BBSort;
 import com.company.codeCpn.MergedSort;
 import com.company.codeCpn.QuickSort;
+import com.company.codeCpn.RadixSort;
+import com.company.codeCpn.SelectSort;
 import com.company.codeCpn.Sort;
 
 public class CodePanel extends JPanel {
@@ -41,7 +43,7 @@ public class CodePanel extends JPanel {
         });
         TitledBorder border = BorderFactory.createTitledBorder("Code");
         border.setTitleFont(FontManager.titleFont);
-        switch ("Merged sort") {
+        switch ("Selection sort") {
             case "Bubble sort":
                 // this.removeAllCpn();
                 codeSort = new BBSort(new int[] { 5, 4, 62, 1, 78, 4 });
@@ -55,6 +57,16 @@ public class CodePanel extends JPanel {
             case "Merged sort":
                 // this.removeAllCpn();
                 codeSort = new MergedSort(new int[] { 10, 80, 30, 90, 40, 50, 70 });
+                this.add(codeSort, BorderLayout.CENTER);
+                break;
+            case "Selection sort":
+                // this.removeAllCpn();
+                codeSort = new SelectSort(new int[] { 5, 4, 62, 1, 78, 4 });
+                this.add(codeSort, BorderLayout.CENTER);
+                break;
+            case "Radix sort":
+                // this.removeAllCpn();
+                codeSort = new RadixSort(new int[] { 5, 4, 62, 1, 78, 4 });
                 this.add(codeSort, BorderLayout.CENTER);
                 break;
             default:
