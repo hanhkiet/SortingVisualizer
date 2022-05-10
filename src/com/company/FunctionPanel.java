@@ -64,6 +64,7 @@ public class FunctionPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 arr = null;
                 parent.setArr(arr);
+
             }
         });
 
