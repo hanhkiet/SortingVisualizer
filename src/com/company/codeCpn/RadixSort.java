@@ -74,7 +74,7 @@ public class RadixSort extends Sort {
     this.add(scrollPane, BorderLayout.CENTER);
 
     n = arr.length;
-    currentValue = new RadixSortValue(output, count, -1, -1, -1, -1, -999);
+    currentValue = new RadixSortValue(output, count, -1, -999);
   }
 
   public void init() {
@@ -152,7 +152,7 @@ public class RadixSort extends Sort {
           this.setI(-1);
         }
         this.type= "LOAD_DATA";
-        currentValue.setCountI(i);
+        currentValue.setI(i);
       }
       if (this.index == 13){
         this.type= "LOAD_COUNT_ARRAY";
@@ -174,7 +174,7 @@ public class RadixSort extends Sort {
           this.setI(-1);
         }
         this.type= "LOAD_DATA";
-        currentValue.setCountI(i);
+        currentValue.setI(i);
       }
       if (this.index == 16){
         count[i] = count[i-1]+ count[i];
@@ -197,7 +197,7 @@ public class RadixSort extends Sort {
           this.setI(-1);
         }
         this.type= "LOAD_DATA";
-        currentValue.setOutputI(i);;
+        currentValue.setI(i);;
       }
       if (this.index == 19){
         output[count[(arr[i] / exp) % 10] - 1] = arr[i];
@@ -218,7 +218,7 @@ public class RadixSort extends Sort {
           this.setI(-1);
         }
         this.type= "LOAD_DATA";
-        currentValue.setMainI(i);;
+        currentValue.setI(i);;
       }
       
       if (this.index == this.indexKeySwap) {
@@ -232,6 +232,7 @@ public class RadixSort extends Sort {
           this.label.setText(arr[0] + " - " + arr[1] +
           " - " + arr[2] + " - " + arr[3] +
           " - " + arr[4] + " - " + arr[5] + " isS: " + isSuccess);
+          this.type = "MODIFIDE_MAIN_ARRAY";
         }
         this.setIndex(21);
       } else
