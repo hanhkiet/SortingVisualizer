@@ -128,7 +128,7 @@ public class MainFrame extends JFrame {
                                             time = visualizerPanel.changePos(j,i);
                                         }
 
-                                        Thread.sleep(time);
+                                        Thread.sleep(time *2);
                                         break;
                                     }
                                     case "SWAP_IH":{
@@ -138,7 +138,7 @@ public class MainFrame extends JFrame {
                                         time = visualizerPanel.changePos(i+1,High);
 
 
-                                        Thread.sleep(time);
+                                        Thread.sleep(time* 2);
                                         break;
                                     }
 
