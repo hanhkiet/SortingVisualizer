@@ -65,7 +65,6 @@ public class MainFrame extends JFrame {
 
         initialize();
 
-        start();
     }
 
     private void initialize() {
@@ -106,56 +105,131 @@ public class MainFrame extends JFrame {
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
 
                         try{
                             playButton.setEnabled(false);
-                            QuickSortValue data = (QuickSortValue)codePanel.next();
-                            int count = 100;
-                            //
-                            while(data.getTypeAction() != "SORT_SUCCESS") {
-                                int i = data.getI();
-                                int j = data.getJ();
-                                switch (data.getTypeAction()){
-                                    case "SWAP_I_J":{
+                            switch ("selectionsort"){
+                                case "quicksort":{
+                                    QuickSortValue data = (QuickSortValue)codePanel.next();
+                                    int count = 100;
+                                    //
+                                    while(data.getTypeAction() != "SORT_SUCCESS") {
+                                        int i = data.getI();
+                                        int j = data.getJ();
                                         int time = 0;
-                                        if (i < j){
-                                            time = visualizerPanel.changePos(i,j);
+                                        switch (data.getTypeAction()){
+                                            case "SWAP_IJ":{
+                                                if (i < j){
+                                                    time = visualizerPanel.changePos(i,j);
+                                                }
+                                                else if (i > j){
+                                                    time = visualizerPanel.changePos(j,i);
+                                                }
+
+                                                Thread.sleep(time + 200);
+                                                break;
+                                            }
+                                            case "SWAP_IH":{
+                                                int High = data.getHigh();
+                                                time = visualizerPanel.changePos(i+1,High);
+                                                Thread.sleep(time + 200);
+                                                break;
+                                            }
+                                            case "TARGER_PART":{
+                                                int l = data.getLow();
+                                                int h = data.getHigh();
+                                                int pivot = data.getPivot();
+                                                visualizerPanel.addHighlightTargetPart(l,h);
+                                                Thread.sleep(1000);
+                                                break;
+                                            }
+                                            case "PARTITION_SUCCESS":{
+                                                int l = data.getLow();
+                                                int h = data.getHigh();
+                                                int pivot = data.getPivot();
+                                                visualizerPanel.removeHighlightTargetPart(l,h);
+                                                Thread.sleep(200);
+                                                break;
+                                            }
+
+
                                         }
-                                        else if (i > j){
-                                            time = visualizerPanel.changePos(j,i);
-                                        }
+                                        data = (QuickSortValue)codePanel.next();
 
-                                        Thread.sleep(time *2);
-                                        break;
                                     }
-                                    case "SWAP_IH":{
-                                        int time = 0;
-                                        int High = data.getHigh();
-
-                                        time = visualizerPanel.changePos(i+1,High);
-
-
-                                        Thread.sleep(time* 2);
-                                        break;
-                                    }
-
-
+                                    visualizerPanel.removeText();
+                                    break;
                                 }
-                                data = (QuickSortValue)codePanel.next();
 
+                                case "bubblesort":{
+                                    BubbleSortValue data = (BubbleSortValue)codePanel.next();
+                                    int count = 100;
+                                    //
+                                    while(data.getTypeAction() != "SORT_SUCCESS") {
+                                        int i = data.getI();
+                                        int j = data.getJ();
+                                        int time = 0;
+                                        switch (data.getTypeAction()){
+                                            case "SWAP":{
+                                                visualizerPanel.addHighlightSwapPart(j,j+1);
+                                                time = visualizerPanel.changePos(j,j+1);
+                                                Thread.sleep(time + 700);
+                                                visualizerPanel.removeHighlightSwapPart(j,j+1);
+                                                break;
+                                            }
+                                        }
+
+                                        data = (BubbleSortValue)codePanel.next();
+
+                                    }
+                                    visualizerPanel.removeText();
+                                    break;
+                                }
+
+                                case "selectionsort":{
+                                    SelectSortValue data = (SelectSortValue)codePanel.next();
+                                    int count = 100;
+                                    //
+                                    while(data.getTypeAction() != "SORT_SUCCESS") {
+                                        int i = data.getI();
+                                        int j = data.getMin();
+                                        int time = 0;
+                                        switch (data.getTypeAction()){
+                                            case "SWAP_I_MIN":{
+                                                if (i > j){
+                                                    visualizerPanel.addHighlightSwapPart(j,i);
+                                                    time = visualizerPanel.changePos(j,i);
+                                                    Thread.sleep(time + 700);
+                                                    visualizerPanel.removeHighlightSwapPart(j,i);
+                                                }
+                                                else if (i < j){
+                                                    visualizerPanel.addHighlightSwapPart(i,j);
+                                                    time = visualizerPanel.changePos(i,j);
+                                                    Thread.sleep(time + 700);
+                                                    visualizerPanel.removeHighlightSwapPart(i,j);
+                                                }
+                                                break;
+                                            }
+                                        }
+                                        data = (SelectSortValue)codePanel.next();
+                                    }
+                                    Thread.sleep( 700);
+                                    visualizerPanel.removeText();
+                                    break;
+                                }
                             }
-
                             playButton.setEnabled(true);
                         }
                         catch (Exception ex){
-
                         }
                     }
                 });
                 thread.start();
+
             }
         });
 
@@ -176,8 +250,5 @@ public class MainFrame extends JFrame {
     }
 
 
-    public void start(){
 
-
-    }
 }

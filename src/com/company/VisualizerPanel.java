@@ -26,7 +26,7 @@ public class VisualizerPanel extends JPanel {
 
     private JButton playButton;
     private JButton stopButton;
-
+    private Color HIGHLIGHT_COLOR = new Color(245, 207, 103);
     private final int WIDTH = 1280, HEIGHT = 360;
 
     private Icon playIcon;
@@ -48,6 +48,11 @@ public class VisualizerPanel extends JPanel {
     }
 
     private void initialize() {
+        iText = new JLabel();
+        jText = new JLabel();
+        pavotText = new JLabel();
+        add(iText);
+        add(jText);
 //        getIcon();
 //        playButton = new JButton(playIcon);
 //        playButton.setFocusable(false);
@@ -70,40 +75,7 @@ public class VisualizerPanel extends JPanel {
     }
 
 
-    public void setAnimation(BubbleSortValue bubbleSortValue){
-            if (bubbleSortValue.getTypeAction() != "SWAP") return;
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
 
-                    try{
-                        playButton.setEnabled(false);
-                        pavotText = new JLabel();
-                        pavotText.setBounds(buttons[0].getX(),buttons[0].getY() - 100,40,40);
-                        add(iText);
-                        add(jText);
-                        add(pavotText);
-                        int temp1 = arr[bubbleSortValue.getI()];
-                        arr[bubbleSortValue.getJ()] = arr[bubbleSortValue.getI()];
-                        arr[bubbleSortValue.getI()] = temp1;
-                        int time = changePos(bubbleSortValue.getI(), bubbleSortValue.getJ());
-                        JButton tempx = buttons[bubbleSortValue.getJ()];
-                        buttons[bubbleSortValue.getJ()] = buttons[bubbleSortValue.getI()];
-                        buttons[bubbleSortValue.getI()] = tempx;
-                        Thread.sleep(time);
-                        playButton.setEnabled(true);
-                        remove(iText);
-                        remove(jText);
-                        remove(pavotText);
-                    }
-                    catch (Exception ex){
-
-                    }
-                }
-            });
-            thread.start();
-
-    }
     public void setArr(int[] arr) {
         if(buttons != null) {
             for (int i = 0; i < buttons.length; i++) {
@@ -203,8 +175,53 @@ public class VisualizerPanel extends JPanel {
         return Math.abs(x2 - x1) *speed * 2 + Math.abs(x2 - x1) * speed;
     }
 
-    private void addText(JButton bt,JLabel lb,String name, int index,int height){
-        lb.setText(name + '=' + Integer.toString(index));
-        lb.setBounds(bt.getX() + 20,bt.getY()+height,40,40);
+    public void addHighlightTargetPart(int start, int end){
+        for (int i = start; i <= end; i++){
+            buttons[i].setBackground(HIGHLIGHT_COLOR);
+        }
+        if (start >= 0 && end < buttons.length && end >= 0 && start <= end){
+            addText(buttons[start],iText,"low",start,-40,10);
+            if (start == end){
+                addText(buttons[end],jText,"high",end,-30,10);
+            }
+            else
+                addText(buttons[end],jText,"high",end,-40,10);
+        }
+
     }
+    public void removeHighlightTargetPart(int start, int end){
+        for (int i = start; i <= end; i++){
+            buttons[i].setBackground(new JButton().getBackground());
+        }
+        iText.setText("");
+        jText.setText("");
+
+    }
+
+    public void removeHighlightSwapPart(int i,int j){
+        buttons[i].setBackground(new JButton().getBackground());
+        buttons[j].setBackground(new JButton().getBackground());
+        iText.setText("");
+        jText.setText("");
+    }
+
+    public void addHighlightSwapPart(int i,int j){
+        buttons[i].setBackground(HIGHLIGHT_COLOR);
+        buttons[j].setBackground(HIGHLIGHT_COLOR);
+        addText(buttons[i],iText,"i",i,-40,20);
+        addText(buttons[j],jText,"j",j,-40,20);
+    }
+    public void addText(JButton bt,JLabel lb,String name, int index,int height,int width){
+        lb.setText(name + '=' + Integer.toString(index));
+        lb.setBounds(bt.getX() + width,bt.getY()+height,40,40);
+
+    }
+
+    public void removeText(){
+        remove(iText);
+        remove(jText);
+        remove(pavotText);
+    }
+
+
 }

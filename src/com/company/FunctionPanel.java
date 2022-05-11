@@ -110,7 +110,6 @@ public class FunctionPanel extends JPanel {
             arr[i] = temp;
             test += Integer.toString(arr[i]) + " ";
         }
-        label.setText(test);
 
     }
 
