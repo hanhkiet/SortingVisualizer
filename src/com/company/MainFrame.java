@@ -1,8 +1,6 @@
 package com.company;
 
-import com.company.model.BubbleSortValue;
-import com.company.model.QuickSortValue;
-import com.company.model.SelectSortValue;
+import com.company.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,6 +24,7 @@ public class MainFrame extends JFrame {
     private AlgorithmsPanel algorithmsPanel;
     private CodePanel codePanel;
     private int[] arr;
+    boolean flat;
 
 
     private JButton playButton;
@@ -112,7 +111,7 @@ public class MainFrame extends JFrame {
 
                         try{
                             playButton.setEnabled(false);
-                            switch ("quicksort"){
+                            switch ("radixsort"){
                                 case "quicksort":{
                                     QuickSortValue data = (QuickSortValue)codePanel.next();
                                     int count = 100;
@@ -240,6 +239,47 @@ public class MainFrame extends JFrame {
                                     visualizerPanel.removeText();
                                     break;
                                 }
+
+                                case "radixsort":{
+                                    RadixSortValue data = (RadixSortValue)codePanel.next();
+                                    int count = 100;
+                                    //
+                                    flat =true;
+                                    while(data.getTypeAction() != "SORT_SUCCESS" && flat) {
+                                        int time = 0;
+                                        switch (data.getTypeAction()){
+                                            case "LOAD_COUNT_ARRAY":{
+                                                if (data.getCount() != null){
+                                                    for (int i = 0; i < 10; i++){
+                                                        visualizerPanel.setCountBtnText(i,data.getCount()[i]);
+                                                    }
+
+                                                }
+                                                Thread.sleep(500);
+                                                break;
+                                            }
+                                            case "LOAD_OUTPUT_ARRAY":{
+                                                if (data.getOutput() != null){
+                                                    for (int i = 0; i < data.getOutput().length; i++){
+                                                        visualizerPanel.setOutBtnText(i,data.getOutput()[i]);
+                                                    }
+                                                }
+                                                Thread.sleep(500);
+                                                break;
+                                            }
+                                            default:{
+                                                Thread.sleep(500);
+                                                break;
+                                            }
+
+
+                                        }
+                                        data = (RadixSortValue)codePanel.next();
+
+                                    }
+                                    visualizerPanel.removeText();
+                                    break;
+                                }
                             }
                             playButton.setEnabled(true);
                         }
@@ -258,7 +298,7 @@ public class MainFrame extends JFrame {
         stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, Arrays.toString(visualizerPanel.getArr()));
+                flat = false;
             }
         });
 

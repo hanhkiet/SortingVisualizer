@@ -159,6 +159,7 @@ public class RadixSort extends Sort {
         this.type= "LOAD_COUNT_ARRAY";
         count[(arr[i] / exp) % 10]++;
         this.setIndex(11);
+        this.currentValue.setCount(count);
       }
       // if (this.index == 14){
         

@@ -46,7 +46,7 @@ public class CodePanel extends JPanel {
         });
         TitledBorder border = BorderFactory.createTitledBorder("Code");
         border.setTitleFont(FontManager.titleFont);
-        switch ("Quick sort") {
+        switch ("Radix sort") {
             case "Bubble sort":
                 // this.removeAllCpn();
                 codeSort = new BBSort(new int[] { 10, 80, 30, 90, 40, 50, 70 });
@@ -69,7 +69,7 @@ public class CodePanel extends JPanel {
                 break;
             case "Radix sort":
                 // this.removeAllCpn();
-                codeSort = new RadixSort(new int[] { 5, 4, 62, 1, 78, 4 });
+                codeSort = new RadixSort(new int[] { 10, 80, 30, 90, 40, 50, 70 });
                 this.add(codeSort, BorderLayout.CENTER);
                 break;
             default:

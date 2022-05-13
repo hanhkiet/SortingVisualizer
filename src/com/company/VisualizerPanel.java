@@ -231,6 +231,27 @@ public class VisualizerPanel extends JPanel {
 
     }
 
+    public void setCountBtnText(int i, int val){
+        if ( i>= 0 && i < 10){
+            countBtns[i].setText(Integer.toString(val));
+        }
+
+    }
+
+    public void setOutBtnText(int i, int val){
+        if ( i>= 0 ){
+            outBtns[i].setText(Integer.toString(val));
+        }
+
+    }
+
+    public void resetCountBtnText(){
+        for (int i = 0 ; i < 10; i++){
+            countBtns[i].setText(Integer.toString(0));
+        }
+
+
+    }
     public void removeHighlightSwapPart(int i,int j){
         buttons[i].setBackground(new JButton().getBackground());
         buttons[j].setBackground(new JButton().getBackground());
