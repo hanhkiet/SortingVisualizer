@@ -64,6 +64,7 @@ public class FunctionPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 arr = null;
                 parent.setArr(arr);
+
             }
         });
 
@@ -109,7 +110,6 @@ public class FunctionPanel extends JPanel {
             arr[i] = temp;
             test += Integer.toString(arr[i]) + " ";
         }
-        label.setText(test);
 
     }
 

@@ -33,6 +33,7 @@ public class CodePanel extends JPanel {
 
     public CodePanel(JFrame frame) {
         super();
+        System.out.println("x");
         this.setLayout(new BorderLayout());
         button = new JButton("CLick me");
         this.add(button, BorderLayout.EAST);
@@ -45,10 +46,10 @@ public class CodePanel extends JPanel {
         });
         TitledBorder border = BorderFactory.createTitledBorder("Code");
         border.setTitleFont(FontManager.titleFont);
-        switch ("Selection sort") {
+        switch ("Quick sort") {
             case "Bubble sort":
                 // this.removeAllCpn();
-                codeSort = new BBSort(new int[] { 5, 4, 62, 1, 78, 4 });
+                codeSort = new BBSort(new int[] { 10, 80, 30, 90, 40, 50, 70 });
                 this.add(codeSort, BorderLayout.CENTER);
                 break;
             case "Quick sort":
@@ -63,7 +64,7 @@ public class CodePanel extends JPanel {
                 break;
             case "Selection sort":
                 // this.removeAllCpn();
-                codeSort = new SelectSort(new int[] { 5, 4, 62, 1, 78, 4 });
+                codeSort = new SelectSort(new int[] { 10, 80, 30, 90, 40, 50, 70 });
                 this.add(codeSort, BorderLayout.CENTER);
                 break;
             case "Radix sort":
@@ -79,11 +80,12 @@ public class CodePanel extends JPanel {
 
     }
 
-    public void next() {
+    public SortValue next() {
         codeSort.next();
         SortValue temp = new SortValue();
         temp = codeSort.getValues();
         System.out.println(temp);
+        return temp;
     }
 
     public boolean getIsSwap() {
