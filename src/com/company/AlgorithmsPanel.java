@@ -14,20 +14,31 @@ public class AlgorithmsPanel extends JPanel {
 
     private ButtonGroup group = new ButtonGroup();
 
+    AlgorithmsEnum selectedAlgorithm = null;
+
     private void initialize() {
-        createRadioButton("Bubble sort");
-        createRadioButton("Selection sort");
-        createRadioButton("Merged sort");
-        createRadioButton("Quick sort");
-        createRadioButton("Radix sort");
+        createRadioButton("Bubble sort", AlgorithmsEnum.BUBBLE_SORT);
+        createRadioButton("Selection sort", AlgorithmsEnum.SELECTION_SORT);
+        createRadioButton("Merged sort", AlgorithmsEnum.MERGE_SORT);
+        createRadioButton("Quick sort", AlgorithmsEnum.QUICK_SORT);
+        createRadioButton("Radix sort", AlgorithmsEnum.RADIX_SORT);
     }
 
-    private void createRadioButton(String title) {
+    public AlgorithmsEnum getSelectedAlgorithm() {
+        return selectedAlgorithm;
+    }
+
+    private void createRadioButton(String title, AlgorithmsEnum algorithm) {
         JRadioButton button = new JRadioButton(title, false);
         button.setMargin(new Insets(10, 20, 0, 0));
         button.setFont(FontManager.radioButtonFont);
         button.setOpaque(false);
         button.setFocusPainted(false);
+
+        button.addActionListener(l -> {
+            selectedAlgorithm = algorithm;
+        });
+
         group.add(button);
         add(button);
     }

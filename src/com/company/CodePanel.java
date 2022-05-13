@@ -36,7 +36,7 @@ public class CodePanel extends JPanel {
         System.out.println("x");
         this.setLayout(new BorderLayout());
         button = new JButton("CLick me");
-        this.add(button, BorderLayout.EAST);
+        // this.add(button, BorderLayout.EAST);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -44,6 +44,7 @@ public class CodePanel extends JPanel {
 
             }
         });
+
         TitledBorder border = BorderFactory.createTitledBorder("Code");
         border.setTitleFont(FontManager.titleFont);
         switch ("Quick sort") {
@@ -95,5 +96,4 @@ public class CodePanel extends JPanel {
     public int[] getLsElement() {
         return this.lsElement;
     }
-
 }
