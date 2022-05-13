@@ -26,22 +26,10 @@ public class MainFrame extends JFrame {
     private int[] arr;
     boolean flat;
 
-
     private JButton playButton;
     private JButton stopButton;
     private Icon playIcon;
     private Icon stopIcon;
-
-    private void getIcon() {
-        playIcon = new ImageIcon(
-                new ImageIcon(getClass().getResource("./images/play-solid.png"))
-                        .getImage().getScaledInstance(10, 12,
-                                Image.SCALE_AREA_AVERAGING));
-
-        stopIcon = new ImageIcon(new ImageIcon(getClass()
-                .getResource("./images/stop-solid.png")).getImage()
-                .getScaledInstance(10, 12, Image.SCALE_SMOOTH));
-    }
 
     public void setArr(int[] newArr) {
         arr = newArr;
@@ -63,7 +51,6 @@ public class MainFrame extends JFrame {
         setTitle("Sorting Visualizer");
 
         initialize();
-
     }
 
     private void initialize() {
@@ -75,42 +62,41 @@ public class MainFrame extends JFrame {
         mainPanel.setLayout(null);
         mainPanel.setBackground(ColorManager.BACKGROUND);
 
-        // mainPanel.add(codePanel);
-        // codePanel.setBounds(0, 0, WIDTH, HEIGHT);
-        // codePanel.setBackground(ColorManager.BAR_RED);
-
-        visualizerPanel.setBounds(0, 0, WIDTH - 13, HEIGHT / 3);
-        // visualizePanel.setBackground(ColorManager.BAR_CYAN);
+        visualizerPanel.setBounds(0, 0, WIDTH - 13, HEIGHT / 2);
         mainPanel.add(visualizerPanel);
 
-        functionPanel.setBounds(0, HEIGHT / 2, WIDTH / 3+ WIDTH / 6, HEIGHT / 2 - 18);
-        // functionPanel.setBackground(ColorManager.BAR_ORANGE);
+        functionPanel.setBounds(0, HEIGHT / 2, WIDTH / 3, HEIGHT / 2 - 18);
         mainPanel.add(functionPanel);
 
         algorithmsPanel.setBounds(WIDTH / 3, HEIGHT / 2, WIDTH * 2 / 9 + 1, HEIGHT / 2 - 18);
-        // algorithmsPanel.setBackground(ColorManager.BAR_WHITE);
         mainPanel.add(algorithmsPanel);
 
         codePanel.setBounds(WIDTH * 5 / 9, HEIGHT / 2, WIDTH * 4 / 9 - 13, HEIGHT / 2 - 18);
-        //codePanel.setBackground(ColorManager.BAR_RED);
         mainPanel.add(codePanel);
 
         add(mainPanel);
 
-        getIcon();
-        playButton = new JButton(playIcon);
-        playButton.setFocusable(false);
-        playButton.setBounds(10,300, 40, 40);
-        playButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        // stopButton = new JButton(stopIcon);
+        // stopButton.setFocusable(false);
+        // stopButton.setBounds(60, 300, 40, 40);
+        // stopButton.addActionListener(new ActionListener() {
+        // @Override
+        // public void actionPerformed(ActionEvent e) {
+        // JOptionPane.showMessageDialog(null,
+        // Arrays.toString(visualizerPanel.getArr()));
+        // }
+        // });
 
+        // mainPanel.add(playButton);
+        // mainPanel.add(stopButton);
+    }
+
+    public void animate() {
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
 
                         try{
-                            playButton.setEnabled(false);
                             switch ("radixsort"){
                                 case "quicksort":{
                                     QuickSortValue data = (QuickSortValue)codePanel.next();
@@ -281,7 +267,6 @@ public class MainFrame extends JFrame {
                                     break;
                                 }
                             }
-                            playButton.setEnabled(true);
                         }
                         catch (Exception ex){
                         }
@@ -289,25 +274,6 @@ public class MainFrame extends JFrame {
                 });
                 thread.start();
 
-            }
-        });
-
-        stopButton = new JButton(stopIcon);
-        stopButton.setFocusable(false);
-        stopButton.setBounds(60,300, 40, 40);
-        stopButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                flat = false;
-            }
-        });
-
-
-        pack();
-        mainPanel.add(playButton);
-        mainPanel.add(stopButton);
     }
-
-
 
 }
