@@ -34,8 +34,9 @@ public class VisualizerPanel extends JPanel {
     private CodePanel codePanel;
     private MainFrame parent;
     private int[] arr;
-    private JButton[] buttons;
+    private JButton[] buttons,countBtns,outBtns;
     private JLabel iText,jText,pavotText;
+    private JLabel[] countText;
     private void getIcon() {
         playIcon = new ImageIcon(
                 new ImageIcon(getClass().getResource("./images/play-solid.png"))
@@ -83,7 +84,7 @@ public class VisualizerPanel extends JPanel {
             }
         }
         this.arr = arr;
-         initArray();
+        initArrayRadixSort();
         // JButton button = new JButton("button");
 //        initialize();
         repaint();
@@ -96,8 +97,40 @@ public class VisualizerPanel extends JPanel {
             for (int i = 0; i < arr.length; i++) {
                 buttons[i] = new JButton(Integer.toString(arr[i]));
                 buttons[i].setFocusable(false);
-                buttons[i].setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2, 60, 60);
+                buttons[i].setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2, 50, 50);
                 add(buttons[i]);
+            }
+        } else {
+            buttons = null;
+        }
+    }
+
+
+    private void initArrayRadixSort() {
+        if (arr != null && arr.length > 0) {
+            arr = new int[] { 10, 80, 30, 90, 40, 50, 70 };
+            buttons = new JButton[arr.length];
+            countBtns = new JButton[10];
+            outBtns = new JButton[arr.length];
+            countText = new JLabel[10];
+            for (int i = 0; i < arr.length; i++) {
+                buttons[i] = new JButton(Integer.toString(arr[i]));
+                outBtns[i] = new JButton();
+                buttons[i].setFocusable(false);
+                buttons[i].setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2, 50, 50);
+                outBtns[i].setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2-150, 50, 50);
+                add(buttons[i]);
+                add(outBtns[i]);
+            }
+            for (int i = 0; i <10; i++){
+                countBtns[i] = new JButton("0");
+                countText[i] = new JLabel();
+                add(countText[i]);
+                countBtns[i].setFocusable(false);
+                countBtns[i].setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2-80, 50, 50);
+                addText(countBtns[i],countText[i],"",i,40,20);
+                countText[i].setText(Integer.toString(i));
+                add(countBtns[i]);
             }
         } else {
             buttons = null;
@@ -217,6 +250,10 @@ public class VisualizerPanel extends JPanel {
 
     }
 
+
+    public void highlightBtn(int index){
+
+    }
     public void removeText(){
         remove(iText);
         remove(jText);

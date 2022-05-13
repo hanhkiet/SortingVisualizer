@@ -112,7 +112,7 @@ public class MainFrame extends JFrame {
 
                         try{
                             playButton.setEnabled(false);
-                            switch ("selectionsort"){
+                            switch ("quicksort"){
                                 case "quicksort":{
                                     QuickSortValue data = (QuickSortValue)codePanel.next();
                                     int count = 100;
@@ -156,6 +156,11 @@ public class MainFrame extends JFrame {
                                                 break;
                                             }
 
+                                            default:{
+                                                Thread.sleep(200);
+                                                break;
+                                            }
+
 
                                         }
                                         data = (QuickSortValue)codePanel.next();
@@ -175,15 +180,23 @@ public class MainFrame extends JFrame {
                                         int time = 0;
                                         switch (data.getTypeAction()){
                                             case "SWAP":{
+
                                                 visualizerPanel.addHighlightSwapPart(j,j+1);
                                                 time = visualizerPanel.changePos(j,j+1);
                                                 Thread.sleep(time + 700);
                                                 visualizerPanel.removeHighlightSwapPart(j,j+1);
+                                                data = (BubbleSortValue)codePanel.next();
+                                                break;
+                                            }
+
+                                            default:{
+                                                data = (BubbleSortValue)codePanel.next();
+                                                Thread.sleep(time + 300);
                                                 break;
                                             }
                                         }
 
-                                        data = (BubbleSortValue)codePanel.next();
+
 
                                     }
                                     visualizerPanel.removeText();
@@ -192,8 +205,6 @@ public class MainFrame extends JFrame {
 
                                 case "selectionsort":{
                                     SelectSortValue data = (SelectSortValue)codePanel.next();
-                                    int count = 100;
-                                    //
                                     while(data.getTypeAction() != "SORT_SUCCESS") {
                                         int i = data.getI();
                                         int j = data.getMin();
@@ -205,18 +216,26 @@ public class MainFrame extends JFrame {
                                                     time = visualizerPanel.changePos(j,i);
                                                     Thread.sleep(time + 700);
                                                     visualizerPanel.removeHighlightSwapPart(j,i);
+                                                    //data = (SelectSortValue)codePanel.next();
+
                                                 }
                                                 else if (i < j){
                                                     visualizerPanel.addHighlightSwapPart(i,j);
                                                     time = visualizerPanel.changePos(i,j);
                                                     Thread.sleep(time + 700);
+                                                    //data = (SelectSortValue)codePanel.next();
                                                     visualizerPanel.removeHighlightSwapPart(i,j);
                                                 }
+                                                break;
+                                            }
+                                            default:{
+                                                Thread.sleep( 300);
                                                 break;
                                             }
                                         }
                                         data = (SelectSortValue)codePanel.next();
                                     }
+
                                     Thread.sleep( 700);
                                     visualizerPanel.removeText();
                                     break;
