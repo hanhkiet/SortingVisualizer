@@ -235,25 +235,64 @@ public class MainFrame extends JFrame {
                                         int time = 0;
                                         switch (data.getTypeAction()){
                                             case "LOAD_COUNT_ARRAY":{
-                                                if (data.getCount() != null){
-                                                    for (int i = 0; i < 10; i++){
-                                                        visualizerPanel.setCountBtnText(i,data.getCount()[i]);
-                                                    }
+                                                if (data.getCountI() >= 0 ){
+                                                    int i = data.getCountI();
+                                                    if (data.getMainI()>=0) visualizerPanel.addHighLightBtn(data.getMainI(),1);
+                                                    Thread.sleep(200);
+                                                    visualizerPanel.addHighLightBtn(i,2);
+                                                    visualizerPanel.setCountBtnText(i,data.getCount()[i]);
+                                                    Thread.sleep(200);
+                                                    if (data.getMainI()>=0) visualizerPanel.removeHighLightBtn(data.getMainI(),1);
+                                                    Thread.sleep(200);
+                                                    visualizerPanel.removeHighLightBtn(i,2);
+                                                }
+                                                Thread.sleep(500);
+                                                break;
+                                            }
+                                            case "RESET_COUNT":{
+                                                for (int i = 0 ; i< 10; i++){
+                                                    visualizerPanel.setCountBtnText(i,0);
+                                                    Thread.sleep(500);
+                                                }
+                                                break;
+                                            }
+                                            case "CREATE_OUTPUT_ARRAY":{
+                                                visualizerPanel.resetOutputBtns();
+                                                Thread.sleep(500);
+                                                break;
+
+                                            }
+                                            case "LOAD_OUTPUT_ARRAY":{
+                                                if (data.getOutput() != null && data.getOutputI() >= 0){
+                                                    int i = data.getOutputI();
+                                                    visualizerPanel.addHighLightBtn(i,3);
+                                                    visualizerPanel.setOutBtnText(i,data.getOutput()[i]);
+                                                    Thread.sleep(200);
+                                                    visualizerPanel.removeHighLightBtn(i,3);
 
                                                 }
                                                 Thread.sleep(500);
                                                 break;
                                             }
-                                            case "LOAD_OUTPUT_ARRAY":{
-                                                if (data.getOutput() != null){
-                                                    for (int i = 0; i < data.getOutput().length; i++){
-                                                        visualizerPanel.setOutBtnText(i,data.getOutput()[i]);
-                                                    }
+
+                                            case "MODIFIDE_MAIN_ARRAY":{
+                                                if (data.getOutput() != null && data.getMainI() >= 0){
+                                                    int i =  data.getMainI();
+                                                    visualizerPanel.addHighLightBtn(i,3);
+                                                    Thread.sleep(200);
+                                                    visualizerPanel.addHighLightBtn(i,1);
+                                                    Thread.sleep(200);
+                                                    visualizerPanel.setBtns(i,data.getOutput()[i]);
+                                                    visualizerPanel.removeHighLightBtn(i,3);
+                                                    Thread.sleep(200);
+                                                    visualizerPanel.removeHighLightBtn(i,1);
+                                                    Thread.sleep(200);
                                                 }
                                                 Thread.sleep(500);
                                                 break;
                                             }
                                             default:{
+                                                visualizerPanel.setTextForRadixSort(data.getExp(),data.getMax());
                                                 Thread.sleep(500);
                                                 break;
                                             }
@@ -263,12 +302,13 @@ public class MainFrame extends JFrame {
                                         data = (RadixSortValue)codePanel.next();
 
                                     }
-                                    visualizerPanel.removeText();
+                                    //visualizerPanel.removeText();
                                     break;
                                 }
                             }
                         }
                         catch (Exception ex){
+                            System.out.println(ex.toString());
                         }
                     }
                 });

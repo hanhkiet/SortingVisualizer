@@ -80,9 +80,8 @@ public class VisualizerPanel extends JPanel {
             }
         }
         this.arr = arr;
-        initArray();
-        // JButton button = new JButton("button");
-        // initialize();
+        //initArray();
+        initArrayRadixSort();
         repaint();
     }
 
@@ -245,12 +244,44 @@ public class VisualizerPanel extends JPanel {
 
     }
 
-    public void resetCountBtnText(){
-        for (int i = 0 ; i < 10; i++){
-            countBtns[i].setText(Integer.toString(0));
+    public void setBtns(int i,int val){
+        if ( i>= 0 ){
+            buttons[i].setText(Integer.toString(val));
         }
+    }
 
+    public void addHighLightBtn(int index,int BtnChoice){
+        switch (BtnChoice){
+            case 1:{
+                buttons[index].setBackground(HIGHLIGHT_COLOR);
+                break;
+            }
+            case 2:{
+                countBtns[index].setBackground(HIGHLIGHT_COLOR);
+                break;
+            }
+            case 3:{
+                outBtns[index].setBackground(HIGHLIGHT_COLOR);
+                break;
+            }
+        }
+    }
 
+    public void removeHighLightBtn(int index,int BtnChoice){
+        switch (BtnChoice){
+            case 1:{
+                buttons[index].setBackground(new JButton().getBackground());
+                break;
+            }
+            case 2:{
+                countBtns[index].setBackground(new JButton().getBackground());
+                break;
+            }
+            case 3:{
+                outBtns[index].setBackground(new JButton().getBackground());
+                break;
+            }
+        }
     }
     public void removeHighlightSwapPart(int i,int j){
         buttons[i].setBackground(new JButton().getBackground());
@@ -268,7 +299,7 @@ public class VisualizerPanel extends JPanel {
 
     public void addText(JButton bt, JLabel lb, String name, int index, int height, int width) {
         lb.setText(name + '=' + Integer.toString(index));
-        lb.setBounds(bt.getX() + width, bt.getY() + height, 40, 40);
+        lb.setBounds(bt.getX() + width, bt.getY() + height, 200, 40);
 
     }
 
@@ -280,5 +311,16 @@ public class VisualizerPanel extends JPanel {
         remove(iText);
         remove(jText);
         remove(pavotText);
+    }
+
+    public void resetOutputBtns(){
+        for (int i = 0; i < outBtns.length; i++){
+            outBtns[i].setText("");
+        }
+    }
+
+    public void setTextForRadixSort(int exp, int max){
+        addText(buttons[0],iText,"exp: ",exp,50,0);
+        addText(buttons[0],jText,"max: ",max,100,0);
     }
 }
