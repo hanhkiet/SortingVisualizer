@@ -6,9 +6,6 @@ import com.company.model.SelectSortValue;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 public class MainFrame extends JFrame {
     public static void main(String[] args) {
@@ -25,12 +22,17 @@ public class MainFrame extends JFrame {
     private FunctionPanel functionPanel;
     private AlgorithmsPanel algorithmsPanel;
     private CodePanel codePanel;
+
+    public CodePanel getCodePanel() {
+        return codePanel;
+    }
+
     private int[] arr;
 
-    private JButton playButton;
-    private JButton stopButton;
-    private Icon playIcon;
-    private Icon stopIcon;
+    // private JButton playButton;
+    // private JButton stopButton;
+    // private Icon playIcon;
+    // private Icon stopIcon;
 
     public void setArr(int[] newArr) {
         arr = newArr;
@@ -63,16 +65,16 @@ public class MainFrame extends JFrame {
         mainPanel.setLayout(null);
         mainPanel.setBackground(ColorManager.BACKGROUND);
 
-        visualizerPanel.setBounds(0, 0, WIDTH - 13, HEIGHT / 2);
+        visualizerPanel.setBounds(0, 0, WIDTH * 2 / 3, HEIGHT / 2);
         mainPanel.add(visualizerPanel);
 
-        functionPanel.setBounds(0, HEIGHT / 2, WIDTH / 3, HEIGHT / 2 - 18);
+        functionPanel.setBounds(0, HEIGHT / 2, WIDTH * 4 / 9, HEIGHT / 2 - 18);
         mainPanel.add(functionPanel);
 
-        algorithmsPanel.setBounds(WIDTH / 3, HEIGHT / 2, WIDTH * 2 / 9 + 1, HEIGHT / 2 - 18);
+        algorithmsPanel.setBounds(WIDTH * 4 / 9, HEIGHT / 2, WIDTH * 2 / 9 + 1, HEIGHT / 2 - 18);
         mainPanel.add(algorithmsPanel);
 
-        codePanel.setBounds(WIDTH * 5 / 9, HEIGHT / 2, WIDTH * 4 / 9 - 13, HEIGHT / 2 - 18);
+        codePanel.setBounds(WIDTH * 2 / 3, 0, WIDTH * 1 / 3 - 13, HEIGHT);
         mainPanel.add(codePanel);
 
         add(mainPanel);
@@ -93,13 +95,20 @@ public class MainFrame extends JFrame {
     }
 
     public void animate() {
+        var selectedAlgorithms = algorithmsPanel.getSelectedAlgorithm();
+
+        if (selectedAlgorithms == null) {
+            System.out.println("null");
+            return;
+        }
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 System.out.println("thread");
                 try {
-                    switch ("quicksort") {
-                        case "quicksort": {
+                    switch (selectedAlgorithms) {
+                        case QUICK_SORT: {
                             QuickSortValue data = (QuickSortValue) codePanel.next();
                             int count = 100;
                             //
@@ -153,7 +162,7 @@ public class MainFrame extends JFrame {
                             visualizerPanel.removeText();
                             break;
                         }
-                        case "bubblesort": {
+                        case BUBBLE_SORT: {
                             BubbleSortValue data = (BubbleSortValue) codePanel.next();
                             int count = 100;
                             //
@@ -181,8 +190,7 @@ public class MainFrame extends JFrame {
                             visualizerPanel.removeText();
                             break;
                         }
-
-                        case "selectionsort": {
+                        case SELECTION_SORT: {
                             SelectSortValue data = (SelectSortValue) codePanel.next();
                             while (data.getTypeAction() != "SORT_SUCCESS") {
                                 int i = data.getI();
@@ -218,12 +226,16 @@ public class MainFrame extends JFrame {
                             visualizerPanel.removeText();
                             break;
                         }
+                        default:
+                            break;
                     }
                 } catch (Exception ex) {
                     System.out.println(ex.toString());
                 }
             }
         });
+
+        visualizerPanel.setEnablePlayButton(false);
         thread.start();
     }
 }

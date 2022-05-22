@@ -5,7 +5,6 @@ import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.TitledBorder;
@@ -13,6 +12,8 @@ import javax.swing.border.TitledBorder;
 public class AlgorithmsPanel extends JPanel {
 
     private ButtonGroup group = new ButtonGroup();
+
+    private MainFrame parent;
 
     AlgorithmsEnum selectedAlgorithm = null;
 
@@ -37,14 +38,17 @@ public class AlgorithmsPanel extends JPanel {
 
         button.addActionListener(l -> {
             selectedAlgorithm = algorithm;
+            parent.getCodePanel().changeAlgorithm(algorithm);
         });
 
         group.add(button);
         add(button);
     }
 
-    public AlgorithmsPanel(JFrame frame) {
+    public AlgorithmsPanel(MainFrame frame) {
         super();
+
+        parent = frame;
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         TitledBorder border = BorderFactory.createTitledBorder("Thuật toán");

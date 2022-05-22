@@ -79,6 +79,10 @@ public class FunctionPanel extends JPanel {
         });
     }
 
+    public int[] getArr() {
+        return arr;
+    }
+
     public FunctionPanel(MainFrame frame) {
         super();
 
