@@ -8,7 +8,7 @@ public class RadixSortValue extends SortValue{
     private int countI;
     private int outputI;
     private int max;
-   
+    private int index;
 
     public RadixSortValue(){
         super();
@@ -101,5 +101,8 @@ public class RadixSortValue extends SortValue{
         this.max = max;
     }
 
+    public void setIndex(int val) {this.index = val;}
+
+    public int getIndex() {return this.index;}
 
 }

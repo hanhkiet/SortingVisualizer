@@ -130,18 +130,19 @@ public class RadixSort extends Sort {
       // }
       if (this.index == 9){
         output = new int[n];
-        this.type= "LOAD_OUTPUT_ARRAY";
+        this.type= "CREATE_OUTPUT_ARRAY";
         currentValue.setOutput(output);
         
       }
       if (this.index == 10){
         count = new int[10];
-        this.type= "LOAD_COUNT_ARRAY";
+        this.type= "CREATE_COUNT_ARRAY";
         currentValue.setCount(count);
+
       }
       if (this.index == 11){
         Arrays.fill(count, 0);
-        this.type= "LOAD_COUNT_ARRAY";
+        this.type= "RESET_COUNT";
         currentValue.setCount(count);
       }
       if (this.index == 12){
@@ -153,12 +154,14 @@ public class RadixSort extends Sort {
           this.setI(-1);
         }
         this.type= "LOAD_DATA";
-        currentValue.setCountI(i);
+        if (i >= 0) currentValue.setCountI((arr[i] / exp) % 10);
+        currentValue.setMainI(i);
       }
       if (this.index == 13){
         this.type= "LOAD_COUNT_ARRAY";
         count[(arr[i] / exp) % 10]++;
         this.setIndex(11);
+        this.currentValue.setCount(count);
       }
       // if (this.index == 14){
         
@@ -198,7 +201,8 @@ public class RadixSort extends Sort {
           this.setI(-1);
         }
         this.type= "LOAD_DATA";
-        currentValue.setOutputI(i);;
+        if (i>= 0) currentValue.setOutputI(count[(arr[i] / exp) % 10] - 1);
+        currentValue.setMainI(i);
       }
       if (this.index == 19){
         output[count[(arr[i] / exp) % 10] - 1] = arr[i];
