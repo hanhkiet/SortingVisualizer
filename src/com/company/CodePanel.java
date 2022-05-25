@@ -47,30 +47,30 @@ public class CodePanel extends JPanel {
 
         TitledBorder border = BorderFactory.createTitledBorder("Code");
         border.setTitleFont(FontManager.titleFont);
-        switch ("Radix sort") {
+        switch ("Merged sort") {
             case "Bubble sort":
                 // this.removeAllCpn();
-                codeSort = new BBSort(new int[] { 10, 80, 30, 90, 40, 50, 70 });
+                codeSort = new BBSort(new int[] { 11, 83, 32, 35, 19, 95, 47 });
                 this.add(codeSort, BorderLayout.CENTER);
                 break;
             case "Quick sort":
                 // this.removeAllCpn();
-                codeSort = new QuickSort(new int[] { 10, 80, 30, 90, 40, 50, 70 });
+                codeSort = new QuickSort(new int[] { 11, 83, 32, 35, 19, 95, 47 });
                 this.add(codeSort, BorderLayout.CENTER);
                 break;
             case "Merged sort":
                 // this.removeAllCpn();
-                codeSort = new MergedSort(new int[] { 10, 80, 30, 90, 40, 50, 70 });
+                codeSort = new MergedSort(new int[] { 11, 83, 32, 35, 19, 95, 47 });
                 this.add(codeSort, BorderLayout.CENTER);
                 break;
             case "Selection sort":
                 // this.removeAllCpn();
-                codeSort = new SelectSort(new int[] { 10, 80, 30, 90, 40, 50, 70 });
+                codeSort = new SelectSort(new int[] { 11, 83, 32, 35, 19, 95, 47 });
                 this.add(codeSort, BorderLayout.CENTER);
                 break;
             case "Radix sort":
                 // this.removeAllCpn();
-                codeSort = new RadixSort(new int[] { 10, 80, 30, 90, 40, 50, 70 });
+                codeSort = new RadixSort(new int[] { 11, 83, 32, 35, 19, 95, 47 });
                 this.add(codeSort, BorderLayout.CENTER);
                 break;
             default:
