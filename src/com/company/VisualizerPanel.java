@@ -28,16 +28,20 @@ public class VisualizerPanel extends JPanel {
     private Color HIGHLIGHT_COLOR = new Color(245, 207, 103);
     private Color ACCEPT_COLOR = new Color(68, 140, 89);
     private Color DENY_COLOR = new Color(255, 64, 26);
-    private final int WIDTH = 1280, HEIGHT = 360;
+    private final int WIDTH = 853, HEIGHT = 360;
 
     private Icon playIcon;
     private Icon stopIcon;
-    private CodePanel codePanel;
     private MainFrame parent;
     private int[] arr;
     private JButton[] buttons, countBtns, outBtns, leftBtns, rightBtns;
     private JLabel iText, jText, pivotText,statusText;
     private JLabel[] countText;
+
+    public void setEnablePlayButton(boolean enabled) {
+        playButton.setEnabled(enabled);
+    }
+
     private JLabel iIndex,jIndex,maxVal,minVal,iVal,jVal,sortName,status,minIndex;
     private void getIcon() {
         playIcon = new ImageIcon(
@@ -83,6 +87,7 @@ public class VisualizerPanel extends JPanel {
                 remove(buttons[i]);
             }
         }
+
         this.arr = arr;
         switch (type){
             case 1:{
@@ -99,7 +104,6 @@ public class VisualizerPanel extends JPanel {
 
     private void initArray() {
         if (arr != null && arr.length > 0) {
-            arr = new int[] { 11, 83, 32, 35, 19, 95, 47 };
             buttons = new JButton[arr.length];
             for (int i = 0; i < arr.length; i++) {
                 buttons[i] = new JButton(Integer.toString(arr[i]));

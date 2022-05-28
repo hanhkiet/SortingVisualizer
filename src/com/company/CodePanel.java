@@ -20,10 +20,12 @@ public class CodePanel extends JPanel {
             "Selection sort", "Merged sort", "Quick sort",
             "Radix sort" };
     private int[] lsElement;
-    private String namePicked;
-    private int[] arr;
     private Sort codeSort;
     private JButton button;
+
+    private TitledBorder border;
+
+    private MainFrame parent;
 
     public void removeAllCpn() {
         this.removeAll();
@@ -31,9 +33,9 @@ public class CodePanel extends JPanel {
         this.repaint();
     }
 
-    public CodePanel(JFrame frame) {
+    public CodePanel(MainFrame frame) {
         super();
-        System.out.println("x");
+        parent = frame;
         this.setLayout(new BorderLayout());
         button = new JButton("CLick me");
         // this.add(button, BorderLayout.EAST);
@@ -41,44 +43,48 @@ public class CodePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 next();
-
             }
         });
 
-        TitledBorder border = BorderFactory.createTitledBorder("Code");
+        border = BorderFactory.createTitledBorder("Code");
         border.setTitleFont(FontManager.titleFont);
-        switch ("Merged sort") {
-            case "Bubble sort":
-                // this.removeAllCpn();
-                codeSort = new BBSort(new int[] { 11, 83, 32, 35, 19, 95, 47 });
+
+        setBorder(border);
+    }
+
+    public void changeAlgorithm(AlgorithmsEnum algorithm) {
+        System.out.println("change");
+        int[] arr = parent.getArr();
+        switch (algorithm) {
+            case BUBBLE_SORT:
+                this.removeAllCpn();
+                codeSort = new BBSort(arr);
                 this.add(codeSort, BorderLayout.CENTER);
                 break;
-            case "Quick sort":
-                // this.removeAllCpn();
-                codeSort = new QuickSort(new int[] { 11, 83, 32, 35, 19, 95, 47 });
+            case QUICK_SORT:
+                this.removeAllCpn();
+                codeSort = new QuickSort(arr);
                 this.add(codeSort, BorderLayout.CENTER);
                 break;
-            case "Merged sort":
-                // this.removeAllCpn();
-                codeSort = new MergedSort(new int[] { 11, 83, 32, 35, 19, 95, 47 });
+            case MERGE_SORT:
+                this.removeAllCpn();
+                codeSort = new MergedSort(arr);
                 this.add(codeSort, BorderLayout.CENTER);
                 break;
-            case "Selection sort":
-                // this.removeAllCpn();
-                codeSort = new SelectSort(new int[] { 11, 83, 32, 35, 19, 95, 47 });
+            case SELECTION_SORT:
+                this.removeAllCpn();
+                codeSort = new SelectSort(arr);
                 this.add(codeSort, BorderLayout.CENTER);
                 break;
-            case "Radix sort":
-                // this.removeAllCpn();
-                codeSort = new RadixSort(new int[] { 11, 83, 32, 35, 19, 95, 47 });
+            case RADIX_SORT:
+                this.removeAllCpn();
+                codeSort = new RadixSort(arr);
                 this.add(codeSort, BorderLayout.CENTER);
                 break;
             default:
+                System.out.println("default");
                 break;
         }
-
-        setBorder(border);
-
     }
 
     public SortValue next() {
