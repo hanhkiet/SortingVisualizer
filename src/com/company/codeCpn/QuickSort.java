@@ -61,9 +61,9 @@ public class QuickSort extends Sort {
   public QuickSort(int[] arr) {
     super(arr);
     init();
-    this.label = new JTextArea(arr[0] + " - " + arr[1] +
-        " - " + arr[2] + " - " + arr[3] +
-        " - " + arr[4] + " - " + arr[5]);
+  //    this.label = new JTextArea(arr[0] + " - " + arr[1] +
+  //        " - " + arr[2] + " - " + arr[3] +
+  //        " - " + arr[4] + " - " + arr[5]);
     this.setBackground(Color.WHITE);
     JScrollPane scrollPane = new JScrollPane();
 

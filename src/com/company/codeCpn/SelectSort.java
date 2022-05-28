@@ -41,9 +41,9 @@ public class SelectSort extends Sort {
         super(arr);
         init();
         currentValue = new SelectSortValue(-1, -1, -1);
-        this.label = new JLabel(arr[0] + " - " + arr[1] +
-            " - " + arr[2] + " - " + arr[3] +
-            " - " + arr[4] + " - " + arr[5] + "// i: "+currentValue.getI()+" - j: "+ currentValue.getJ()+" - min: "+ currentValue.getMin());
+//        this.label = new JLabel(arr[0] + " - " + arr[1] +
+//            " - " + arr[2] + " - " + arr[3] +
+//            " - " + arr[4] + " - " + arr[5] + "// i: "+currentValue.getI()+" - j: "+ currentValue.getJ()+" - min: "+ currentValue.getMin());
 
         this.setBackground(Color.WHITE);
         this.jList = new MyJList(lsCode);

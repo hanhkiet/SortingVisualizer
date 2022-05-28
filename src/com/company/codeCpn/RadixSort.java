@@ -60,9 +60,9 @@ public class RadixSort extends Sort {
   public RadixSort(int[] arr) {
     super(arr);
     init();
-    this.label = new JLabel(arr[0] + " - " + arr[1] +
-        " - " + arr[2] + " - " + arr[3] +
-        " - " + arr[4] + " - " + arr[5]);
+//    this.label = new JLabel(arr[0] + " - " + arr[1] +
+//        " - " + arr[2] + " - " + arr[3] +
+//        " - " + arr[4] + " - " + arr[5]);
 
     this.setBackground(Color.WHITE);
     JScrollPane scrollPane = new JScrollPane();

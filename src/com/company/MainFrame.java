@@ -92,6 +92,7 @@ public class MainFrame extends JFrame {
     }
 
     public void animate() {
+                var selectedAlgorithms =  algorithmsPanel.getSelectedAlgorithm();
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {

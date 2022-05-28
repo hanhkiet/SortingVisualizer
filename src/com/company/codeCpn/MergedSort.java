@@ -326,12 +326,12 @@ public class MergedSort extends Sort {
     this.setBackground(Color.BLACK);
     // this.setSize(new Dimension(100, 100));
     this.setVisible(true);
-    this.label = new JTextArea(arr[0] + " - " + arr[1] +
-        " - " + arr[2] + " - " + arr[3] +
-        " - " + arr[4] + " - " + arr[5]);
-    this.label.setFont(new Font("Arial", Font.PLAIN, 22));
-    this.label.setBackground(Color.BLACK);
-    this.label.setForeground(Color.white);
+//    this.label = new JTextArea(arr[0] + " - " + arr[1] +
+//        " - " + arr[2] + " - " + arr[3] +
+//        " - " + arr[4] + " - " + arr[5]);
+    //this.label.setFont(new Font("Arial", Font.PLAIN, 22));
+    //this.label.setBackground(Color.BLACK);
+    //this.label.setForeground(Color.white);
     this.setBackground(Color.WHITE);
 
     JScrollPane scrollPane = new JScrollPane();
@@ -365,25 +365,25 @@ public class MergedSort extends Sort {
       ListIndex += " (" + String.valueOf(list.get(i).getLeft()) + "-" +
           String.valueOf(list.get(i).getRight()) + ")";
     }
-    this.label.setText(arr[0] + "  " + arr[1] +
-        "  " + arr[2] + "  " + arr[3] +
-        "  " + arr[4] + "  " + arr[5] + "  " + arr[6] +
-        "\n Left = " + currentValue.getLeft() + " mid = "
-        + currentValue.getMid() + " right = "
-        + currentValue.getRight() + "\n i = "
-        + currentValue.getI() + " j = "
-        + currentValue.getJ() + " k = "
-        + currentValue.getK()
-        + " PreviousIndex = "
-        + currentValue.getPreviousIndex()
-        + "\n indexOfStack = "
-        + indexOfStack
-        + "\n n1 = "
-        + this.n1
-        + " - n2 = "
-        + this.n2
-        + "\n ListPrev: " + ListPrev
-        + "\n ListParent: " + ListParent
-        + "\n ListIndex: " + ListIndex);
+//    this.label.setText(arr[0] + "  " + arr[1] +
+//        "  " + arr[2] + "  " + arr[3] +
+//        "  " + arr[4] + "  " + arr[5] + "  " + arr[6] +
+//        "\n Left = " + currentValue.getLeft() + " mid = "
+//        + currentValue.getMid() + " right = "
+//        + currentValue.getRight() + "\n i = "
+//        + currentValue.getI() + " j = "
+//        + currentValue.getJ() + " k = "
+//        + currentValue.getK()
+//        + " PreviousIndex = "
+//        + currentValue.getPreviousIndex()
+//        + "\n indexOfStack = "
+//        + indexOfStack
+//        + "\n n1 = "
+//        + this.n1
+//        + " - n2 = "
+//        + this.n2
+//        + "\n ListPrev: " + ListPrev
+//        + "\n ListParent: " + ListParent
+//        + "\n ListIndex: " + ListIndex);
   }
 }

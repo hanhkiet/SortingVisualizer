@@ -35,9 +35,9 @@ public class BBSort extends Sort {
   public BBSort(int[] arr) {
     super(arr);
     init();
-    this.label = new JLabel(arr[0] + " - " + arr[1] +
-        " - " + arr[2] + " - " + arr[3] +
-        " - " + arr[4] + " - " + arr[5]);
+//    this.label = new JLabel(arr[0] + " - " + arr[1] +
+//        " - " + arr[2] + " - " + arr[3] +
+//        " - " + arr[4] + " - " + arr[5]);
 
     this.setBackground(Color.WHITE);
     this.jList = new MyJList(lsCode);

@@ -112,6 +112,7 @@ public class VisualizerPanel extends JPanel {
             buttons = null;
         }
         //quickSortInit();
+        //bubbleSortInit();
 
     }
 
