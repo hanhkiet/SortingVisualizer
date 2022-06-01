@@ -35,7 +35,7 @@ public class MainFrame extends JFrame {
 
     public void setArr(int[] newArr) {
         arr = newArr;
-        visualizerPanel.setArr(arr,1);
+
     }
 
     public int[] getArr() {
@@ -98,10 +98,14 @@ public class MainFrame extends JFrame {
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        int sleepTime = 1200;
+                        int sleepTime = 1000;
+                        int sleepTime500 = 500;
+                        int sleepTime300 = 300;
                         try{
                             switch (selectedAlgorithms){
                                 case QUICK_SORT:{
+                                    visualizerPanel.quickSortInit();
+                                    visualizerPanel.setArr(arr,1);
                                     QuickSortValue data = (QuickSortValue)codePanel.next();
                                     int count = 100;
                                     //
@@ -114,17 +118,17 @@ public class MainFrame extends JFrame {
                                                 if (i < j){
                                                     visualizerPanel.addHighLightBtnInSelectionSort(j,2);
                                                     visualizerPanel.addHighLightBtnInSelectionSort(i,2);
-                                                    Thread.sleep(500);
+                                                    Thread.sleep(sleepTime500);
 
                                                     time = visualizerPanel.changeBtnPosition(i,j);
                                                 }
                                                 else if (i > j){
                                                     visualizerPanel.addHighLightBtnInSelectionSort(j,2);
                                                     visualizerPanel.addHighLightBtnInSelectionSort(i,2);
-                                                    Thread.sleep(500);
+                                                    Thread.sleep(sleepTime500);
                                                     time = visualizerPanel.changeBtnPosition(j,i);
                                                 }
-                                                Thread.sleep(time + 200);
+                                                Thread.sleep(time + sleepTime300);
                                                 visualizerPanel.removeHighLightBtnInSelectionSort(j);
                                                 visualizerPanel.removeHighLightBtnInSelectionSort(i);
                                                 break;
@@ -136,7 +140,7 @@ public class MainFrame extends JFrame {
                                                     visualizerPanel.addHighLightBtnInSelectionSort(High,2);
                                                     visualizerPanel.addHighLightBtnInSelectionSort(i+1,2);
                                                     time = visualizerPanel.changeBtnPosition(i+1,High);
-                                                    Thread.sleep(time + 200);
+                                                    Thread.sleep(time + sleepTime300);
                                                     visualizerPanel.removeHighLightBtn(i+1,1);
                                                     visualizerPanel.removeHighLightBtn(High,1);
                                                 }
@@ -149,7 +153,7 @@ public class MainFrame extends JFrame {
                                                 visualizerPanel.addHighlightTargetPart(l,h);
                                                 if (l >= 0 && h >= 0)
                                                     visualizerPanel.updateQuickSort(l,h);
-                                                Thread.sleep(1000);
+                                                Thread.sleep(sleepTime);
                                                 break;
                                             }
                                             case "PARTITION_SUCCESS":{
@@ -157,7 +161,7 @@ public class MainFrame extends JFrame {
                                                 int h = data.getHigh();
                                                 int pivot = data.getPivot();
                                                 visualizerPanel.removeHighlightTargetPart(l,h);
-                                                Thread.sleep(200);
+                                                Thread.sleep(sleepTime300);
 
                                                 break;
                                             }
@@ -168,22 +172,22 @@ public class MainFrame extends JFrame {
                                                     visualizerPanel.addHighLightBtnInSelectionSort(j,1);
                                                     visualizerPanel.addHighLightBtnInSelectionSort(i,1);
                                                     visualizerPanel.addHighLightBtnInSelectionSort(h,1);
-                                                    Thread.sleep(1200);
+                                                    Thread.sleep(sleepTime);
                                                     if (visualizerPanel.getArr()[j] >= data.getPivot()){
                                                         visualizerPanel.addHighLightBtnInSelectionSort(j,3);
                                                         visualizerPanel.addHighLightBtnInSelectionSort(i,3);
                                                     }
-                                                    Thread.sleep(1200);
+                                                    Thread.sleep(sleepTime);
                                                     visualizerPanel.removeHighLightBtnInSelectionSort(j);
                                                     visualizerPanel.removeHighLightBtnInSelectionSort(i);
                                                     visualizerPanel.removeHighLightBtnInSelectionSort(h);
-                                                    Thread.sleep(1200);
+                                                    Thread.sleep(sleepTime);
                                                 }
                                                 break;
                                             }
 
                                             default:{
-                                                Thread.sleep(200);
+                                                Thread.sleep(sleepTime300);
                                                 break;
                                             }
 
@@ -196,6 +200,8 @@ public class MainFrame extends JFrame {
                                 }
 
                                 case BUBBLE_SORT:{
+                                    visualizerPanel.setArr(arr,1);
+                                    visualizerPanel.bubbleSortInit();
                                     BubbleSortValue data = (BubbleSortValue)codePanel.next();
                                     int count = 100;
                                     //
@@ -211,7 +217,7 @@ public class MainFrame extends JFrame {
                                                 Thread.sleep(step);
                                                 visualizerPanel.removehighlightBtnInBubbleSort(j,j+1);
                                                 data = (BubbleSortValue)codePanel.next();
-                                                Thread.sleep(100);
+                                                Thread.sleep(sleepTime300);
                                                 break;
                                             }
                                             case "LOAD_DATA":{
@@ -219,7 +225,7 @@ public class MainFrame extends JFrame {
                                                     visualizerPanel.updateBubbleSort(i,j);
                                                     visualizerPanel.addHighLightBtnInBubbleSort(j,1);
                                                     visualizerPanel.addHighLightBtnInBubbleSort(j+1,1);
-                                                    Thread.sleep(500);
+                                                    Thread.sleep(sleepTime500);
                                                     if (visualizerPanel.getArr()[j] > visualizerPanel.getArr()[j+1]){
                                                         visualizerPanel.addHighLightBtnInBubbleSort(j,2);
                                                         visualizerPanel.addHighLightBtnInBubbleSort(j+1,2);
@@ -228,20 +234,20 @@ public class MainFrame extends JFrame {
                                                         visualizerPanel.addHighLightBtnInBubbleSort(j,3);
                                                         visualizerPanel.addHighLightBtnInBubbleSort(j+1,3);
                                                     }
-                                                   Thread.sleep(500);
+                                                   Thread.sleep(sleepTime500);
                                                    visualizerPanel.removeHighLightBtnInBubbleSort(j);
                                                    visualizerPanel.removeHighLightBtnInBubbleSort(j+1);
 
                                                 }
                                                 data = (BubbleSortValue)codePanel.next();
-                                               Thread.sleep(100);
+                                               Thread.sleep(sleepTime300);
 
                                                 break;
                                             }
                                             default:{
                                                 Thread.sleep(step);
                                                 data = (BubbleSortValue)codePanel.next();
-                                                Thread.sleep(100);
+                                                Thread.sleep(sleepTime300);
                                                 break;
                                             }
                                         }
@@ -251,6 +257,8 @@ public class MainFrame extends JFrame {
                                 }
 
                                 case SELECTION_SORT:{
+                                    visualizerPanel.setArr(arr,1);
+                                    visualizerPanel.selectionSortInit();
                                     SelectSortValue data = (SelectSortValue)codePanel.next();
                                     while(data.getTypeAction() != "SORT_SUCCESS") {
                                         int i = data.getI();
@@ -283,7 +291,7 @@ public class MainFrame extends JFrame {
                                                     if (min != j){
                                                         visualizerPanel.addHighLightBtnInSelectionSort(j,1);
                                                         visualizerPanel.addHighLightBtnInSelectionSort(min,1);
-                                                        Thread.sleep(300);
+                                                        Thread.sleep(sleepTime300);
                                                         if (visualizerPanel.getArr()[j] < visualizerPanel.getArr()[min]){
                                                             visualizerPanel.addHighLightBtnInSelectionSort(j,2);
                                                             visualizerPanel.addHighLightBtnInSelectionSort(min,2);
@@ -292,10 +300,10 @@ public class MainFrame extends JFrame {
                                                             visualizerPanel.addHighLightBtnInSelectionSort(j,3);
                                                             visualizerPanel.addHighLightBtnInSelectionSort(min,3);
                                                         }
-                                                        Thread.sleep(300);
+                                                        Thread.sleep(sleepTime300);
                                                         visualizerPanel.removeHighLightBtnInSelectionSort(j);
                                                         visualizerPanel.removeHighLightBtnInSelectionSort(min);
-                                                        Thread.sleep(100);
+                                                        Thread.sleep(sleepTime300);
                                                     }
                                                 }
                                                 break;
@@ -313,6 +321,8 @@ public class MainFrame extends JFrame {
                                 }
 
                                 case RADIX_SORT:{
+                                    visualizerPanel.setArr(arr,2);
+                                    visualizerPanel.radixSortInit();
                                     RadixSortValue data = (RadixSortValue)codePanel.next();
                                     int count = 100;
                                     //
@@ -324,12 +334,12 @@ public class MainFrame extends JFrame {
                                                 if (data.getCountI() >= 0 ){
                                                     int i = data.getCountI();
                                                     if (data.getMainI()>=0) visualizerPanel.addHighLightBtn(data.getMainI(),1);
-                                                    Thread.sleep(200);
+                                                    Thread.sleep(sleepTime300);
                                                     visualizerPanel.addHighLightBtn(i,2);
                                                     visualizerPanel.setCountBtnText(i,data.getCount()[i]);
-                                                    Thread.sleep(200);
+                                                    Thread.sleep(sleepTime300);
                                                     if (data.getMainI()>=0) visualizerPanel.removeHighLightBtn(data.getMainI(),1);
-                                                    Thread.sleep(200);
+                                                    Thread.sleep(sleepTime300);
                                                     visualizerPanel.removeHighLightBtn(i,2);
                                                 }
                                                 Thread.sleep(500);
@@ -338,14 +348,14 @@ public class MainFrame extends JFrame {
                                             case "RESET_COUNT":{
                                                 for (int i = 0 ; i< 10; i++){
                                                     visualizerPanel.setCountBtnText(i,0);
-                                                    Thread.sleep(500);
+                                                    Thread.sleep(sleepTime500);
                                                 }
                                                 visualizerPanel.updateRadixSort(data.getMainI(),data.getExp(),data.getMax());
                                                 break;
                                             }
                                             case "CREATE_OUTPUT_ARRAY":{
                                                 visualizerPanel.resetOutputBtns();
-                                                Thread.sleep(500);
+                                                Thread.sleep(sleepTime500);
                                                 break;
 
                                             }
@@ -354,10 +364,10 @@ public class MainFrame extends JFrame {
                                                     int i = data.getOutputI();
                                                     visualizerPanel.addHighLightBtn(i,3);
                                                     visualizerPanel.setOutBtnText(i,data.getOutput()[i]);
-                                                    Thread.sleep(200);
+                                                    Thread.sleep(sleepTime300);
                                                     visualizerPanel.removeHighLightBtn(i,3);
                                                 }
-                                                Thread.sleep(500);
+                                                Thread.sleep(sleepTime500);
                                                 break;
                                             }
 
@@ -365,25 +375,25 @@ public class MainFrame extends JFrame {
                                                 if (data.getOutput() != null && data.getMainI() >= 0){
                                                     int i =  data.getMainI();
                                                     visualizerPanel.addHighLightBtn(i,3);
-                                                    Thread.sleep(200);
+                                                    Thread.sleep(sleepTime300);
                                                     visualizerPanel.addHighLightBtn(i,1);
-                                                    Thread.sleep(200);
+                                                    Thread.sleep(sleepTime300);
                                                     visualizerPanel.setBtns(i,data.getOutput()[i]);
                                                     visualizerPanel.removeHighLightBtn(i,3);
-                                                    Thread.sleep(200);
+                                                    Thread.sleep(sleepTime300);
                                                     visualizerPanel.removeHighLightBtn(i,1);
-                                                    Thread.sleep(200);
+                                                    Thread.sleep(sleepTime300);
                                                 }
-                                                Thread.sleep(500);
+                                                Thread.sleep(sleepTime500);
                                                 break;
                                             }
                                             case "LOAD_DATA":{
                                                 visualizerPanel.updateRadixSort(data.getMainI(),data.getExp(),data.getMax());
-                                                Thread.sleep(500);
+                                                Thread.sleep(sleepTime500);
                                                 break;
                                             }
                                             default:{
-                                                Thread.sleep(500);
+                                                Thread.sleep(sleepTime500);
                                                 break;
                                             }
 
@@ -397,6 +407,9 @@ public class MainFrame extends JFrame {
                                 }
 
                                 case MERGE_SORT:{
+                                    visualizerPanel.mergeSortInit();
+                                    visualizerPanel.setArr(arr,1);
+                                    visualizerPanel.initBtnsArrays();
                                     MergeSortValue data = (MergeSortValue)codePanel.next();
                                     while(data.getTypeAction() != "SORT_SUCCESS") {
                                         int i = data.getI();
@@ -408,48 +421,86 @@ public class MainFrame extends JFrame {
                                                 int l = data.getLeft();
                                                 int r = data.getRight();
                                                 visualizerPanel.addHighlightTargetPart(l,r);
-                                                Thread.sleep(500);
+                                                Thread.sleep(sleepTime500);
                                                 visualizerPanel.removeHighlightTargetPart(l,r);
                                                 break;
                                             }
                                             case "LOAD_TEMP_ARRAY":{
                                                 //load 2 cai mang ra
-                                                Thread.sleep(300);
+                                                Thread.sleep(sleepTime300);
                                                 visualizerPanel.updateBtnsArrays(data.getLArr(),data.getMArr());
-                                                Thread.sleep(300);
+                                                Thread.sleep(sleepTime300);
                                                 break;
                                             }
                                             case "MODIFIDE_MAIN_ARRAY":{
                                                 //thay doi gia tri mang chinh
                                                 //visualizerPanel.clearForModify(data.getLeft(),data.getRight());
+                                                visualizerPanel.updateMergeSort(i, j, data.getK());
                                                 int n1 = data.getMid() - data.getLeft() + 1;
                                                 int n2 = data.getRight() - data.getMid();
-
                                                 if (data.getI() < n1 && data.getJ() < n2  ){
                                                     if (data.getLArr()[data.getI()] <= data.getMArr()[data.getJ()]){
+                                                        visualizerPanel.highlightMergeSortBtn(i,1,1);
+                                                        visualizerPanel.highlightMergeSortBtn(j,1,2);
+                                                        Thread.sleep(sleepTime500);
+                                                        visualizerPanel.highlightMergeSortBtn(i,2,1);
+                                                        visualizerPanel.highlightMergeSortBtn(j,3,2);
+                                                        Thread.sleep(sleepTime500);
+                                                        visualizerPanel.removeHighlightMergeSortBtn(i,1);
+                                                        visualizerPanel.removeHighlightMergeSortBtn(j,2);
+                                                        Thread.sleep(sleepTime500);
+                                                        visualizerPanel.highlightMergeSortBtn(i,1,1);
+                                                        Thread.sleep(sleepTime300);
+                                                        visualizerPanel.removeHighlightMergeSortBtn(i,1);
+                                                        visualizerPanel.addHighLightBtnInSelectionSort(data.getK(),1);
                                                         visualizerPanel.setBtnsText(data.getK(), Integer.toString(data.getLArr()[data.getI()] ));
+                                                        Thread.sleep(sleepTime300);
+                                                        visualizerPanel.removeHighLightBtnInSelectionSort(data.getK());
                                                     }
                                                     else{
+                                                        visualizerPanel.highlightMergeSortBtn(j,1,2);
+                                                        visualizerPanel.highlightMergeSortBtn(i,1,1);
+                                                        Thread.sleep(sleepTime500);
+                                                        visualizerPanel.highlightMergeSortBtn(j,2,2);
+                                                        visualizerPanel.highlightMergeSortBtn(i,3,1);
+                                                        Thread.sleep(sleepTime500);
+                                                        visualizerPanel.removeHighlightMergeSortBtn(i,1);
+                                                        visualizerPanel.removeHighlightMergeSortBtn(j,2);
+                                                        Thread.sleep(sleepTime500);
+                                                        visualizerPanel.highlightMergeSortBtn(j,1,2);
+                                                        Thread.sleep(sleepTime300);
+                                                        visualizerPanel.removeHighlightMergeSortBtn(j,2);
+                                                        visualizerPanel.addHighLightBtnInSelectionSort(data.getK(),1);
                                                         visualizerPanel.setBtnsText(data.getK(), Integer.toString(data.getMArr()[data.getJ()]));
+                                                        Thread.sleep(sleepTime300);
+                                                        visualizerPanel.removeHighLightBtnInSelectionSort(data.getK());
                                                     }
                                                 }
                                                 else{
                                                     if (data.getI() < n1){
-                                                        visualizerPanel.setBtnsText(data.getK(), Integer.toString(data.getLArr()[data.getI()] ));
+                                                        visualizerPanel.highlightMergeSortBtn(i,1,1);
+                                                        Thread.sleep(sleepTime500);
+                                                        visualizerPanel.removeHighlightMergeSortBtn(i,1);
+                                                        visualizerPanel.addHighLightBtnInSelectionSort(data.getK(),1);
+                                                        visualizerPanel.setBtnsText(data.getK(), Integer.toString(data.getLArr()[data.getI()]));
+                                                        Thread.sleep(sleepTime300);
+                                                        visualizerPanel.removeHighLightBtnInSelectionSort(data.getK());
                                                     }
                                                     if (data.getJ() < n2){
+                                                        visualizerPanel.highlightMergeSortBtn(j,1,2);
+                                                        Thread.sleep(sleepTime500);
+                                                        visualizerPanel.removeHighlightMergeSortBtn(j,2);
+                                                        visualizerPanel.addHighLightBtnInSelectionSort(data.getK(),1);
                                                         visualizerPanel.setBtnsText(data.getK(), Integer.toString(data.getMArr()[data.getJ()]));
+                                                        Thread.sleep(sleepTime300);
+                                                        visualizerPanel.removeHighLightBtnInSelectionSort(data.getK());
                                                     }
                                                 }
-
-                                                Thread.sleep(500);
+                                                Thread.sleep(sleepTime500);
                                                 break;
                                             }
                                             case "MERGE_SUCCESS":{
-                                                //xoa mang
-
-                                                //visualizerPanel.removeBtnsArrays();
-
+                                                visualizerPanel.updateMergeSort(-1, -1, -1);
                                                 break;
                                             }
                                             case "LOAD_DATA":{
@@ -462,6 +513,8 @@ public class MainFrame extends JFrame {
                                         data = (MergeSortValue) codePanel.next();
 
                                     }
+                                    visualizerPanel.removeBtnsArrays();
+
                                     break;
                                 }
                             }
@@ -469,12 +522,6 @@ public class MainFrame extends JFrame {
                         catch (Exception ex){
                             System.out.println(ex.toString());
                         }
-                        default:
-                            break;
-                    }
-                } catch (Exception ex) {
-                    System.out.println(ex.toString());
-                }
             }
         });
 
