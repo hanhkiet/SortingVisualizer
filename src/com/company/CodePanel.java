@@ -1,10 +1,10 @@
 package com.company;
 
-import javax.swing.border.TitledBorder;
+import java.awt.BorderLayout;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 import com.company.codeCpn.BBSort;
 import com.company.codeCpn.MergedSort;
@@ -16,12 +16,8 @@ import com.company.model.SortValue;
 
 public class CodePanel extends JPanel {
 
-    private String[] lsName = { "Bubble sort",
-            "Selection sort", "Merged sort", "Quick sort",
-            "Radix sort" };
     private int[] lsElement;
     private Sort codeSort;
-    private JButton button;
 
     private TitledBorder border;
 
@@ -37,14 +33,6 @@ public class CodePanel extends JPanel {
         super();
         parent = frame;
         this.setLayout(new BorderLayout());
-        button = new JButton("CLick me");
-        // this.add(button, BorderLayout.EAST);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                next();
-            }
-        });
 
         border = BorderFactory.createTitledBorder("Code");
         border.setTitleFont(FontManager.titleFont);

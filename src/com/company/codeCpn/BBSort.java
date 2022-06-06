@@ -35,9 +35,9 @@ public class BBSort extends Sort {
   public BBSort(int[] arr) {
     super(arr);
     init();
-//    this.label = new JLabel(arr[0] + " - " + arr[1] +
-//        " - " + arr[2] + " - " + arr[3] +
-//        " - " + arr[4] + " - " + arr[5]);
+    // this.label = new JLabel(arr[0] + " - " + arr[1] +
+    // " - " + arr[2] + " - " + arr[3] +
+    // " - " + arr[4] + " - " + arr[5]);
 
     this.setBackground(Color.WHITE);
     this.jList = new MyJList(lsCode);
@@ -82,11 +82,10 @@ public class BBSort extends Sort {
         }
         this.type = "LOAD_DATA";
       }
-      if( this.index == 3){
-        if(arr[j]> arr[j + 1]){
+      if (this.index == 3) {
+        if (arr[j] > arr[j + 1]) {
 
-        }
-        else{
+        } else {
           this.setIndex(5);
         }
       }

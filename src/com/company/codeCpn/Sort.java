@@ -24,6 +24,10 @@ public abstract class Sort extends JPanel {
   }
 
   public Sort(int[] arr) {
+    if (arr == null) {
+      return;
+    }
+
     this.arr = Arrays.copyOf(arr, arr.length);
     this.isSuccess = false;
     this.isSwap = false;

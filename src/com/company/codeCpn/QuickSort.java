@@ -35,7 +35,7 @@ public class QuickSort extends Sort {
       "   return (i + 1);",
       "}", };
 
-  private JTextArea label;
+  private JTextArea label = new JTextArea();
   private int i = 0;
   private int j = -1;
   private int pivot;
@@ -47,6 +47,10 @@ public class QuickSort extends Sort {
   private Stack<QuickSortValue> stack;
 
   public void print() {
+    if (arr == null) {
+      return;
+    }
+
     this.label.setText(arr[0] + "  " + arr[1] +
         "  " + arr[2] + "  " + arr[3] +
         "  " + arr[4] + "  " + arr[5] + "  " + arr[6] +
@@ -61,9 +65,7 @@ public class QuickSort extends Sort {
   public QuickSort(int[] arr) {
     super(arr);
     init();
-  //    this.label = new JTextArea(arr[0] + " - " + arr[1] +
-  //        " - " + arr[2] + " - " + arr[3] +
-  //        " - " + arr[4] + " - " + arr[5]);
+
     this.setBackground(Color.WHITE);
     JScrollPane scrollPane = new JScrollPane();
 
@@ -80,6 +82,10 @@ public class QuickSort extends Sort {
     this.setBackground(Color.BLACK);
     this.setSize(new Dimension(100, 100));
     this.setVisible(true);
+
+    if (arr == null) {
+      return;
+    }
 
     this.stack = new Stack<>();
     this.stack.push(new QuickSortValue(0, this.arr.length - 1));

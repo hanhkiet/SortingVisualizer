@@ -11,7 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 public class FunctionPanel extends JPanel {
@@ -20,9 +22,24 @@ public class FunctionPanel extends JPanel {
     private JTextField textField;
     private JButton generateButton;
     private JButton deleteButton;
+
+    private JSlider slider;
+
     private int _amount;
     private int[] arr;
     private MainFrame parent;
+
+    public void disabledWhenAnimating() {
+        slider.setEnabled(false);
+        generateButton.setEnabled(false);
+        deleteButton.setEnabled(false);
+    }
+
+    public void returnNormal() {
+        slider.setEnabled(true);
+        generateButton.setEnabled(true);
+        deleteButton.setEnabled(true);
+    }
 
     private void initialize() {
         label = new JLabel("Số phần tử mảng");
@@ -32,10 +49,16 @@ public class FunctionPanel extends JPanel {
         generateButton = new JButton("Tạo mảng");
         deleteButton = new JButton("Xóa mảng");
 
+        slider = new JSlider(SwingConstants.HORIZONTAL, 100, 500, 200);
+        slider.setMajorTickSpacing(100);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+
         add(label);
         add(textField);
         add(generateButton);
         add(deleteButton);
+        add(slider);
 
         generateButton.addActionListener(new ActionListener() {
             @Override
@@ -49,6 +72,7 @@ public class FunctionPanel extends JPanel {
                         arr = new int[_amount];
                         initWithoutDuplicated(arr);
                         parent.setArr(arr);
+                        parent.changeAlgorithm();
                     } else {
                         JOptionPane.showMessageDialog(null,
                                 "Số lượng phần tử không hợp lệ (số phần tử phải lớn hơn 0 và tối đa là 10)!!!",
@@ -76,6 +100,10 @@ public class FunctionPanel extends JPanel {
                     e.consume();
                 }
             }
+        });
+
+        slider.addChangeListener(l -> {
+            parent.setSpeed(slider.getValue());
         });
     }
 

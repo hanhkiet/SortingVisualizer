@@ -35,14 +35,15 @@ public class VisualizerPanel extends JPanel {
     private MainFrame parent;
     private int[] arr;
     private JButton[] buttons, countBtns, outBtns, leftBtns, rightBtns;
-    private JLabel iText, jText, pivotText,statusText;
+    private JLabel iText, jText, pivotText, statusText;
     private JLabel[] countText;
 
     public void setEnablePlayButton(boolean enabled) {
         playButton.setEnabled(enabled);
     }
 
-    private JLabel iIndex,jIndex,maxVal,minVal,iVal,jVal,sortName,status,minIndex;
+    private JLabel iIndex, jIndex, iVal, jVal, sortName, status, minIndex;
+
     private void getIcon() {
         playIcon = new ImageIcon(
                 new ImageIcon(getClass().getResource("./images/play-solid.png"))
@@ -76,9 +77,10 @@ public class VisualizerPanel extends JPanel {
         stopButton.setFocusable(false);
         stopButton.setBounds(70, HEIGHT - 60, 40, 40);
 
+        stopButton.setEnabled(false);
+
         add(playButton);
         add(stopButton);
-
     }
 
     public void setArr(int[] arr, int type) {
@@ -89,12 +91,12 @@ public class VisualizerPanel extends JPanel {
         }
 
         this.arr = arr;
-        switch (type){
-            case 1:{
+        switch (type) {
+            case 1: {
                 initArray();
                 break;
             }
-            case 2:{
+            case 2: {
                 initArrayRadixSort();
                 break;
             }
@@ -108,7 +110,7 @@ public class VisualizerPanel extends JPanel {
             for (int i = 0; i < arr.length; i++) {
                 buttons[i] = new JButton(Integer.toString(arr[i]));
                 buttons[i].setFocusable(false);
-                buttons[i].setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2 -40, 50, 50);
+                buttons[i].setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2 - 40, 50, 50);
                 add(buttons[i]);
             }
 
@@ -116,6 +118,16 @@ public class VisualizerPanel extends JPanel {
             buttons = null;
         }
 
+    }
+
+    public void disabledWhenAnimating() {
+        playButton.setEnabled(false);
+        stopButton.setEnabled(true);
+    }
+
+    public void returnNormal() {
+        playButton.setEnabled(true);
+        stopButton.setEnabled(false);
     }
 
     private void initArrayRadixSort() {
@@ -149,20 +161,20 @@ public class VisualizerPanel extends JPanel {
         }
     }
 
-    //bubble sort
-    public void bubbleSortInit(){
+    // bubble sort
+    public void bubbleSortInit() {
         sortName = new JLabel("Bubble Sort Visualization");
         iIndex = new JLabel("i = 0");
         jIndex = new JLabel("j = 0");
         iVal = new JLabel();
         jVal = new JLabel();
         status = new JLabel();
-        sortName.setBounds(15,40,200,20);
-        iIndex.setBounds(15,60,100,20);
-        jIndex.setBounds(15,80,100,20);
-        iVal.setBounds(15,100,100,20);
-        jVal.setBounds(15,120,100,20);
-        status.setBounds(15,140,300,20);
+        sortName.setBounds(15, 40, 200, 20);
+        iIndex.setBounds(15, 60, 100, 20);
+        jIndex.setBounds(15, 80, 100, 20);
+        iVal.setBounds(15, 100, 100, 20);
+        jVal.setBounds(15, 120, 100, 20);
+        status.setBounds(15, 140, 300, 20);
         add(sortName);
         add(status);
         add(iIndex);
@@ -171,17 +183,19 @@ public class VisualizerPanel extends JPanel {
         add(jVal);
     }
 
-    public void updateBubbleSort(int i, int j){
+    public void updateBubbleSort(int i, int j) {
         iIndex.setText("i = " + Integer.toString(i));
         jIndex.setText("j = " + Integer.toString(j));
         iVal.setText("arr[j] = " + Integer.toString(arr[j]));
-        jVal.setText("arr[j+1] = " + Integer.toString(arr[j+1]));
-        if (arr[j] > arr[j+1]) status.setText("Swap arr[j] and arr[j+1]");
-        else status.setText("");
+        jVal.setText("arr[j+1] = " + Integer.toString(arr[j + 1]));
+        if (arr[j] > arr[j + 1])
+            status.setText("Swap arr[j] and arr[j+1]");
+        else
+            status.setText("");
     }
 
-    //selection sort
-    public void selectionSortInit(){
+    // selection sort
+    public void selectionSortInit() {
         sortName = new JLabel("Selection Sort Visualization");
         iIndex = new JLabel("i = 0");
         jIndex = new JLabel("j = 0");
@@ -189,12 +203,12 @@ public class VisualizerPanel extends JPanel {
         iVal = new JLabel("arr[i] = " + Integer.toString(arr[0]));
         jVal = new JLabel("arr[min] = " + Integer.toString(arr[0]));
         status = new JLabel();
-        sortName.setBounds(15,40,200,20);
-        iIndex.setBounds(15,60,100,20);
-        jIndex.setBounds(15,80,100,20);
-        minIndex.setBounds(15,100,100,20);
-        iVal.setBounds(15,120,100,20);
-        jVal.setBounds(15,140,100,20);
+        sortName.setBounds(15, 40, 200, 20);
+        iIndex.setBounds(15, 60, 100, 20);
+        jIndex.setBounds(15, 80, 100, 20);
+        minIndex.setBounds(15, 100, 100, 20);
+        iVal.setBounds(15, 120, 100, 20);
+        jVal.setBounds(15, 140, 100, 20);
         add(sortName);
         add(iIndex);
         add(jIndex);
@@ -203,7 +217,7 @@ public class VisualizerPanel extends JPanel {
         add(jVal);
     }
 
-    public void updateSelectionSort(int i, int j, int min){
+    public void updateSelectionSort(int i, int j, int min) {
         iIndex.setText("i = " + Integer.toString(i));
         jIndex.setText("j = " + Integer.toString(j));
         minIndex.setText("min = " + Integer.toString(min));
@@ -211,97 +225,97 @@ public class VisualizerPanel extends JPanel {
         jVal.setText("arr[min] = " + Integer.toString(arr[min]));
     }
 
-    //Quicksort
-    public void quickSortInit(){
+    // Quicksort
+    public void quickSortInit() {
         sortName = new JLabel("Quicksort Visualization");
         iIndex = new JLabel("low = 0");
         jIndex = new JLabel("high = 0");
         minIndex = new JLabel("pivot = 0");
         iVal = new JLabel("arr[pivot] = " + Integer.toString(arr[0]));
-        //JOptionPane.showMessageDialog(null,Arrays.toString(arr));
-        //jVal = new JLabel("arr[min] = " + Integer.toString(arr[0]));
+        // JOptionPane.showMessageDialog(null,Arrays.toString(arr));
+        // jVal = new JLabel("arr[min] = " + Integer.toString(arr[0]));
         status = new JLabel();
-        sortName.setBounds(15,40,200,20);
-        iIndex.setBounds(15,60,100,20);
-        jIndex.setBounds(15,80,100,20);
-        minIndex.setBounds(15,100,100,20);
-        iVal.setBounds(15,120,100,20);
-        //jVal.setBounds(15,140,100,20);
+        sortName.setBounds(15, 40, 200, 20);
+        iIndex.setBounds(15, 60, 100, 20);
+        jIndex.setBounds(15, 80, 100, 20);
+        minIndex.setBounds(15, 100, 100, 20);
+        iVal.setBounds(15, 120, 100, 20);
+        // jVal.setBounds(15,140,100,20);
         add(sortName);
         add(iIndex);
         add(jIndex);
         add(minIndex);
         add(iVal);
-        //add(jVal);
+        // add(jVal);
     }
 
-    public void updateQuickSort(int low, int high){
+    public void updateQuickSort(int low, int high) {
         iIndex.setText("low = " + Integer.toString(low));
         jIndex.setText("high = " + Integer.toString(high));
         minIndex.setText("pivot = " + Integer.toString(high));
         iVal.setText("arr[pivot] = " + Integer.toString(arr[high]));
-        //jVal.setText("arr[min] = " + Integer.toString(arr[min]));
+        // jVal.setText("arr[min] = " + Integer.toString(arr[min]));
     }
 
-    //radix sort
-    public void radixSortInit(){
+    // radix sort
+    public void radixSortInit() {
         sortName = new JLabel("Radix Sort Visualization");
         iIndex = new JLabel("i = 0");
         jIndex = new JLabel("exp = 0");
         minIndex = new JLabel("max = 0");
-        //iVal = new JLabel("arr[pivot] = " + Integer.toString(arr[0]));
-        //JOptionPane.showMessageDialog(null,Arrays.toString(arr));
-        //jVal = new JLabel("arr[min] = " + Integer.toString(arr[0]));
+        // iVal = new JLabel("arr[pivot] = " + Integer.toString(arr[0]));
+        // JOptionPane.showMessageDialog(null,Arrays.toString(arr));
+        // jVal = new JLabel("arr[min] = " + Integer.toString(arr[0]));
         status = new JLabel();
-        sortName.setBounds(15,40,200,20);
-        iIndex.setBounds(15,60,100,20);
-        jIndex.setBounds(15,80,100,20);
-        minIndex.setBounds(15,100,100,20);
-        //iVal.setBounds(15,120,100,20);
-        //jVal.setBounds(15,140,100,20);
+        sortName.setBounds(15, 40, 200, 20);
+        iIndex.setBounds(15, 60, 100, 20);
+        jIndex.setBounds(15, 80, 100, 20);
+        minIndex.setBounds(15, 100, 100, 20);
+        // iVal.setBounds(15,120,100,20);
+        // jVal.setBounds(15,140,100,20);
         add(sortName);
         add(iIndex);
         add(jIndex);
         add(minIndex);
-        //add(iVal);
-        //add(jVal);
+        // add(iVal);
+        // add(jVal);
     }
 
-    public void updateRadixSort(int i,int exp, int max){
+    public void updateRadixSort(int i, int exp, int max) {
         iIndex.setText("i = " + Integer.toString(i));
         jIndex.setText("exp = " + Integer.toString(exp));
         minIndex.setText("max = " + Integer.toString(max));
     }
 
-    //merge sort
-    public void mergeSortInit(){
+    // merge sort
+    public void mergeSortInit() {
         sortName = new JLabel("Merge Sort Visualization");
         iIndex = new JLabel("i = 0");
         jIndex = new JLabel("j = 0");
         minIndex = new JLabel("k = 0");
-        //iVal = new JLabel("arr[pivot] = " + Integer.toString(arr[0]));
-        //JOptionPane.showMessageDialog(null,Arrays.toString(arr));
-        //jVal = new JLabel("arr[min] = " + Integer.toString(arr[0]));
+        // iVal = new JLabel("arr[pivot] = " + Integer.toString(arr[0]));
+        // JOptionPane.showMessageDialog(null,Arrays.toString(arr));
+        // jVal = new JLabel("arr[min] = " + Integer.toString(arr[0]));
         status = new JLabel();
-        sortName.setBounds(15,40,200,20);
-        iIndex.setBounds(15,60,100,20);
-        jIndex.setBounds(15,80,100,20);
-        minIndex.setBounds(15,100,100,20);
-        //iVal.setBounds(15,120,100,20);
-        //jVal.setBounds(15,140,100,20);
+        sortName.setBounds(15, 40, 200, 20);
+        iIndex.setBounds(15, 60, 100, 20);
+        jIndex.setBounds(15, 80, 100, 20);
+        minIndex.setBounds(15, 100, 100, 20);
+        // iVal.setBounds(15,120,100,20);
+        // jVal.setBounds(15,140,100,20);
         add(sortName);
         add(iIndex);
         add(jIndex);
         add(minIndex);
     }
 
-    public void updateMergeSort(int i, int j, int k){
+    public void updateMergeSort(int i, int j, int k) {
         iIndex.setText("i = " + Integer.toString(i));
         jIndex.setText("j = " + Integer.toString(j));
         minIndex.setText("k = " + Integer.toString(k));
     }
 
-    public void updatePivot(int pivot){
+    public void updatePivot(int pivot) {
         iVal.setText("arr[pivot] = " + Integer.toString(pivot));
     }
 
@@ -380,7 +394,8 @@ public class VisualizerPanel extends JPanel {
         timer.schedule(task, 0, speed);
         return Math.abs(x2 - x1) * speed * 2 + Math.abs(x2 - x1) * speed;
     }
-    //Quicksort
+
+    // Quicksort
     public void addHighlightTargetPart(int start, int end) {
         for (int i = start; i <= end; i++) {
             buttons[i].setBorder(BorderFactory.createLineBorder(HIGHLIGHT_COLOR));
@@ -404,62 +419,62 @@ public class VisualizerPanel extends JPanel {
 
     }
 
-    public void setCountBtnText(int i, int val){
-        if ( i>= 0 && i < 10){
+    public void setCountBtnText(int i, int val) {
+        if (i >= 0 && i < 10) {
             countBtns[i].setText(Integer.toString(val));
         }
 
     }
 
-    public void setOutBtnText(int i, int val){
-        if ( i>= 0 ){
+    public void setOutBtnText(int i, int val) {
+        if (i >= 0) {
             outBtns[i].setText(Integer.toString(val));
         }
 
     }
 
-    public void setBtns(int i,int val){
-        if ( i>= 0 ){
+    public void setBtns(int i, int val) {
+        if (i >= 0) {
             buttons[i].setText(Integer.toString(val));
         }
     }
 
-    public void addHighLightBtn(int index,int BtnChoice){
-        switch (BtnChoice){
-            case 1:{
+    public void addHighLightBtn(int index, int BtnChoice) {
+        switch (BtnChoice) {
+            case 1: {
                 buttons[index].setBackground(HIGHLIGHT_COLOR);
                 break;
             }
-            case 2:{
+            case 2: {
                 countBtns[index].setBackground(HIGHLIGHT_COLOR);
                 break;
             }
-            case 3:{
+            case 3: {
                 outBtns[index].setBackground(HIGHLIGHT_COLOR);
                 break;
             }
         }
     }
 
-    public void removeHighLightBtn(int index,int BtnChoice){
-        switch (BtnChoice){
-            case 1:{
+    public void removeHighLightBtn(int index, int BtnChoice) {
+        switch (BtnChoice) {
+            case 1: {
                 buttons[index].setBackground(new JButton().getBackground());
                 break;
             }
-            case 2:{
+            case 2: {
                 countBtns[index].setBackground(new JButton().getBackground());
                 break;
             }
-            case 3:{
+            case 3: {
                 outBtns[index].setBackground(new JButton().getBackground());
                 break;
             }
         }
     }
 
-    //bubble sort
-    public void removehighlightBtnInBubbleSort(int i,int j){
+    // bubble sort
+    public void removehighlightBtnInBubbleSort(int i, int j) {
         buttons[i].setBackground(new JButton().getBackground());
         buttons[j].setBackground(new JButton().getBackground());
         iText.setText("");
@@ -473,29 +488,29 @@ public class VisualizerPanel extends JPanel {
         addText(buttons[j], jText, "j+1", j, -40, 20);
     }
 
-    public void addHighLightBtnInBubbleSort(int index, int colorChoice){
-        switch (colorChoice){
-            case 1:{
+    public void addHighLightBtnInBubbleSort(int index, int colorChoice) {
+        switch (colorChoice) {
+            case 1: {
                 buttons[index].setBackground(HIGHLIGHT_COLOR);
                 break;
             }
-            case 2:{
+            case 2: {
                 buttons[index].setBackground(ACCEPT_COLOR);
                 break;
             }
-            case 3:{
+            case 3: {
                 buttons[index].setBackground(DENY_COLOR);
                 break;
             }
         }
     }
 
-    public void removeHighLightBtnInBubbleSort(int index){
+    public void removeHighLightBtnInBubbleSort(int index) {
         buttons[index].setBackground(new JButton().getBackground());
     }
 
-    //selection sort
-    public void removehighlightBtnInSelectSort(int i,int j){
+    // selection sort
+    public void removehighlightBtnInSelectSort(int i, int j) {
         buttons[i].setBackground(new JButton().getBackground());
         buttons[j].setBackground(new JButton().getBackground());
         iText.setText("");
@@ -509,28 +524,28 @@ public class VisualizerPanel extends JPanel {
         addText(buttons[j], jText, "min", j, -40, 20);
     }
 
-    public void addHighLightBtnInSelectionSort(int index, int colorChoice){
-        switch (colorChoice){
-            case 1:{
+    public void addHighLightBtnInSelectionSort(int index, int colorChoice) {
+        switch (colorChoice) {
+            case 1: {
                 buttons[index].setBackground(HIGHLIGHT_COLOR);
                 break;
             }
-            case 2:{
+            case 2: {
                 buttons[index].setBackground(ACCEPT_COLOR);
                 break;
             }
-            case 3:{
+            case 3: {
                 buttons[index].setBackground(DENY_COLOR);
                 break;
             }
         }
     }
 
-    public void removeHighLightBtnInSelectionSort(int index){
+    public void removeHighLightBtnInSelectionSort(int index) {
         buttons[index].setBackground(new JButton().getBackground());
     }
 
-    //quick sort
+    // quick sort
 
     public void addText(JButton bt, JLabel lb, String name, int index, int height, int width) {
         lb.setText(name + '=' + Integer.toString(index));
@@ -538,31 +553,30 @@ public class VisualizerPanel extends JPanel {
 
     }
 
-
-    public void resetOutputBtns(){
-        for (int i = 0; i < outBtns.length; i++){
+    public void resetOutputBtns() {
+        for (int i = 0; i < outBtns.length; i++) {
             outBtns[i].setText("");
         }
     }
 
-    public void setTextForRadixSort(int exp, int max){
-        addText(buttons[0],iText,"exp: ",exp,50,0);
-        addText(buttons[0],jText,"max: ",max,100,0);
+    public void setTextForRadixSort(int exp, int max) {
+        addText(buttons[0], iText, "exp: ", exp, 50, 0);
+        addText(buttons[0], jText, "max: ", max, 100, 0);
     }
 
-    //merge sort
+    // merge sort
 
-    public void initBtnsArrays(){
-        leftBtns = new JButton[arr.length/2 + 1];
-        rightBtns = new JButton[arr.length/2 + 1];
-        for (int i = 0 ; i < leftBtns.length; i++){
+    public void initBtnsArrays() {
+        leftBtns = new JButton[arr.length / 2 + 1];
+        rightBtns = new JButton[arr.length / 2 + 1];
+        for (int i = 0; i < leftBtns.length; i++) {
             leftBtns[i] = new JButton("");
             leftBtns[i].setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2 + 30, 50, 50);
             leftBtns[i].setVisible(true);
             add(leftBtns[i]);
 
         }
-        for (int i = 0 ; i < rightBtns.length; i++){
+        for (int i = 0; i < rightBtns.length; i++) {
             rightBtns[i] = new JButton("");
             rightBtns[i].setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2 + 110, 50, 50);
             rightBtns[i].setVisible(true);
@@ -570,56 +584,53 @@ public class VisualizerPanel extends JPanel {
         }
     }
 
-    public void updateBtnsArrays(int[] left, int [] right){
-        if (left != null){
-            for (int i = 0 ; i < left.length; i++){
+    public void updateBtnsArrays(int[] left, int[] right) {
+        if (left != null) {
+            for (int i = 0; i < left.length; i++) {
                 leftBtns[i].setText(Integer.toString(left[i]));
             }
-            for (int i = left.length ; i < leftBtns.length; i++){
+            for (int i = left.length; i < leftBtns.length; i++) {
                 leftBtns[i].setText("");
             }
         }
-        if (right != null){
-            for (int i = 0 ; i < right.length; i++){
+        if (right != null) {
+            for (int i = 0; i < right.length; i++) {
                 rightBtns[i].setText(Integer.toString(right[i]));
             }
-            for (int i = right.length ; i < rightBtns.length; i++){
+            for (int i = right.length; i < rightBtns.length; i++) {
                 rightBtns[i].setText("");
             }
         }
     }
 
-    public void setBtnsText(int index, String val){
-        if (index >= 0){
+    public void setBtnsText(int index, String val) {
+        if (index >= 0) {
             buttons[index].setText(val);
         }
     }
 
-    public void highlightMergeSortBtn(int index, int colorChoice, int arrIndex){
-        switch (colorChoice){
-            case 1:{
-                if (arrIndex == 1){
+    public void highlightMergeSortBtn(int index, int colorChoice, int arrIndex) {
+        switch (colorChoice) {
+            case 1: {
+                if (arrIndex == 1) {
                     leftBtns[index].setBackground(HIGHLIGHT_COLOR);
-                }
-                else if (arrIndex == 2){
+                } else if (arrIndex == 2) {
                     rightBtns[index].setBackground(HIGHLIGHT_COLOR);
                 }
                 break;
             }
-            case 2:{
-                if (arrIndex == 1){
+            case 2: {
+                if (arrIndex == 1) {
                     leftBtns[index].setBackground(ACCEPT_COLOR);
-                }
-                else if (arrIndex == 2){
+                } else if (arrIndex == 2) {
                     rightBtns[index].setBackground(ACCEPT_COLOR);
                 }
                 break;
             }
-            case 3:{
-                if (arrIndex == 1){
+            case 3: {
+                if (arrIndex == 1) {
                     leftBtns[index].setBackground(DENY_COLOR);
-                }
-                else if (arrIndex == 2){
+                } else if (arrIndex == 2) {
                     rightBtns[index].setBackground(DENY_COLOR);
                 }
                 break;
@@ -627,24 +638,22 @@ public class VisualizerPanel extends JPanel {
         }
     }
 
-    public void removeHighlightMergeSortBtn(int index, int arrIndex){
-        if (arrIndex == 1){
+    public void removeHighlightMergeSortBtn(int index, int arrIndex) {
+        if (arrIndex == 1) {
             leftBtns[index].setBackground(new JButton().getBackground());
-        }
-        else if (arrIndex == 2){
+        } else if (arrIndex == 2) {
             rightBtns[index].setBackground(new JButton().getBackground());
         }
     }
 
-
-    public void removeBtnsArrays(){
-        for (int i = 0; i < leftBtns.length;i++){
+    public void removeBtnsArrays() {
+        for (int i = 0; i < leftBtns.length; i++) {
             leftBtns[i].setVisible(false);
-            //remove(leftBtns[i]);
+            // remove(leftBtns[i]);
         }
-        for (int i = 0; i < rightBtns.length;i++){
+        for (int i = 0; i < rightBtns.length; i++) {
             rightBtns[i].setVisible(false);
-            //remove(rightBtns[i]);
+            // remove(rightBtns[i]);
         }
     }
 }

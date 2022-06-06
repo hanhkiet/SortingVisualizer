@@ -15,7 +15,7 @@ public class AlgorithmsPanel extends JPanel {
 
     private MainFrame parent;
 
-    AlgorithmsEnum selectedAlgorithm = null;
+    AlgorithmsEnum selectedAlgorithm = AlgorithmsEnum.NOT_SELECTED;
 
     private void initialize() {
         createRadioButton("Bubble sort", AlgorithmsEnum.BUBBLE_SORT);
