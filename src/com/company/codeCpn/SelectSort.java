@@ -136,9 +136,9 @@ public class SelectSort extends Sort {
               this.setIsSwap(false);
             this.jList.setSelectedIndex(index);
             this.setValueCallBack();
-            this.label.setText(arr[0] + " - " + arr[1] +
-            " - " + arr[2] + " - " + arr[3] +
-            " - " + arr[4] + " - " + arr[5] + " // i: "+currentValue.getI()+" - j: "+ currentValue.getJ()+" - min: "+ currentValue.getMin());
+            // this.label.setText(arr[0] + " - " + arr[1] +
+            // " - " + arr[2] + " - " + arr[3] +
+            // " - " + arr[4] + " - " + arr[5] + " // i: "+currentValue.getI()+" - j: "+ currentValue.getJ()+" - min: "+ currentValue.getMin());
         }
         
     }

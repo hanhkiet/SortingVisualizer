@@ -238,9 +238,9 @@ public class RadixSort extends Sort {
       }
       this.setValueCallBack();
       this.jList.setSelectedIndex(index);
-      this.label.setText(arr[0] + " - " + arr[1] +
-          " - " + arr[2] + " - " + arr[3] +
-          " - " + arr[4] + " - " + arr[5] + " isS: " + isSuccess);
+      // this.label.setText(arr[0] + " - " + arr[1] +
+      //     " - " + arr[2] + " - " + arr[3] +
+      //     " - " + arr[4] + " - " + arr[5] + " isS: " + isSuccess);
 
     }
   }

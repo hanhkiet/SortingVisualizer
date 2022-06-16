@@ -51,15 +51,15 @@ public class QuickSort extends Sort {
       return;
     }
 
-    this.label.setText(arr[0] + "  " + arr[1] +
-        "  " + arr[2] + "  " + arr[3] +
-        "  " + arr[4] + "  " + arr[5] + "  " + arr[6] +
-        "|| _i: " + this.i +
-        "_j:" + this.j +
-        "_low: " + this.low +
-        "_high:" + this.high +
-        "_ pi:" + this.pi +
-        "_ pivot:" + this.pivot);
+    // this.label.setText(arr[0] + "  " + arr[1] +
+    //     "  " + arr[2] + "  " + arr[3] +
+    //     "  " + arr[4] + "  " + arr[5] + "  " + arr[6] +
+    //     "|| _i: " + this.i +
+    //     "_j:" + this.j +
+    //     "_low: " + this.low +
+    //     "_high:" + this.high +
+    //     "_ pi:" + this.pi +
+    //     "_ pivot:" + this.pivot);
   }
 
   public QuickSort(int[] arr) {

@@ -132,7 +132,7 @@ public class VisualizerPanel extends JPanel {
 
     private void initArrayRadixSort() {
         if (arr != null && arr.length > 0) {
-            arr = new int[] { 11, 83, 32, 35, 19, 95, 47 };
+            // arr = new int[] { 11, 83, 32, 35, 19, 95, 47 };
             buttons = new JButton[arr.length];
             countBtns = new JButton[10];
             outBtns = new JButton[arr.length];
