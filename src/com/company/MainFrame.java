@@ -429,7 +429,8 @@ public class MainFrame extends JFrame {
                                 data = (RadixSortValue) codePanel.next();
 
                             }
-                            // visualizerPanel.removeText();
+                            visualizerPanel.removeArrayRadixSort();
+                            
                             break;
                         }
 

@@ -130,7 +130,19 @@ public class VisualizerPanel extends JPanel {
         playButton.setEnabled(true);
         stopButton.setEnabled(false);
     }
-
+    public void removeArrayRadixSort() {
+        
+        for (int i = 0; i < outBtns.length; i++) {
+            outBtns[i].setVisible(false);
+            // remove(leftBtns[i]);
+            
+        }
+        for (int i = 0; i < countBtns.length; i++) {
+            countBtns[i].setVisible(false);
+            // remove(rightBtns[i]);
+            countText[i].setVisible(false);
+        }
+    }
     public void initArrayRadixSort() {
           
             // arr = new int[] { 11, 83, 32, 35, 19, 95, 47 };
