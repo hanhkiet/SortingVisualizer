@@ -1,7 +1,9 @@
 package com.company;
 
 import java.awt.Insets;
+import java.util.Enumeration;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -30,6 +32,10 @@ public class AlgorithmsPanel extends JPanel {
     }
 
     public void setEnabledWhenAnimating(boolean enabled) {
+        Enumeration<AbstractButton> enumeration = group.getElements();
+        while (enumeration.hasMoreElements()) {
+            enumeration.nextElement().setEnabled(enabled);
+        }
     }
 
     private void createRadioButton(String title, AlgorithmsEnum algorithm) {

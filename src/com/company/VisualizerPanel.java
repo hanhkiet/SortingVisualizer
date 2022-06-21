@@ -123,22 +123,23 @@ public class VisualizerPanel extends JPanel {
     public void removeArrayRadixSort() {
 
         for (int i = 0; i < outBtns.length; i++) {
-            outBtns[i].setVisible(false);
-            // remove(outBtns[i]);
+            // outBtns[i].setVisible(false);
             // remove(leftBtns[i]);
-
+            remove(outBtns[i]);
         }
         for (int i = 0; i < countBtns.length; i++) {
-            countBtns[i].setVisible(false);
-            // remove(countBtns[i]);
-            // remove(countText[i]);
+            // countBtns[i].setVisible(false);
+            remove(countBtns[i]);
+            remove(countText[i]);
             // remove(rightBtns[i]);
-            countText[i].setVisible(false);
+            // countText[i].setVisible(false);
         }
+
+        revalidate();
+        repaint();
     }
 
     public void initArrayRadixSort() {
-
         // arr = new int[] { 11, 83, 32, 35, 19, 95, 47 };
         // buttons = new JButton[arr.length];
         countBtns = new JButton[10];
@@ -168,6 +169,8 @@ public class VisualizerPanel extends JPanel {
 
         }
 
+        revalidate();
+        repaint();
     }
 
     // bubble sort

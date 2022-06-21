@@ -120,11 +120,13 @@ public class MainFrame extends JFrame {
     private void disabledWhenAnimating() {
         functionPanel.setEnabledWhenAnimating(false);
         visualizerPanel.setEnabledWhenAnimating(false);
+        algorithmsPanel.setEnabledWhenAnimating(false);
     }
 
     private void enabledAfterAnimating() {
         functionPanel.setEnabledWhenAnimating(true);
         visualizerPanel.setEnabledWhenAnimating(true);
+        algorithmsPanel.setEnabledWhenAnimating(true);
     }
 
     public void animate() {
@@ -359,7 +361,7 @@ public class MainFrame extends JFrame {
 
                         case RADIX_SORT: {
                             visualizerPanel.initArrayRadixSort();
-                            // visualizerPanel.setForeground(ColorManager.TEXT);
+                            visualizerPanel.setForeground(ColorManager.TEXT);
                             visualizerPanel.radixSortInit();
                             RadixSortValue data = (RadixSortValue) codePanel.next();
                             int count = 100;
