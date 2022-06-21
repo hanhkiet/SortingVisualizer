@@ -87,7 +87,7 @@ public class VisualizerPanel extends JPanel {
             }
             case 2: {
                 initArray();
-                //initArrayRadixSort();
+                // initArrayRadixSort();
                 break;
             }
         }
@@ -119,49 +119,55 @@ public class VisualizerPanel extends JPanel {
         playButton.setEnabled(true);
         stopButton.setEnabled(false);
     }
+
     public void removeArrayRadixSort() {
-        
+
         for (int i = 0; i < outBtns.length; i++) {
             outBtns[i].setVisible(false);
+            // remove(outBtns[i]);
             // remove(leftBtns[i]);
-            
+
         }
         for (int i = 0; i < countBtns.length; i++) {
             countBtns[i].setVisible(false);
+            // remove(countBtns[i]);
+            // remove(countText[i]);
             // remove(rightBtns[i]);
             countText[i].setVisible(false);
         }
     }
+
     public void initArrayRadixSort() {
-          
-            // arr = new int[] { 11, 83, 32, 35, 19, 95, 47 };
-            // buttons = new JButton[arr.length];
-            countBtns = new JButton[10];
-            outBtns = new JButton[arr.length];
-            countText = new JLabel[10];
-            for (int i = 0; i < 10; i++) {
-                countBtns[i] = new JButton("0");
-                countText[i] = new JLabel();
-                add(countText[i]);
-                countBtns[i].setFocusable(false);
-                countBtns[i].setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2 + 30, 50, 50);
-                addText(countBtns[i], countText[i], "", i, 40, 20);
-                countText[i].setText(Integer.toString(i));  
-                add(countBtns[i]);
-                
-            }
-            for (int i = 0; i < arr.length; i++) {
-                // buttons[i] = new JButton(Integer.toString(arr[i]));
-                outBtns[i] = new JButton("");
-                outBtns[i].setFocusable(false);
-                //  buttons[i].setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2, 50, 50);
-                outBtns[i].setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2 + 110, 50, 50);
-                // add(buttons[i]);
-                add(outBtns[i]);
-                
-            }
-           
-        
+
+        // arr = new int[] { 11, 83, 32, 35, 19, 95, 47 };
+        // buttons = new JButton[arr.length];
+        countBtns = new JButton[10];
+        outBtns = new JButton[arr.length];
+        countText = new JLabel[10];
+
+        for (int i = 0; i < 10; i++) {
+            countBtns[i] = new JButton("0");
+            countText[i] = new JLabel();
+            add(countText[i]);
+            countBtns[i].setFocusable(false);
+            countBtns[i].setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2 + 30, 50, 50);
+            addText(countBtns[i], countText[i], "", i, 40, 20);
+            countText[i].setText(Integer.toString(i));
+            add(countBtns[i]);
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            // buttons[i] = new JButton(Integer.toString(arr[i]));
+            outBtns[i] = new JButton("");
+            outBtns[i].setFocusable(false);
+            // buttons[i].setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2,
+            // 50, 50);
+            outBtns[i].setBounds(WIDTH / 2 - arr.length * 80 / 2 + i * 80, HEIGHT / 2 + 110, 50, 50);
+            // add(buttons[i]);
+            add(outBtns[i]);
+
+        }
+
     }
 
     // bubble sort

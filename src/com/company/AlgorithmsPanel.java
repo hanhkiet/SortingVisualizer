@@ -29,6 +29,9 @@ public class AlgorithmsPanel extends JPanel {
         return selectedAlgorithm;
     }
 
+    public void setEnabledWhenAnimating(boolean enabled) {
+    }
+
     private void createRadioButton(String title, AlgorithmsEnum algorithm) {
         JRadioButton button = new JRadioButton(title, false);
         button.setMargin(new Insets(10, 20, 0, 0));

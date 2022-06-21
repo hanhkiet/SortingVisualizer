@@ -359,9 +359,8 @@ public class MainFrame extends JFrame {
 
                         case RADIX_SORT: {
                             visualizerPanel.initArrayRadixSort();
-                            visualizerPanel.setForeground(ColorManager.TEXT);
+                            // visualizerPanel.setForeground(ColorManager.TEXT);
                             visualizerPanel.radixSortInit();
-
                             RadixSortValue data = (RadixSortValue) codePanel.next();
                             int count = 100;
 
@@ -442,10 +441,9 @@ public class MainFrame extends JFrame {
 
                                 }
                                 data = (RadixSortValue) codePanel.next();
-
                             }
-                            visualizerPanel.removeArrayRadixSort();
 
+                            visualizerPanel.removeArrayRadixSort();
                             break;
                         }
 
