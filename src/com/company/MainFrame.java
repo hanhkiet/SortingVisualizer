@@ -361,7 +361,6 @@ public class MainFrame extends JFrame {
 
                         case RADIX_SORT: {
                             visualizerPanel.initArrayRadixSort();
-                            visualizerPanel.setForeground(ColorManager.TEXT);
                             visualizerPanel.radixSortInit();
                             RadixSortValue data = (RadixSortValue) codePanel.next();
                             int count = 100;
