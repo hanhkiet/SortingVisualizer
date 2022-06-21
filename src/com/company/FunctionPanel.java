@@ -29,10 +29,10 @@ public class FunctionPanel extends JPanel {
     private int[] arr;
     private MainFrame parent;
 
-    public void disabledWhenAnimating() {
-        slider.setEnabled(false);
-        generateButton.setEnabled(false);
-        deleteButton.setEnabled(false);
+    public void setEnabledWhenAnimating(boolean enabled) {
+        slider.setEnabled(enabled);
+        generateButton.setEnabled(enabled);
+        deleteButton.setEnabled(enabled);
     }
 
     public void returnNormal() {
@@ -68,7 +68,7 @@ public class FunctionPanel extends JPanel {
                             JOptionPane.WARNING_MESSAGE);
                 } else {
                     _amount = Integer.parseInt(textField.getText());
-                    if (_amount <= 15 && _amount > 0) {
+                    if (_amount <= 10 && _amount > 0) {
                         arr = new int[_amount];
                         initWithoutDuplicated(arr);
                         parent.setArr(arr);

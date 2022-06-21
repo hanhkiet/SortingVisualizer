@@ -1,24 +1,15 @@
 package com.company;
 
-import com.company.codeCpn.BBSort;
-import com.company.model.BubbleSortValue;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Image;
+import java.util.TimerTask;
 
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Random;
-import java.util.TimerTask;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 public class VisualizerPanel extends JPanel {
@@ -37,10 +28,6 @@ public class VisualizerPanel extends JPanel {
     private JButton[] buttons, countBtns, outBtns, leftBtns, rightBtns;
     private JLabel iText, jText, pivotText, statusText;
     private JLabel[] countText;
-
-    public void setEnablePlayButton(boolean enabled) {
-        playButton.setEnabled(enabled);
-    }
 
     private JLabel iIndex, jIndex, iVal, jVal, sortName, status, minIndex;
 
@@ -69,8 +56,7 @@ public class VisualizerPanel extends JPanel {
         playButton.setFocusable(false);
         playButton.setBounds(10, HEIGHT - 60, 40, 40);
         playButton.addActionListener(l -> {
-            System.out.println("animation");
-            parent.animate();
+            parent.startThread();
         });
 
         stopButton = new JButton(stopIcon);
@@ -78,6 +64,9 @@ public class VisualizerPanel extends JPanel {
         stopButton.setBounds(70, HEIGHT - 60, 40, 40);
 
         stopButton.setEnabled(false);
+        stopButton.addActionListener(l -> {
+            parent.stopThread();
+        });
 
         add(playButton);
         add(stopButton);
@@ -120,9 +109,9 @@ public class VisualizerPanel extends JPanel {
 
     }
 
-    public void disabledWhenAnimating() {
-        playButton.setEnabled(false);
-        stopButton.setEnabled(true);
+    public void setEnabledWhenAnimating(boolean enabled) {
+        playButton.setEnabled(enabled);
+        stopButton.setEnabled(!enabled);
     }
 
     public void returnNormal() {

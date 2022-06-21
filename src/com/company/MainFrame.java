@@ -29,6 +29,16 @@ public class MainFrame extends JFrame {
     private int speed;
     boolean flat;
 
+    private Thread thread;
+
+    public Thread getThread() {
+        return thread;
+    }
+
+    public void setThread(Thread thread) {
+        this.thread = thread;
+    }
+
     public void changeAlgorithm() {
         codePanel.changeAlgorithm(algorithmsPanel.getSelectedAlgorithm());
     }
@@ -108,8 +118,13 @@ public class MainFrame extends JFrame {
     }
 
     private void disabledWhenAnimating() {
-        functionPanel.disabledWhenAnimating();
-        visualizerPanel.disabledWhenAnimating();
+        functionPanel.setEnabledWhenAnimating(false);
+        visualizerPanel.setEnabledWhenAnimating(false);
+    }
+
+    private void enabledAfterAnimating() {
+        functionPanel.setEnabledWhenAnimating(true);
+        visualizerPanel.setEnabledWhenAnimating(true);
     }
 
     public void animate() {
@@ -125,7 +140,7 @@ public class MainFrame extends JFrame {
             return;
         }
 
-        Thread thread = new Thread(new Runnable() {
+        thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 int sleepTime300 = 300;
@@ -546,10 +561,26 @@ public class MainFrame extends JFrame {
                 } catch (Exception ex) {
                     System.out.println(ex.toString());
                 }
+
+                enabledAfterAnimating();
+                thread = null;
             }
         });
+    }
 
-        visualizerPanel.setEnablePlayButton(false);
-        thread.start();
+    public void stopThread() {
+        thread.stop();
+        thread = null;
+        enabledAfterAnimating();
+    }
+
+    public void startThread() {
+        if (thread == null) {
+            animate();
+            thread.start();
+        } else {
+            disabledWhenAnimating();
+            thread.run();
+        }
     }
 }
