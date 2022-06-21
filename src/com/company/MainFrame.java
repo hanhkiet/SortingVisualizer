@@ -358,12 +358,17 @@ public class MainFrame extends JFrame {
                         }
 
                         case RADIX_SORT: {
+                            visualizerPanel.initArrayRadixSort();
+                            visualizerPanel.setForeground(ColorManager.TEXT);
                             visualizerPanel.radixSortInit();
+
                             RadixSortValue data = (RadixSortValue) codePanel.next();
                             int count = 100;
+
                             //
                             flat = true;
                             while (data.getTypeAction() != "SORT_SUCCESS" && flat) {
+
                                 int time = 0;
                                 switch (data.getTypeAction()) {
                                     case "LOAD_COUNT_ARRAY": {
@@ -439,7 +444,8 @@ public class MainFrame extends JFrame {
                                 data = (RadixSortValue) codePanel.next();
 
                             }
-                            // visualizerPanel.removeText();
+                            visualizerPanel.removeArrayRadixSort();
+
                             break;
                         }
 
