@@ -72,7 +72,7 @@ public class VisualizerPanel extends JPanel {
         add(stopButton);
     }
 
-    public void setArr(int[] arr, int type) {
+    public void setArr(int[] arr) {
         if (buttons != null) {
             for (int i = 0; i < buttons.length; i++) {
                 remove(buttons[i]);
@@ -80,17 +80,7 @@ public class VisualizerPanel extends JPanel {
         }
 
         this.arr = arr;
-        switch (type) {
-            case 1: {
-                initArray();
-                break;
-            }
-            case 2: {
-                initArray();
-                // initArrayRadixSort();
-                break;
-            }
-        }
+        initArray();
         repaint();
     }
 

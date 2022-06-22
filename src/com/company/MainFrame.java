@@ -49,17 +49,18 @@ public class MainFrame extends JFrame {
 
     public void setArr(int[] newArr) {
         arr = newArr;
+        visualizerPanel.setArr(arr);
 
-        switch (algorithmsPanel.getSelectedAlgorithm()) {
-            case QUICK_SORT, BUBBLE_SORT, SELECTION_SORT, MERGE_SORT, NOT_SELECTED:
-                visualizerPanel.setArr(arr, 1);
-                break;
-            case RADIX_SORT:
-                visualizerPanel.setArr(arr, 2);
-                break;
-            default:
-                break;
-        }
+        // switch (algorithmsPanel.getSelectedAlgorithm()) {
+        // case QUICK_SORT, BUBBLE_SORT, SELECTION_SORT, MERGE_SORT, NOT_SELECTED:
+        // visualizerPanel.setArr(arr, 1);
+        // break;
+        // case RADIX_SORT:
+        // visualizerPanel.setArr(arr, 2);
+        // break;
+        // default:
+        // break;
+        // }
     }
 
     public int[] getArr() {
