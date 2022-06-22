@@ -243,6 +243,7 @@ public class MainFrame extends JFrame {
                                 data = (QuickSortValue) codePanel.next();
 
                             }
+
                             break;
                         }
 
@@ -566,6 +567,7 @@ public class MainFrame extends JFrame {
                         default:
                             break;
                     }
+                    visualizerPanel.clearText();
                 } catch (Exception ex) {
                     System.out.println(ex.toString());
                 }

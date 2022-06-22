@@ -210,6 +210,8 @@ public class VisualizerPanel extends JPanel {
         add(jIndex);
         add(iVal);
         add(jVal);
+        revalidate();
+        repaint();
     }
 
     public void updateBubbleSort(int i, int j) {
@@ -244,6 +246,8 @@ public class VisualizerPanel extends JPanel {
         add(minIndex);
         add(iVal);
         add(jVal);
+        revalidate();
+        repaint();
     }
 
     public void updateSelectionSort(int i, int j, int min) {
@@ -276,6 +280,9 @@ public class VisualizerPanel extends JPanel {
         add(minIndex);
         add(iVal);
         // add(jVal);
+        revalidate();
+        repaint();
+
     }
 
     public void updateQuickSort(int low, int high) {
@@ -308,6 +315,11 @@ public class VisualizerPanel extends JPanel {
         add(minIndex);
         // add(iVal);
         // add(jVal);
+
+        revalidate();
+        repaint();
+
+
     }
 
     public void updateRadixSort(int i, int exp, int max) {
@@ -336,6 +348,8 @@ public class VisualizerPanel extends JPanel {
         add(iIndex);
         add(jIndex);
         add(minIndex);
+        revalidate();
+        repaint();
     }
 
     public void updateMergeSort(int i, int j, int k) {
@@ -684,5 +698,17 @@ public class VisualizerPanel extends JPanel {
             rightBtns[i].setVisible(false);
             // remove(rightBtns[i]);
         }
+    }
+
+    public void clearText(){
+        if(sortName != null) remove(sortName);
+        if(iIndex != null) remove(iIndex);
+        if(jIndex != null) remove(jIndex);
+        if(iVal != null) remove(iVal);
+        if(minIndex != null) remove(minIndex);
+        if(status != null) remove(status);
+        if(jVal != null) remove(jVal);
+        repaint();
+        revalidate();
     }
 }
