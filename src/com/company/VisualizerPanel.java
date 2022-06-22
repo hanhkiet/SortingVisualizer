@@ -16,6 +16,7 @@ public class VisualizerPanel extends JPanel {
 
     private JButton playButton;
     private JButton stopButton;
+    private JButton reloadButton;
     private Color HIGHLIGHT_COLOR = new Color(245, 207, 103);
     private Color ACCEPT_COLOR = new Color(68, 140, 89);
     private Color DENY_COLOR = new Color(255, 64, 26);
@@ -23,6 +24,7 @@ public class VisualizerPanel extends JPanel {
 
     private Icon playIcon;
     private Icon stopIcon;
+    private Icon reloadIcon;
     private MainFrame parent;
     private int[] arr;
     private JButton[] buttons, countBtns, outBtns, leftBtns, rightBtns;
@@ -40,6 +42,10 @@ public class VisualizerPanel extends JPanel {
         stopIcon = new ImageIcon(new ImageIcon(getClass()
                 .getResource("./images/stop-solid.png")).getImage()
                 .getScaledInstance(10, 12, Image.SCALE_SMOOTH));
+
+        reloadIcon = new ImageIcon(new ImageIcon(getClass()
+                .getResource("./images/arrow-rotate-right-solid.png")).getImage()
+                .getScaledInstance(10, 12, Image.SCALE_SMOOTH));
     }
 
     private void initialize() {
@@ -54,22 +60,37 @@ public class VisualizerPanel extends JPanel {
         getIcon();
         playButton = new JButton(playIcon);
         playButton.setFocusable(false);
-        playButton.setBounds(10, HEIGHT - 60, 40, 40);
+        playButton.setBounds(10, HEIGHT - 60, 30, 30);
         playButton.addActionListener(l -> {
             parent.startThread();
         });
 
         stopButton = new JButton(stopIcon);
         stopButton.setFocusable(false);
-        stopButton.setBounds(70, HEIGHT - 60, 40, 40);
+        stopButton.setBounds(50, HEIGHT - 60, 30, 30);
 
         stopButton.setEnabled(false);
         stopButton.addActionListener(l -> {
             parent.stopThread();
         });
 
+        reloadButton = new JButton(reloadIcon);
+        reloadButton.setFocusable(false);
+        reloadButton.setBounds(90, HEIGHT - 60, 30, 30);
+
+        reloadButton.setEnabled(false);
+        reloadButton.addActionListener(l -> {
+            for (int i = 0; i < buttons.length; i++) {
+                remove(buttons[i]);
+            }
+
+            revalidate();
+            repaint();
+        });
+
         add(playButton);
         add(stopButton);
+        add(reloadButton);
     }
 
     public void setArr(int[] arr) {
@@ -103,6 +124,10 @@ public class VisualizerPanel extends JPanel {
     public void setEnabledWhenAnimating(boolean enabled) {
         playButton.setEnabled(enabled);
         stopButton.setEnabled(!enabled);
+    }
+
+    public void setEnabledReload(boolean enabled) {
+        reloadButton.setEnabled(enabled);
     }
 
     public void returnNormal() {
@@ -171,12 +196,14 @@ public class VisualizerPanel extends JPanel {
         iVal = new JLabel();
         jVal = new JLabel();
         status = new JLabel();
-        sortName.setBounds(15, 40, 200, 20);
+
+        sortName.setBounds(15, 20, 200, 20);
         iIndex.setBounds(15, 60, 100, 20);
         jIndex.setBounds(15, 80, 100, 20);
         iVal.setBounds(15, 100, 100, 20);
         jVal.setBounds(15, 120, 100, 20);
         status.setBounds(15, 140, 300, 20);
+
         add(sortName);
         add(status);
         add(iIndex);

@@ -121,12 +121,14 @@ public class MainFrame extends JFrame {
     private void disabledWhenAnimating() {
         functionPanel.setEnabledWhenAnimating(false);
         visualizerPanel.setEnabledWhenAnimating(false);
+        visualizerPanel.setEnabledReload(false);
         algorithmsPanel.setEnabledWhenAnimating(false);
     }
 
     private void enabledAfterAnimating() {
         functionPanel.setEnabledWhenAnimating(true);
         visualizerPanel.setEnabledWhenAnimating(true);
+        visualizerPanel.setEnabledReload(true);
         algorithmsPanel.setEnabledWhenAnimating(true);
     }
 
