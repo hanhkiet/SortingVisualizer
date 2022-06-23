@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
+import java.awt.*;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -18,7 +19,8 @@ import javax.swing.border.TitledBorder;
 
 public class FunctionPanel extends JPanel {
 
-    private JLabel label;
+    private JLabel inputLabel;
+    private JLabel delayLabel;
     private JTextField textField;
     private JButton generateButton;
     private JButton deleteButton;
@@ -28,6 +30,17 @@ public class FunctionPanel extends JPanel {
     private int _amount;
     private int[] arr;
     private MainFrame parent;
+
+    private static final int HEIGHT = 360, WIDTH = 569;
+
+    private static final Rectangle INPUT_LABEL_BOUND = new Rectangle(20, 40, 150, 20);
+    private static final Rectangle TEXTFIELD_BOUND = new Rectangle(160, 40 + 1, 50, 20);
+
+    private static final Rectangle DELAY_LABEL_BOUND = new Rectangle(20, 80, 100, 20);
+    private static final Rectangle SLIDER_BOUND = new Rectangle(80, 80, 300, 40);
+
+    private static final Rectangle GENERATE_BUTTON_BOUND = new Rectangle(220, 40 - 2, 100, 25);
+    private static final Rectangle DELETE_BUTTON_BOUND = new Rectangle(330, 40 - 2, 100, 25);
 
     public void setEnabledWhenAnimating(boolean enabled) {
         slider.setEnabled(enabled);
@@ -42,22 +55,34 @@ public class FunctionPanel extends JPanel {
     }
 
     private void initialize() {
-        label = new JLabel("Số phần tử mảng");
+        inputLabel = new JLabel("Nhập số phần tử mảng");
+        inputLabel.setBounds(INPUT_LABEL_BOUND);
+        add(inputLabel);
+
+        delayLabel = new JLabel("Độ trễ");
+        delayLabel.setBounds(DELAY_LABEL_BOUND);
+        add(delayLabel);
+
         textField = new JTextField();
         textField.setColumns(10);
+        textField.setBounds(TEXTFIELD_BOUND);
+        add(textField);
 
         generateButton = new JButton("Tạo mảng");
+        generateButton.setFocusable(false);
+        generateButton.setBounds(GENERATE_BUTTON_BOUND);
+        add(generateButton);
+
         deleteButton = new JButton("Xóa mảng");
+        deleteButton.setFocusable(false);
+        deleteButton.setBounds(DELETE_BUTTON_BOUND);
+        add(deleteButton);
 
         slider = new JSlider(SwingConstants.HORIZONTAL, 100, 500, 200);
+        slider.setBounds(SLIDER_BOUND);
         slider.setMajorTickSpacing(100);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
-
-        add(label);
-        add(textField);
-        add(generateButton);
-        add(deleteButton);
         add(slider);
 
         generateButton.addActionListener(new ActionListener() {
@@ -116,6 +141,8 @@ public class FunctionPanel extends JPanel {
 
         parent = frame;
         initialize();
+
+        setLayout(null);
 
         TitledBorder border = BorderFactory.createTitledBorder("Tùy chỉnh");
         border.setTitleFont(FontManager.titleFont);

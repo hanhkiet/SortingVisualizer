@@ -10,6 +10,7 @@ public class MainFrame extends JFrame {
         EventQueue.invokeLater(() -> {
             MainFrame frame = new MainFrame();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setResizable(false);
             frame.setVisible(true);
         });
     }
