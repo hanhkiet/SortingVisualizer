@@ -12,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
-import javax.swing.plaf.metal.MetalButtonUI;
 
 public class VisualizerPanel extends JPanel {
 
@@ -97,6 +96,7 @@ public class VisualizerPanel extends JPanel {
         stopButton.setEnabled(false);
         stopButton.addActionListener(l -> {
             parent.stopThread();
+
         });
 
         reloadButton = new JButton(reloadIcon);

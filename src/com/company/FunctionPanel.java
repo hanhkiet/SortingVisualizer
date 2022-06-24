@@ -48,6 +48,11 @@ public class FunctionPanel extends JPanel {
         deleteButton.setEnabled(enabled);
     }
 
+    public void setEnabledWhenInterrupt(boolean enabled) {
+        generateButton.setEnabled(enabled);
+        deleteButton.setEnabled(enabled);
+    }
+
     public void returnNormal() {
         slider.setEnabled(true);
         generateButton.setEnabled(true);

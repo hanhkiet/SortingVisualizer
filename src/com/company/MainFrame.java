@@ -4,6 +4,7 @@ import com.company.model.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 public class MainFrame extends JFrame {
     public static void main(String[] args) {
@@ -50,6 +51,7 @@ public class MainFrame extends JFrame {
 
     public void setArr(int[] newArr) {
         arr = newArr;
+
         visualizerPanel.setArr(arr);
 
         // switch (algorithmsPanel.getSelectedAlgorithm()) {
@@ -131,6 +133,11 @@ public class MainFrame extends JFrame {
         visualizerPanel.setEnabledWhenAnimating(true);
         visualizerPanel.setEnabledReload(true);
         algorithmsPanel.setEnabledWhenAnimating(true);
+    }
+
+    private void disabledWhenInterrupt() {
+        enabledAfterAnimating();
+        functionPanel.setEnabledWhenInterrupt(false);
     }
 
     public void animate() {
@@ -582,7 +589,7 @@ public class MainFrame extends JFrame {
     public void stopThread() {
         thread.stop();
         thread = null;
-        enabledAfterAnimating();
+        disabledWhenInterrupt();
     }
 
     public void startThread() {
