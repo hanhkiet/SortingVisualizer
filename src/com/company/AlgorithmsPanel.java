@@ -48,6 +48,10 @@ public class AlgorithmsPanel extends JPanel {
         button.addActionListener(l -> {
             selectedAlgorithm = algorithm;
             parent.getCodePanel().changeAlgorithm(algorithm);
+
+            if (parent.getArr() != null) {
+                parent.getVisualizerPanel().reload();
+            }
         });
 
         group.add(button);

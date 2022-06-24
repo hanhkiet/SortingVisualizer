@@ -96,7 +96,6 @@ public class VisualizerPanel extends JPanel {
         stopButton.setEnabled(false);
         stopButton.addActionListener(l -> {
             parent.stopThread();
-
         });
 
         reloadButton = new JButton(reloadIcon);
@@ -105,20 +104,26 @@ public class VisualizerPanel extends JPanel {
 
         reloadButton.setEnabled(false);
         reloadButton.addActionListener(l -> {
-            removeAll();
-            initArray();
-
-            add(playButton);
-            add(stopButton);
-            add(reloadButton);
-
-            revalidate();
-            repaint();
+            reload();
         });
 
         add(playButton);
         add(stopButton);
         add(reloadButton);
+    }
+
+    public void reload() {
+        removeAll();
+
+        setArr(null);
+        parent.setArr(null);
+
+        add(playButton);
+        add(stopButton);
+        add(reloadButton);
+
+        revalidate();
+        repaint();
     }
 
     public void setArr(int[] arr) {

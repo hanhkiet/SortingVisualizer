@@ -27,6 +27,10 @@ public class MainFrame extends JFrame {
         return codePanel;
     }
 
+    public VisualizerPanel getVisualizerPanel() {
+        return visualizerPanel;
+    }
+
     private int[] arr;
     private int speed;
     boolean flat;
