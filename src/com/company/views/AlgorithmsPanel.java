@@ -11,8 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.TitledBorder;
 
-import com.company.codeCpn.utils.AlgorithmsEnum;
-import com.company.codeCpn.utils.FontManager;
+import com.company.utils.AlgorithmsEnum;
+import com.company.utils.FontManager;
 
 public class AlgorithmsPanel extends JPanel {
 

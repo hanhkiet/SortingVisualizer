@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
-import com.company.codeCpn.utils.FontManager;
+import com.company.utils.FontManager;
 
 public class VisualizerPanel extends JPanel {
 
@@ -60,16 +60,16 @@ public class VisualizerPanel extends JPanel {
 
     private void getIcon() {
         playIcon = new ImageIcon(
-                new ImageIcon(getClass().getResource("./images/play-solid.png"))
+                new ImageIcon(getClass().getResource("../images/play-solid.png"))
                         .getImage().getScaledInstance(10, 12,
                                 Image.SCALE_AREA_AVERAGING));
 
         stopIcon = new ImageIcon(new ImageIcon(getClass()
-                .getResource("./images/stop-solid.png")).getImage()
+                .getResource("../images/stop-solid.png")).getImage()
                 .getScaledInstance(10, 12, Image.SCALE_SMOOTH));
 
         reloadIcon = new ImageIcon(new ImageIcon(getClass()
-                .getResource("./images/arrow-rotate-right-solid.png")).getImage()
+                .getResource("../images/arrow-rotate-right-solid.png")).getImage()
                 .getScaledInstance(10, 12, Image.SCALE_SMOOTH));
     }
 

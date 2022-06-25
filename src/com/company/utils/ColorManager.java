@@ -1,4 +1,4 @@
-package com.company.codeCpn.utils;
+package com.company.utils;
 
 import java.awt.Color;
 

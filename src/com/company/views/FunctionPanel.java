@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
-import com.company.codeCpn.utils.FontManager;
+import com.company.utils.FontManager;
 
 public class FunctionPanel extends JPanel {
 
