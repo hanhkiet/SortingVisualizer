@@ -1,4 +1,4 @@
-package com.company;
+package com.company.views;
 
 import java.awt.Insets;
 import java.util.Enumeration;
@@ -10,6 +10,9 @@ import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.TitledBorder;
+
+import com.company.codeCpn.utils.AlgorithmsEnum;
+import com.company.codeCpn.utils.FontManager;
 
 public class AlgorithmsPanel extends JPanel {
 

@@ -1,4 +1,4 @@
-package com.company;
+package com.company.views;
 
 import java.awt.Color;
 import java.awt.Image;
@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+
+import com.company.codeCpn.utils.FontManager;
 
 public class VisualizerPanel extends JPanel {
 

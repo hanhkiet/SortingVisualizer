@@ -1,4 +1,4 @@
-package com.company;
+package com.company.views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +16,8 @@ import javax.swing.JSlider;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+
+import com.company.codeCpn.utils.FontManager;
 
 public class FunctionPanel extends JPanel {
 

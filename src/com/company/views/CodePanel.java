@@ -1,4 +1,4 @@
-package com.company;
+package com.company.views;
 
 import java.awt.BorderLayout;
 
@@ -12,6 +12,8 @@ import com.company.codeCpn.QuickSort;
 import com.company.codeCpn.RadixSort;
 import com.company.codeCpn.SelectSort;
 import com.company.codeCpn.Sort;
+import com.company.codeCpn.utils.AlgorithmsEnum;
+import com.company.codeCpn.utils.FontManager;
 import com.company.model.SortValue;
 
 public class CodePanel extends JPanel {

@@ -1,5 +1,7 @@
-package com.company;
+package com.company.views;
 
+import com.company.codeCpn.utils.AlgorithmsEnum;
+import com.company.codeCpn.utils.ColorManager;
 import com.company.model.*;
 
 import javax.swing.*;
