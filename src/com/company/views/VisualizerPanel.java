@@ -117,8 +117,12 @@ public class VisualizerPanel extends JPanel {
     public void reload() {
         removeAll();
 
-        setArr(null);
-        parent.setArr(null);
+        for (int i = 0; i < buttons.length; i++) {
+            remove(buttons[i]);
+        }
+
+        setArr(parent.getArr());
+        parent.changeAlgorithm();
 
         add(playButton);
         add(stopButton);
@@ -137,6 +141,8 @@ public class VisualizerPanel extends JPanel {
 
         this.arr = arr;
         initArray();
+
+        revalidate();
         repaint();
     }
 
